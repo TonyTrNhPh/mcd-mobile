@@ -45,6 +45,9 @@ public class Wave : MonoBehaviour
         {
             var dogData = SpawnManager.Instance.GetRandomDog();
             int level = Random.Range(0,1);
+            
+            if (dogData != null && dogData.dogLevels != null && dogData.dogLevels.Length > 0)
+                level = Random.Range(0, dogData.dogLevels.Length);
 
             DogLevelData levelData = null;
             if (dogData != null && dogData.dogLevels != null && dogData.dogLevels.Length > 0)
@@ -69,7 +72,7 @@ public class Wave : MonoBehaviour
                 }
             }
 
-            float interval = baseInterval + i * intervalStep;
+            float interval = baseInterval + Mathf.Min(i * intervalStep, 2f);
             yield return new WaitForSeconds(interval);
         }
 
