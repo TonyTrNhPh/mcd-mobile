@@ -213,7 +213,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d17b6ca3ada8fa4cba16014dd9e784c, type: 2}
+  - {fileID: 2100000, guid: 6d89fee2863c3c6458dfab3a585f06aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e075b9a3e08e2f74fbd651c858ab16ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: spine-unity::Spine.Unity.SkeletonRenderer
-  skeletonDataAsset: {fileID: 11400000, guid: c01e7d32fdde0704aa606a6208e63914, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 0a597c640532f7b409cb5847e1161093, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 2754218136436488138}
   - component: {fileID: 3649515261244900376}
   m_Layer: 8
-  m_Name: Default Dog
+  m_Name: Level 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,7 +563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dog
   hitPoint: {fileID: 153385445944400553}
-  distance: 1.6
   healthBar: {fileID: 3377874129692212089}
   healthBarFill: {fileID: 1139522564743517642}
   maxHealth: 100

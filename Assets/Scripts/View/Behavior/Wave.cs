@@ -44,7 +44,7 @@ public class Wave : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var dogData = SpawnManager.Instance.GetRandomDog();
-            int level = 0;
+            int level = Random.Range(0,1);
 
             DogLevelData levelData = null;
             if (dogData != null && dogData.dogLevels != null && dogData.dogLevels.Length > 0)
