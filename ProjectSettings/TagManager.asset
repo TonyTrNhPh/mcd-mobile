@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - Barrier
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Slot
+  - Cat
+  - Dog
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1233717511
+    locked: 0
+  - name: Slot
+    uniqueID: 1209619553
+    locked: 0
+  - name: Cat
+    uniqueID: 1087659285
+    locked: 0
+  - name: Dog
+    uniqueID: 1976035239
+    locked: 0
+  - name: VFX
+    uniqueID: 1116539195
+    locked: 0
+  - name: Projectile
+    uniqueID: 2757054741
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  m_MigratedRenderPipelines: []

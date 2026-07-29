@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
+  m_Name: PistolCat
+  m_EditorClassIdentifier: Assembly-CSharp::CatData
+  catName: Pistol Cat
+  catDescription: Avarage atk, Avarage atks
+  catLevels:
+  - skin: {fileID: 1074927879421123372, guid: 40a4228fc42a02b41b5f2e68349f966e, type: 3}
+    damage: 10
+    reloadTime: 1.5
+    fireRange: 42
+  - skin: {fileID: 1074927879421123372, guid: c96f3635c9c0d5247bb867655e9ba320, type: 3}
+    damage: 12
+    reloadTime: 1.5
+    fireRange: 42
+  - skin: {fileID: 1074927879421123372, guid: ad57d0b36801a7d48a4dd879e7517d22, type: 3}
+    damage: 13
+    reloadTime: 1
+    fireRange: 42
+  - skin: {fileID: 1074927879421123372, guid: 04ad636cb7569c34ca7fa9ee0686743e, type: 3}
+    damage: 14
+    reloadTime: 1
+    fireRange: 42
+  - skin: {fileID: 1074927879421123372, guid: 05098fa26852e134eb6cfe6d52c5eb6b, type: 3}
+    damage: 15
+    reloadTime: 0.8
+    fireRange: 42

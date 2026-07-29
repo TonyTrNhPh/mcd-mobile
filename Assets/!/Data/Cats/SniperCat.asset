@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
+  m_Name: SniperCat
+  m_EditorClassIdentifier: Assembly-CSharp::CatData
+  catName: Sniper Cat
+  catDescription: High atk, Low atks
+  catLevels:
+  - level: 1
+    skin: {fileID: 1074927879421123372, guid: b7b134e0069707547b2735640c9e13b3, type: 3}
+    damage: 10
+    reloadTime: 4
+    fireRange: 42
+  - level: 2
+    skin: {fileID: 1074927879421123372, guid: bf5f4328c6cb24b49b3a82f0c06736f2, type: 3}
+    damage: 12
+    reloadTime: 4
+    fireRange: 42
+  - level: 3
+    skin: {fileID: 1074927879421123372, guid: 23e171bebe8c49748bc6d8f608ad7f75, type: 3}
+    damage: 13
+    reloadTime: 3
+    fireRange: 42
+  - level: 4
+    skin: {fileID: 1074927879421123372, guid: 20242013b77981d479fa71b74aada9d3, type: 3}
+    damage: 14
+    reloadTime: 3
+    fireRange: 42
+  - level: 5
+    skin: {fileID: 1074927879421123372, guid: 46156e81a27ba51458e18650b904d8ba, type: 3}
+    damage: 15
+    reloadTime: 2
+    fireRange: 42
