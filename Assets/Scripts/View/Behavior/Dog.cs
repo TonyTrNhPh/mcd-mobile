@@ -37,6 +37,7 @@ public class Dog : MonoBehaviour
     private float _verticalDirection;
     private bool _barrierInRange = false;
     private float _attackTimer;
+    private CircleCollider2D _hitBox;
 
     //---------- Stat ----------//
     private DogData _dogData;
@@ -54,6 +55,7 @@ public class Dog : MonoBehaviour
         _dogAnimation = GetComponentInChildren<SkeletonAnimation>();
         _dogRenderer = GetComponentInChildren<SkeletonRenderer>();
         _sortingGroup = GetComponent<SortingGroup>();
+        _hitBox = GetComponent<CircleCollider2D>();
     }
 
     private void Start()
@@ -120,6 +122,8 @@ public class Dog : MonoBehaviour
     {
         IsDead = true;
         _barrierInRange = false;
+
+        _hitBox.radius = 0f;
 
         PlayAnimation(DeathAnim);
 
@@ -222,7 +226,7 @@ public class Dog : MonoBehaviour
 
     private void ChooseWalkDirection()
     {
-        int direction = UnityEngine.Random.Range(0, 3);
+        int direction = Random.Range(0, 3);
 
         if (direction == 0)
             _verticalDirection = -1f; // Down
@@ -246,21 +250,11 @@ public class Dog : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (_targetBarrier != null)
-        {
-            OnAttackBarrier += _targetBarrier.TakeDamage;
-            _barrierInRange = false;
-            _targetBarrier = null;
-        }
-    }
-
     private void OnDestroy()
     {
         if (_targetBarrier != null)
         {
-            OnAttackBarrier += _targetBarrier.TakeDamage;
+            OnAttackBarrier -= _targetBarrier.TakeDamage;
             _barrierInRange = false;
             _targetBarrier = null;
         }

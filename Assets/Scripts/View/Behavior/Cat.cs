@@ -204,7 +204,10 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         Dog target = FindClosestDog();
 
         if (target == null)
+        {
+            Debug.Log("Shoot");
             return;
+        }
 
         PlayAnimation(ShootAnim);
         SpawnProjectile(target);
@@ -222,6 +225,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
                 _catAnimation.AnimationState.SetAnimation(0, ShootAnim, false);
                 shootVFXAnimation.AnimationState.SetAnimation(0, ShootVFXAnim, false);
                 _catAnimation.AnimationState.AddAnimation(0, IdleAnim, true, 0f);
+                _currentAnimation = IdleAnim;
                 break;
             case IdleAnim:
                 _catAnimation.AnimationState.SetAnimation(0, IdleAnim, true);
