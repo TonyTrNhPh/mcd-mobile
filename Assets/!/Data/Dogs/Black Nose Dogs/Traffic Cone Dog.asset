@@ -10,18 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b4a51327d4387648a4dd2c33ad6f9cd, type: 3}
-  m_Name: BlackNoseDog
+  m_Name: Traffic Cone Dog
   m_EditorClassIdentifier: Assembly-CSharp::DogData
   dogName: Black Nose Dog
   dogDescription: I dont know
-  dogLevels:
-  - skin: {fileID: 8432060573322760741, guid: 05efedb56e501364d87a659c3c917ed5, type: 3}
-    damage: 10
-    reloadTime: 2
-    health: 100
-    distance: 1.6
-  - skin: {fileID: 8432060573322760741, guid: 997b4b205919c0d42a7dd20bf9b0603a, type: 3}
-    damage: 10
-    reloadTime: 2
-    health: 100
-    distance: 1.6
+  damage: 20
+  reloadTime: 1
+  health: 100
+  distance: 1.6
+  skin: {fileID: 8432060573322760741, guid: ee05c535e2b554d40abaa34f110295cd, type: 3}
