@@ -3,17 +3,30 @@ using Utility.State;
 
 namespace View.Manager
 {
-    public class GameManager : SingletonMonoBehaviour<GameManager>
+    public class GameManager : MonoBehaviour
     {
-        private const string Tag = "GameManager";
-
+        public static GameManager Instance;
+        
         [SerializeField] private EGameState initialState = EGameState.Home;
 
         public EGameState CurrentState { get; private set; }
 
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
         private void Start()
         {
             SetGameState(initialState);
+            LevelManager.Instance.StartLevel(0);
         }
 
         public void SetGameState(EGameState newState)
@@ -24,8 +37,7 @@ namespace View.Manager
             }
 
             CurrentState = newState;
-            if (UIManager.I != null) UIManager.I.ApplyGameState(newState);
-            else Debug.LogWarning($"{Tag}: UIManager instance not found! Cannot apply game state.");
+            if (UIManager.Instance != null) UIManager.Instance.ApplyGameState(newState);
         }
 
     }

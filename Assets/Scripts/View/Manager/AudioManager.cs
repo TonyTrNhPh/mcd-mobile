@@ -1,12 +1,26 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace View.Manager
 {
-    public class AudioManager : SingletonMonoBehaviour<AudioManager>
+    public class AudioManager : MonoBehaviour
     {
-        private const string Tag = "AudioManager";
+        public static AudioManager Instance; 
+            
         [SerializeField] private AudioSource bgmSource;
         [SerializeField] private AudioSource sfxSource;
+        
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
         
         public void PlayBgm(AudioClip clip)
         {

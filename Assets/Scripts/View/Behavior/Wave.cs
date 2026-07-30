@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Wave : MonoBehaviour
 {
     public static Wave Instance;
 
     [SerializeField] private GameObject spawnPoint;
-    [SerializeField] private int numberOfDog = 0;
-    [SerializeField] private float baseInterval = 0.5f; // first spawn delay
-    [SerializeField] private float intervalStep = 0.2f; // increment per spawn
     [SerializeField] public float minYPoint = 0;
     [SerializeField] public float maxYPoint = 0;
 
+    //---------- Event ----------//
+    public event Action<int, int> OnWaveChange;
+
     private Coroutine _spawnRoutine;
+    private LevelData _currentLevelData;
 
     private void Awake()
     {
@@ -26,56 +29,96 @@ public class Wave : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void SetLevelData(LevelData levelData)
     {
-        SpawnDog();
+        if (levelData == null)
+        {
+            Debug.LogError("LevelData is null!");
+            return;
+        }
+
+        _currentLevelData = levelData;
     }
 
-    public void SpawnDog()
+    public void StartWave()
     {
+        if (_currentLevelData == null)
+        {
+            Debug.LogError("LevelData is null!");
+            return;
+        }
+        
         if (_spawnRoutine != null)
             StopCoroutine(_spawnRoutine);
 
-        _spawnRoutine = StartCoroutine(SpawnSequence(numberOfDog));
+        _spawnRoutine = StartCoroutine(SpawnWavesSequence());
     }
 
-    private IEnumerator SpawnSequence(int count)
+    private IEnumerator SpawnWavesSequence()
     {
-        for (int i = 0; i < count; i++)
+        int totalWaves = _currentLevelData.waves.Count;
+        OnWaveChange?.Invoke(1, totalWaves);
+
+        for (int i = 0; i < totalWaves; i++)
         {
-            var dogData = SpawnManager.Instance.GetRandomDog();
-            int level = Random.Range(0,1);
-            
-            if (dogData != null && dogData.dogLevels != null && dogData.dogLevels.Length > 0)
-                level = Random.Range(0, dogData.dogLevels.Length);
+            WaveData waveData = _currentLevelData.waves[i];
 
-            DogLevelData levelData = null;
-            if (dogData != null && dogData.dogLevels != null && dogData.dogLevels.Length > 0)
-                levelData = dogData.dogLevels[level];
+            // Wait before starting this wave
+            yield return new WaitForSeconds(waveData.startDelay);
 
-            float randomY = Random.Range(minYPoint, maxYPoint);
-            
-            if (levelData != null && levelData.skin != null)
+            // Tell UI that this wave has started
+            OnWaveChange?.Invoke(i + 1, totalWaves);
+
+            foreach (var groupOfEnemies in waveData.groupsOfEnemies)
             {
-                Vector3 spawnPosition = new Vector3(
-                    spawnPoint != null ? spawnPoint.transform.position.x : transform.position.x,
-                    randomY,
-                    spawnPoint != null ? spawnPoint.transform.position.z : transform.position.z
+                yield return StartCoroutine(SpawnGroup(groupOfEnemies));
+
+                yield return new WaitForSeconds(
+                    waveData.betweenEachGroup
                 );
-                
-                GameObject go = Instantiate(levelData.skin, spawnPosition, Quaternion.identity, gameObject.transform);
-
-                var dog = go.GetComponent<Dog>();
-                if (dog != null)
-                {
-                    dog.Initialize(dogData, level);
-                }
             }
+        }
+        _spawnRoutine = null;
+    }
 
-            float interval = baseInterval + Mathf.Min(i * intervalStep, 2f);
-            yield return new WaitForSeconds(interval);
+    private IEnumerator SpawnGroup(GroupOfEnemy groupOfEnemies)
+    {
+        foreach (var enemyData in groupOfEnemies.enemyData)
+        {
+            // Spawn the specified number of this enemy type
+            for (int i = 0; i < enemyData.numberOfDogs; i++)
+            {
+                SpawnSingleDog(enemyData.dogData);
+
+                // Wait between each enemy in the group
+                if (i < enemyData.numberOfDogs - 1)
+                    yield return new WaitForSeconds(groupOfEnemies.betweenEachEnemy);
+            }
+        }
+    }
+
+    private void SpawnSingleDog(DogData dogData)
+    {
+        if (dogData == null || dogData.skin == null)
+        {
+            Debug.LogWarning("DogData or its skin is null!");
+            return;
         }
 
-        _spawnRoutine = null;
+        float randomY = Random.Range(minYPoint, maxYPoint);
+
+        Vector3 spawnPosition = new Vector3(
+            spawnPoint != null ? spawnPoint.transform.position.x : transform.position.x,
+            randomY,
+            spawnPoint != null ? spawnPoint.transform.position.z : transform.position.z
+        );
+
+        GameObject go = Instantiate(dogData.skin, spawnPosition, Quaternion.identity, gameObject.transform);
+
+        var dog = go.GetComponent<Dog>();
+        if (dog != null)
+        {
+            dog.Initialize(dogData);
+        }
     }
 }

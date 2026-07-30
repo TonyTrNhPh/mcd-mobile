@@ -13,8 +13,7 @@ public class Dog : MonoBehaviour
     [SerializeField] private Image healthBarFill;
     [SerializeField] private float maxHealth;
 
-    public DogData Data => _dogData;
-    public DogLevelData LevelData => _dogData.dogLevels[_level];
+    public DogData dogData => _dogData;
     public int Level => _level;
 
     //---------- Event ---------//
@@ -92,15 +91,14 @@ public class Dog : MonoBehaviour
         _sortingGroup.sortingOrder = Mathf.RoundToInt(-yPosition * 100);
     }
 
-    public void Initialize(DogData data, int level)
+    public void Initialize(DogData data)
     {
         _dogData = data;
-        _level = level;
-        _currentHealth = LevelData.health;
+        _currentHealth = dogData.health;
 
         _dogAnimation.Initialize(true);
 
-        _attackTimer = LevelData.reloadTime;
+        _attackTimer = dogData.reloadTime;
     }
 
     public void TakeDamage(float damage)
@@ -124,9 +122,9 @@ public class Dog : MonoBehaviour
         _barrierInRange = false;
 
         _hitBox.radius = 0f;
-
+        
+        SpendManager.Instance.EarnCoin(100);
         PlayAnimation(DeathAnim);
-
         StartCoroutine(DestroyAfterAnimation());
     }
 
@@ -150,7 +148,7 @@ public class Dog : MonoBehaviour
 
         Vector3 movement = new Vector3(
             -_moveSpeed,
-            _verticalDirection * LevelData.distance / 2,
+            _verticalDirection * dogData.distance / 2,
             0f
         ) * Time.deltaTime;
 
@@ -172,9 +170,9 @@ public class Dog : MonoBehaviour
     {
         _attackTimer += Time.deltaTime;
 
-        while (_attackTimer >= LevelData.reloadTime)
+        while (_attackTimer >= dogData.reloadTime)
         {
-            _attackTimer -= LevelData.reloadTime;
+            _attackTimer -= dogData.reloadTime;
             Attack();
         }
     }
@@ -183,7 +181,7 @@ public class Dog : MonoBehaviour
     {
         PlayAnimation(AttackAnim);
 
-        OnAttackBarrier?.Invoke(LevelData.damage);
+        OnAttackBarrier?.Invoke(dogData.damage);
     }
 
     private void PlayAnimation(string animName)
@@ -221,7 +219,7 @@ public class Dog : MonoBehaviour
 
     private float GetWalkingSpeed()
     {
-        return LevelData.distance / GetAnimationTime(_dogRenderer, WalkAnim);
+        return dogData.distance / GetAnimationTime(_dogRenderer, WalkAnim);
     }
 
     private void ChooseWalkDirection()

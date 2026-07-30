@@ -2110,9 +2110,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wave
   spawnPoint: {fileID: 748767911}
-  numberOfDog: 100
-  baseInterval: 1
-  intervalStep: 0.5
   minYPoint: -9
   maxYPoint: 7
 --- !u!1 &525113754
@@ -3738,6 +3735,8 @@ GameObject:
   - component: {fileID: 860917223}
   - component: {fileID: 860917225}
   - component: {fileID: 860917224}
+  - component: {fileID: 860917226}
+  - component: {fileID: 860917227}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3772,7 +3771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d635895fe0bf9cb44a13adf39ff33ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: 1
+  initialState: 2
 --- !u!114 &860917224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3801,10 +3800,32 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87101b6f22b74cd4daa2458734a4f730, type: 2}
   - {fileID: 11400000, guid: e7fd08b990513a94bb98d4239cd6c433, type: 2}
   - {fileID: 11400000, guid: f660d380c0000074d8235930a0500331, type: 2}
-  dogData:
-  - {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
-  - {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
-  bossData: []
+--- !u!114 &860917226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860917221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee2ae9e18790134aaec7581121a3030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpendManager
+--- !u!114 &860917227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860917221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a0a2fd6cacc9544af1c2249673753f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  levelDataList:
+  - {fileID: 11400000, guid: e9a0e63bb8e31d843b372cd68a6f32f4, type: 2}
 --- !u!1 &875603366
 GameObject:
   m_ObjectHideFlags: 0
@@ -5494,7 +5515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wave 3/10
+  m_text: Lorem dipsum
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24aa9268d3766624982408a3184acde9, type: 2}
   m_sharedMaterial: {fileID: -1281914358514475774, guid: 24aa9268d3766624982408a3184acde9, type: 2}
@@ -5521,12 +5542,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 25.15
   m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 32
   m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -7132,6 +7153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dedf242643e5c4aa38f1c05856714b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMenu
+  totalCoinText: {fileID: 1981815808}
+  waveText: {fileID: 1191724245}
+  addCatCoinText: {fileID: 61232579}
+  repairWallCoinText: {fileID: 1150725427}
 --- !u!1 &1541217882
 GameObject:
   m_ObjectHideFlags: 0
@@ -9413,7 +9438,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 22, y: 1.9}
-  m_SizeDelta: {x: 157.1889, y: 40}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1981815808
 MonoBehaviour:
@@ -9435,7 +9460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000
+  m_text: 000000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24aa9268d3766624982408a3184acde9, type: 2}
   m_sharedMaterial: {fileID: -1281914358514475774, guid: 24aa9268d3766624982408a3184acde9, type: 2}
@@ -9462,12 +9487,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
+  m_fontSize: 45.3
   m_fontSizeBase: 34
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 64
   m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512

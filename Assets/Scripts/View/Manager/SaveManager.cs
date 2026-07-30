@@ -3,12 +3,20 @@ using Utility.Constant;
 
 namespace View.Manager
 {
-    public class SaveManager : SingletonMonoBehaviour<SaveManager>
+    public class SaveManager : MonoBehaviour
     {
-        private const string Tag = "SaveManager";
+        public static SaveManager Instance;
 
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
             DontDestroyOnLoad(gameObject);
             EnsureDefaults();
         }

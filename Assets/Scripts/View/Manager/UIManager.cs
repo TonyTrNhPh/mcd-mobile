@@ -4,9 +4,10 @@ using UnityEngine.UI;
 using Utility.State;
 using View.Manager;
 
-public class UIManager : PersistenceMonoBehaviour<UIManager>
+public class UIManager : MonoBehaviour
 {
-    private const string Tag = "UIManager";
+    public static UIManager Instance;
+    
     [SerializeField] private List<CanvasScaler>  canvasScalers;
     [Header("Menus")]
     [SerializeField] private GameObject loadingMenu;
@@ -19,14 +20,25 @@ public class UIManager : PersistenceMonoBehaviour<UIManager>
     [SerializeField] private GameObject winPopup;
     [SerializeField] private GameObject losePopup;
     
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     
     private void Start()
     {
         ApplyResolution(Screen.width, Screen.height);
 
-        if (GameManager.I != null)
+        if (GameManager.Instance != null)
         {
-            ApplyGameState(GameManager.I.CurrentState);
+            ApplyGameState(GameManager.Instance.CurrentState);
         }
     }
 
@@ -53,7 +65,7 @@ public class UIManager : PersistenceMonoBehaviour<UIManager>
         }
         else
         {
-            Debug.LogWarning($"{Tag}: canvasScalers is null!");
+            //
         }
     }
 
@@ -65,7 +77,7 @@ public class UIManager : PersistenceMonoBehaviour<UIManager>
         }
         else
         {
-            Debug.LogWarning($"{Tag}: target is null!"); 
+            //
         }
     }
 }

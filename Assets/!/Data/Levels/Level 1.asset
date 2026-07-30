@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d708a058dca49044281120f682f94e94, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  isBossLevel: 0
+  initialCoin: 1000
+  diamondReward: 10
+  waves:
+  - startDelay: 2
+    betweenEachGroup: 4
+    groupsOfEnemies:
+    - betweenEachEnemy: 2
+      enemyData:
+      - dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+        numberOfDogs: 2
+      - dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+        numberOfDogs: 3
+    - betweenEachEnemy: 0
+      enemyData:
+      - dogData: {fileID: 11400000, guid: 5df251abf5efe234aae7793997be546d, type: 2}
+        numberOfDogs: 2
+      - dogData: {fileID: 11400000, guid: 31a786e91ab2ec643974586bbb4c02c8, type: 2}
+        numberOfDogs: 1
+  - startDelay: 2
+    betweenEachGroup: 4
+    groupsOfEnemies:
+    - betweenEachEnemy: 2
+      enemyData:
+      - dogData: {fileID: 11400000, guid: 9274837f8d9e430419665edc77b6e756, type: 2}
+        numberOfDogs: 2
+      - dogData: {fileID: 11400000, guid: 65bb4bf5e50428941a3999f18b2ad163, type: 2}
+        numberOfDogs: 2
+  - startDelay: 2
+    betweenEachGroup: 4
+    groupsOfEnemies:
+    - betweenEachEnemy: 2
+      enemyData:
+      - dogData: {fileID: 11400000, guid: 9274837f8d9e430419665edc77b6e756, type: 2}
+        numberOfDogs: 2
+      - dogData: {fileID: 11400000, guid: 65bb4bf5e50428941a3999f18b2ad163, type: 2}
+        numberOfDogs: 2
+  - startDelay: 2
+    betweenEachGroup: 4
+    groupsOfEnemies:
+    - betweenEachEnemy: 2
+      enemyData:
+      - dogData: {fileID: 11400000, guid: 9274837f8d9e430419665edc77b6e756, type: 2}
+        numberOfDogs: 2
+      - dogData: {fileID: 11400000, guid: 65bb4bf5e50428941a3999f18b2ad163, type: 2}
+        numberOfDogs: 2
+  - startDelay: 2
+    betweenEachGroup: 4
+    groupsOfEnemies:
+    - betweenEachEnemy: 2
+      enemyData:
+      - dogData: {fileID: 11400000, guid: 9274837f8d9e430419665edc77b6e756, type: 2}
+        numberOfDogs: 2
+      - dogData: {fileID: 11400000, guid: 65bb4bf5e50428941a3999f18b2ad163, type: 2}
+        numberOfDogs: 2
