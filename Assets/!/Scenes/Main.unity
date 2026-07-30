@@ -613,7 +613,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 113, y: 36}
+  m_SizeDelta: {x: 100, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &61232579
 MonoBehaviour:
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -3}
+  m_margin: {x: 10, y: 0, z: 0, w: -3}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5099,7 +5099,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 113, y: 36}
+  m_SizeDelta: {x: 100, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1150725427
 MonoBehaviour:
@@ -5187,7 +5187,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -3}
+  m_margin: {x: 10, y: 0, z: 0, w: -3}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5515,7 +5515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem dipsum
+  m_text: Wave 3/10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24aa9268d3766624982408a3184acde9, type: 2}
   m_sharedMaterial: {fileID: -1281914358514475774, guid: 24aa9268d3766624982408a3184acde9, type: 2}
@@ -5542,7 +5542,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.15
+  m_fontSize: 32
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7156,7 +7156,7 @@ MonoBehaviour:
   totalCoinText: {fileID: 1981815808}
   waveText: {fileID: 1191724245}
   addCatCoinText: {fileID: 61232579}
-  repairWallCoinText: {fileID: 1150725427}
+  repairBarrierCoinText: {fileID: 1150725427}
 --- !u!1 &1541217882
 GameObject:
   m_ObjectHideFlags: 0

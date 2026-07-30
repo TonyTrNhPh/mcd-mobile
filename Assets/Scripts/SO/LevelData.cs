@@ -9,9 +9,15 @@ public class LevelData : ScriptableObject
     public int initialCoin = 0;
     public int diamondReward;
     
+    [Header("Expense Configuration")] 
+    public int baseAddCatCost = 100;
+    public float addCatMultiplier = 1.5f;
+    
+    public int baseRepairBarrierCost = 200;
+    public float repairBarrierMultiplier = 2f;
+    
     [Header("Wave Configuration")]
     public List<WaveData> waves;
-
 }
 
 [System.Serializable]
