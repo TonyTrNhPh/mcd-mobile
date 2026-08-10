@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility.State;
-using View.Manager;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,7 +9,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<LevelData> levelDataList;
     
     public LevelData CurrentLevelData { get; private set; }
-    public ELevelState CurrentState { get; private set; }
     
     
     private void Awake()
@@ -34,7 +31,6 @@ public class LevelManager : MonoBehaviour
             Debug.Log("LevelData is null");
             return;
         }
-        CurrentState = ELevelState.Started;
         Initialize();
     }
 
@@ -58,25 +54,11 @@ public class LevelManager : MonoBehaviour
 
     public void Win()
     {
-        if(CurrentState != ELevelState.Started)
-            return;
-
-        CurrentState = ELevelState.Win;
-        
         Debug.Log("YOU WIN");
-        
-        GameManager.Instance.SetGameState(EGameState.Home);
     }
 
     public void Lose()
     {
-        if(CurrentState != ELevelState.Started)
-            return;
-
-        CurrentState = ELevelState.Lose;
-        
         Debug.Log("GAME OVER");
-        
-        GameManager.Instance.SetGameState(EGameState.Home);
     }
 }

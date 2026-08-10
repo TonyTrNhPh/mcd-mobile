@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility.State;
-using View.Manager;
 
 public class UIManager : MonoBehaviour
 {
@@ -34,46 +32,6 @@ public class UIManager : MonoBehaviour
     
     private void Start()
     {
-        ApplyResolution(Screen.width, Screen.height);
 
-        if (GameManager.Instance != null)
-        {
-            ApplyGameState(GameManager.Instance.CurrentState);
-        }
-    }
-
-    public void ApplyGameState(EGameState state)
-    {
-        
-    }
-    
-    private void ApplyResolution(int width, int height)
-    {
-        if (canvasScalers != null)
-        {
-            foreach (CanvasScaler canvasScaler in canvasScalers)
-            {
-                if (canvasScaler != null)
-                {
-                    canvasScaler.referenceResolution = new Vector2(width, height);
-                }
-            }
-        }
-        else
-        {
-            //
-        }
-    }
-
-    private void SetActiveSafe(GameObject target, bool isActive)
-    {
-        if (target != null)
-        {
-            target.SetActive(isActive);
-        }
-        else
-        {
-            //
-        }
     }
 }
