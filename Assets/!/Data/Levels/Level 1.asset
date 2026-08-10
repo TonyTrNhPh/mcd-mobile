@@ -15,6 +15,10 @@ MonoBehaviour:
   isBossLevel: 0
   initialCoin: 1000
   diamondReward: 10
+  baseAddCatCost: 100
+  addCatMultiplier: 2
+  baseRepairBarrierCost: 200
+  repairBarrierMultiplier: 2
   waves:
   - startDelay: 2
     betweenEachGroup: 4

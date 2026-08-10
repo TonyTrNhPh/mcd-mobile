@@ -62,17 +62,11 @@ public class Wave : MonoBehaviour
         for (int i = 0; i < totalWaves; i++)
         {
             WaveData waveData = _currentLevelData.waves[i];
-
-            // Wait before starting this wave
             yield return new WaitForSeconds(waveData.startDelay);
-
-            // Tell UI that this wave has started
             OnWaveChange?.Invoke(i + 1, totalWaves);
-
             foreach (var groupOfEnemies in waveData.groupsOfEnemies)
             {
                 yield return StartCoroutine(SpawnGroup(groupOfEnemies));
-
                 yield return new WaitForSeconds(
                     waveData.betweenEachGroup
                 );
@@ -85,12 +79,9 @@ public class Wave : MonoBehaviour
     {
         foreach (var enemyData in groupOfEnemies.enemyData)
         {
-            // Spawn the specified number of this enemy type
             for (int i = 0; i < enemyData.numberOfDogs; i++)
             {
                 SpawnSingleDog(enemyData.dogData);
-
-                // Wait between each enemy in the group
                 if (i < enemyData.numberOfDogs - 1)
                     yield return new WaitForSeconds(groupOfEnemies.betweenEachEnemy);
             }

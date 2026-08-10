@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
+  m_Name: Pistol_Cat
+  m_EditorClassIdentifier: Assembly-CSharp::CatData
+  catName: Jerry
+  catDescription: Medium damage, medium reload speed
+  baseSize: {x: 200, y: 200}
+  offset: {x: 0, y: 0}
+  baseSprite: {fileID: 6143617877920526096, guid: 2edbe7da626832f429096d3ac15ad546, type: 3}
+  baseAnimation: {fileID: 9100000, guid: 9d694eae1c8c1324cbfbb7a42db2cea2, type: 2}
+  catVisuals:
+  - catSkin: {fileID: 1074927879421123372, guid: 40a4228fc42a02b41b5f2e68349f966e, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: c96f3635c9c0d5247bb867655e9ba320, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: ad57d0b36801a7d48a4dd879e7517d22, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: 04ad636cb7569c34ca7fa9ee0686743e, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: 05098fa26852e134eb6cfe6d52c5eb6b, type: 3}
+  catUpgrades:
+  - upgradePrice: 100
+    catStats:
+    - attackDamage: 10
+      reloadTime: 2
+      fireRange: 42
+    - attackDamage: 10
+      reloadTime: 1.5
+      fireRange: 42
+    - attackDamage: 10
+      reloadTime: 1.5
+      fireRange: 42
+    - attackDamage: 10
+      reloadTime: 1.5
+      fireRange: 42
+    - attackDamage: 10
+      reloadTime: 1.5
+      fireRange: 42

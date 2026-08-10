@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using View.Manager;
 
 public class SpendManager : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class SpendManager : MonoBehaviour
 
     private void Start()
     {
-        InitCost();
+        Initialize();
     }
 
     public void EarnCoin(int amount)
@@ -58,7 +57,7 @@ public class SpendManager : MonoBehaviour
         OnMoneyChanged?.Invoke(TotalCoin);
     }
 
-    private void InitCost()
+    private void Initialize()
     {
         AddCatCost = LevelManager.Instance.CurrentLevelData.baseAddCatCost;
         RepairBarrierCost = LevelManager.Instance.CurrentLevelData.baseRepairBarrierCost;

@@ -25,7 +25,7 @@ public class Board : MonoBehaviour
         if (currentSlot != null)
         {
             CatData catData = SpawnManager.Instance.GetRandomCat();
-            GameObject catPrefab = catData.catLevels[0].skin;
+            GameObject catPrefab = catData.GetCatVisuals(0);
             Cat cat = Instantiate(catPrefab).GetComponent<Cat>();
             cat.Initialize(catData, 0,currentSlot);
             return;

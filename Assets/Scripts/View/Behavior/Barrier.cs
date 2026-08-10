@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +11,9 @@ public class Barrier : MonoBehaviour
     [SerializeField] private float maxHealth = 500f;
     [SerializeField] private Image healthBarFill;
     
-    //---------- Event---------//
     public bool IsDestroy { get; private set; }
+    //---------- Event---------//
+    public event Action OnDestroy;
     
     //---------- UI ----------//
     private float _currentHealth;
@@ -61,5 +63,6 @@ public class Barrier : MonoBehaviour
     private void BarrierDestroy()
     {
         Debug.Log("Barrier destroyed");
+        OnDestroy?.Invoke();
     }
 }

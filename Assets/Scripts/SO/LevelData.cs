@@ -5,9 +5,8 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     [Header("Level Description")]
-    public bool isBossLevel = false;
     public int initialCoin = 0;
-    public int diamondReward;
+    public int diamondReward = 10;
     
     [Header("Expense Configuration")] 
     public int baseAddCatCost = 100;

@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
+  m_Name: SMG_Cat
+  m_EditorClassIdentifier: Assembly-CSharp::CatData
+  catName: Tom
+  catDescription: Low damage, high reload time
+  baseSize: {x: 264, y: 200}
+  offset: {x: 0, y: 10}
+  baseSprite: {fileID: -3308235661049845915, guid: aa547f7e938fa884e8ccf25ea932d4d9, type: 3}
+  baseAnimation: {fileID: 9100000, guid: 4d4af41cba78c844e8250f967c1d26a7, type: 2}
+  catVisuals:
+  - catSkin: {fileID: 1074927879421123372, guid: bbd0654ea8300c14db8a091b09d9e792, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: 893a48821a6bddc48a3fc9ba93cff9df, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: e4b023e6a07f7d74eae04bce41c398ce, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: e262db3278788614a9632d6d8406e2e6, type: 3}
+  - catSkin: {fileID: 1074927879421123372, guid: 3d87a433f10b4c14ebc20929325f69af, type: 3}
+  catUpgrades:
+  - upgradePrice: 100
+    catStats:
+    - attackDamage: 5
+      reloadTime: 0.5
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+  - upgradePrice: 120
+    catStats:
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+  - upgradePrice: 120
+    catStats:
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+  - upgradePrice: 120
+    catStats:
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+  - upgradePrice: 120
+    catStats:
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+  - upgradePrice: 120
+    catStats:
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30
+    - attackDamage: 5
+      reloadTime: 1
+      fireRange: 30

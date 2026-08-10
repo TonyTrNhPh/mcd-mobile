@@ -44,11 +44,7 @@ public class UIManager : MonoBehaviour
 
     public void ApplyGameState(EGameState state)
     {
-        SetActiveSafe(loadingMenu, state == EGameState.Loading);
-        SetActiveSafe(homeMenu, state == EGameState.Home);
-        SetActiveSafe(inGameMenu, state == EGameState.InGame);
-        SetActiveSafe(pausedMenu, state == EGameState.Paused);
-        SetActiveSafe(gameOverMenu, state == EGameState.GameOver);
+        
     }
     
     private void ApplyResolution(int width, int height)

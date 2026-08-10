@@ -5,7 +5,8 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance; // Singleton Pattern
 
-    [SerializeField] private List<CatData> catData;
+    [SerializeField] private List<CatData> mergeableCatData;
+    [SerializeField] private List<CatData> allCatData;
     
     public Board board => Board.Instance;
 
@@ -23,6 +24,12 @@ public class SpawnManager : MonoBehaviour
 
     public CatData GetRandomCat()
     {
-        return catData[Random.Range(0, catData.Count)];
+        return mergeableCatData[Random.Range(0, mergeableCatData.Count)];
+    }
+
+    public List<CatData> GetAllCatData()
+    {
+        allCatData.Reverse();
+        return allCatData;
     }
 }

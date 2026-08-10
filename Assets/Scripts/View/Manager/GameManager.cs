@@ -37,7 +37,8 @@ namespace View.Manager
             }
 
             CurrentState = newState;
-            if (UIManager.Instance != null) UIManager.Instance.ApplyGameState(newState);
+            if (UIManager.Instance != null) 
+                UIManager.Instance.ApplyGameState(newState);
         }
 
     }

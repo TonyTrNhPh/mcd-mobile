@@ -16,7 +16,6 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     public Slot CurrentSlot { get; set; }
     public CatData Data => _catData;
-    public CatLevelData LevelData => _catData.catLevels[_level];
     public int Level => _level;
 
     //---------- Animation ----------// 
@@ -54,8 +53,8 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
         _catAnimation.Initialize(true);
 
-        _attackTimer = Random.Range(0f, LevelData.reloadTime);
-        attackRangeCollider.radius = LevelData.fireRange;
+        _attackTimer = Random.Range(0f, Data.GetReloadTime(_level, 0));
+        attackRangeCollider.radius = Data.GetFireRange(_level, 0);
 
         MoveToSlot(slot);
         OnSlotChanged();
@@ -76,9 +75,9 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
     {
         _attackTimer += Time.deltaTime;
 
-        while (_attackTimer >= LevelData.reloadTime)
+        while (_attackTimer >= Data.GetReloadTime(_level, 0))
         {
-            _attackTimer -= LevelData.reloadTime;
+            _attackTimer -= Data.GetReloadTime(_level, 0);
             Shoot();
         }
     }
@@ -173,7 +172,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
             return;
         }
 
-        _attackTimer = Random.Range(0f, LevelData.reloadTime);
+        _attackTimer = Random.Range(0f, Data.GetReloadTime(_level, 0));
     }
     
 
@@ -251,7 +250,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
             startPoint,
             rotation
         );
-        p.Initialize(direction, _catData.catLevels[Level].damage);
+        p.Initialize(direction, Data.GetDamage(_level, 0));
     }
 
 

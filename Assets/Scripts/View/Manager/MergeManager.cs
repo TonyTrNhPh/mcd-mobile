@@ -39,12 +39,12 @@ public class MergeManager : MonoBehaviour
         Destroy(current.gameObject);
         Destroy(target.gameObject);
         
-        CatData catData = target.Data;
+        CatData nextCatData = target.Data;
         int nextLevel = target.Level + 1;
-        GameObject catPrefab = catData.catLevels[nextLevel].skin;
+        GameObject catPrefab = nextCatData.catVisuals[nextLevel].catSkin;
 
 
         Cat cat = Instantiate(catPrefab).GetComponent<Cat>();
-        cat.Initialize(catData, nextLevel, targetSlot);
+        cat.Initialize(nextCatData, nextLevel, targetSlot);
     }
 }
