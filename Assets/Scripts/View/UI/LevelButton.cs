@@ -2,75 +2,68 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using View.Manager;
 
 public class LevelButton : MonoBehaviour
 {
-
     [SerializeField] private Sprite levelLockedSprite;
     [SerializeField] private Sprite levelUnlockedSprite;
     [SerializeField] private Sprite levelCompletedSprite;
     [SerializeField] private TextMeshProUGUI levelText;
 
-    public LevelButtonState CurrentState { get; private set; }
+    public ELevelButtonState CurrentState { get; private set; }
 
     private LevelData levelData;
     private Image buttonImage;
+    private Button button;
 
     private void Awake()
     {
         buttonImage = GetComponent<Image>();
+        button = GetComponent<Button>();
     }
 
-    public void Initialize(string levelNumber,
-        LevelButtonState state,
-        LevelData data)
+    public void Initialize( ELevelButtonState state, LevelData data)
     {
-        levelText.text = levelNumber;
-
         levelData = data;
 
         SetState(state);
     }
 
-    public void SetState(LevelButtonState state)
+    public void SetState(ELevelButtonState state)
     {
         CurrentState = state;
 
         switch (state)
         {
-            case LevelButtonState.Locked:
+            case ELevelButtonState.Locked:
                 buttonImage.sprite = levelLockedSprite;
                 levelText.gameObject.SetActive(false);
                 break;
 
-            case LevelButtonState.Unlocked:
+            case ELevelButtonState.Unlocked:
                 buttonImage.sprite = levelUnlockedSprite;
                 levelText.gameObject.SetActive(true);
+                button.onClick.AddListener(() => LoadLevelData(levelData));
                 break;
 
-            case LevelButtonState.Completed:
+            case ELevelButtonState.Completed:
                 buttonImage.sprite = levelCompletedSprite;
                 levelText.gameObject.SetActive(true);
                 break;
         }
     }
 
-    public void OnClick()
+    public void LoadLevelData(LevelData data)
     {
-        if (CurrentState == LevelButtonState.Locked)
+        if (CurrentState == ELevelButtonState.Locked)
             return;
-
+        LevelManager.Instance.LoadLevel(data);
         Debug.Log($"Load Level : {levelText.text}");
-
-        // Later
-        // GameManager.Instance.LoadLevel(levelData);
-
-        // or
-        // SceneManager.LoadScene(levelData.SceneName);
     }
 }
 
-public enum LevelButtonState
+public enum ELevelButtonState
 {
     Locked,
     Unlocked,

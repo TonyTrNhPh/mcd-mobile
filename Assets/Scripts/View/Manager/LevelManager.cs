@@ -23,9 +23,9 @@ public class LevelManager : MonoBehaviour
         }
     }
     
-    public void StartLevel(int levelIndex)
+    public void LoadLevel(LevelData levelData)
     {
-        CurrentLevelData = levelDataList[levelIndex];
+        CurrentLevelData = levelData;
         if (CurrentLevelData == null)
         {
             Debug.Log("LevelData is null");
@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        
+        Debug.Log("Level Completed");
     }
 
     private void Initialize()

@@ -4,9 +4,16 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "SO/LevelData")]
 public class LevelData : ScriptableObject
 {
-    [Header("Level Description")]
+    [Header("Level Title")] 
+    public int levelID;
+    public string levelName;
+    public bool isBossLevel = false;
+    
+    [Header("Level Reward")]
+    public int bonusGem = 10;
+    
+    [Header("Stronghold Configuration")]
     public int initialCoin = 0;
-    public int diamondReward = 10;
     
     [Header("Expense Configuration")] 
     public int baseAddCatCost = 100;

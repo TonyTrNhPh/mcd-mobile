@@ -25,7 +25,7 @@ public class SpendManager : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+        
     }
 
     public void EarnCoin(int amount)

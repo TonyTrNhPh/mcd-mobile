@@ -2,8 +2,9 @@ using System;
 using PotatoDevUI;
 using TMPro;
 using UnityEngine;
+using View.Manager;
 
-public class GameMenu : MonoBehaviour
+public class PlayMenu : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI totalCoinText;
     [SerializeField] private TextMeshProUGUI waveText;
@@ -74,5 +75,30 @@ public class GameMenu : MonoBehaviour
     private void UpdateRepairBarrierCoinUI(int coinAmount)
     {
         repairBarrierCoinText.text = coinAmount.ToString();
+    }
+}
+
+public class PlayState : IState
+{
+    private readonly GameManager _gameManager;
+    
+    public PlayState(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
+    
+    public void Enter()
+    {
+        _gameManager.UIManager.ShowMenu(EMenu.Play);
+    }
+
+    public void Exit()
+    {
+        _gameManager.UIManager.HideMenu(EMenu.Play);
+    }
+
+    public void Update()
+    {
+        
     }
 }

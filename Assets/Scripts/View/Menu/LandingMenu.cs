@@ -1,15 +1,42 @@
 using UnityEngine;
+using UnityEngine.UI;
+using View.Manager;
 
 public class LandingMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Button screenButton;
+
+    private void Awake()
     {
-        
+        screenButton.onClick.AddListener(OnScreenClicked);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnScreenClicked()
+    {
+        GameManager.Instance.ChangeState(EGameState.Home);
+    }
+}
+
+public class LandingState : IState
+{
+    private readonly GameManager _gameManager;
+    
+    public LandingState(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+    }
+    
+    public void Enter()
+    {
+        _gameManager.UIManager.ShowMenu(EMenu.Landing);
+    }
+
+    public void Exit()
+    {
+        _gameManager.UIManager.HideMenu(EMenu.Landing);
+    }
+
+    public void Update()
     {
         
     }
