@@ -57,10 +57,27 @@ namespace View.Manager
                 EGameState.Landing => _landingState,
                 EGameState.Home => _homeState,
                 EGameState.Play => _playState,
-                
+
                 _ => null
             };
+
+            if (newState == null)
+            {
+                Debug.LogError($"No state found for {state}");
+                return;
+            }
+
+            CurrentState = state;
+
             _stateMachine.ChangeState(newState);
+        }
+        
+        public void StartLevel(LevelData levelData)
+        {
+            if (!LevelManager.LoadLevel(levelData))
+                return;
+
+            ChangeState(EGameState.Play);
         }
     }
 

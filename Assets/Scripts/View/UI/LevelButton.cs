@@ -1,7 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using View.Manager;
 
 public class LevelButton : MonoBehaviour
@@ -11,55 +11,69 @@ public class LevelButton : MonoBehaviour
     [SerializeField] private Sprite levelCompletedSprite;
     [SerializeField] private TextMeshProUGUI levelText;
 
-    public ELevelButtonState CurrentState { get; private set; }
+    //---------- Visual ----------//
+    private Image _buttonImage;
+    private Button _button;
+    private ELevelButtonState _currentState;
 
-    private LevelData levelData;
-    private Image buttonImage;
-    private Button button;
+    //---------- Data ----------//
+    private LevelData _levelData;
+
+    //---------- Event ----------//
+    public event Action<LevelData> OnLevelButtonClicked;
 
     private void Awake()
     {
-        buttonImage = GetComponent<Image>();
-        button = GetComponent<Button>();
+        _buttonImage = GetComponent<Image>();
+        _button = GetComponent<Button>();
+        _button.onClick.AddListener(HandleClick);
     }
 
-    public void Initialize( ELevelButtonState state, LevelData data)
+    private void OnDestroy()
     {
-        levelData = data;
+        _button.onClick.RemoveListener(HandleClick);
+    }
 
+    public void Initialize(ELevelButtonState state, LevelData data)
+    {
+        _levelData = data;
         SetState(state);
     }
 
     public void SetState(ELevelButtonState state)
     {
-        CurrentState = state;
+        _currentState = state;
 
         switch (state)
         {
             case ELevelButtonState.Locked:
-                buttonImage.sprite = levelLockedSprite;
+                _buttonImage.sprite = levelLockedSprite;
                 levelText.gameObject.SetActive(false);
                 break;
 
             case ELevelButtonState.Unlocked:
-                buttonImage.sprite = levelUnlockedSprite;
+                _buttonImage.sprite = levelUnlockedSprite;
                 levelText.gameObject.SetActive(true);
-                button.onClick.AddListener(() => LoadLevelData(levelData));
+                levelText.text = $"{_levelData.levelID}";
                 break;
 
             case ELevelButtonState.Completed:
-                buttonImage.sprite = levelCompletedSprite;
+                _buttonImage.sprite = levelCompletedSprite;
                 levelText.gameObject.SetActive(true);
+                levelText.text = $"{_levelData.levelID}";
                 break;
         }
     }
 
-    public void LoadLevelData(LevelData data)
+    private void HandleClick()
     {
-        if (CurrentState == ELevelButtonState.Locked)
+        if (_currentState == ELevelButtonState.Locked)
             return;
-        LevelManager.Instance.LoadLevel(data);
-        Debug.Log($"Load Level : {levelText.text}");
+
+        if (_levelData == null)
+            return;
+
+        OnLevelButtonClicked?.Invoke(_levelData);
     }
 }
 

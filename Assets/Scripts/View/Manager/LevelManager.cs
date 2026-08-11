@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private List<LevelData> levelDataList;
     
+    public IReadOnlyList<LevelData> LevelDataList => levelDataList;
     public LevelData CurrentLevelData { get; private set; }
     
     
@@ -22,16 +23,25 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    public void LoadLevel(LevelData levelData)
+
+    private void Start()
     {
-        CurrentLevelData = levelData;
-        if (CurrentLevelData == null)
+
+    }
+    
+    public bool LoadLevel(LevelData levelData)
+    {
+        if (levelData == null)
         {
-            Debug.Log("LevelData is null");
-            return;
+            Debug.LogError("Cannot load level: LevelData is null.");
+            return false;
         }
+
+        CurrentLevelData = levelData;
+
         Initialize();
+
+        return true;
     }
 
     public void CompleteLevel()
@@ -46,8 +56,9 @@ public class LevelManager : MonoBehaviour
         
         if (Board.Instance == null || Wave.Instance == null)
             return;
-
-        SpendManager.Instance.ResetAndSetCoins(CurrentLevelData.initialCoin);
+        
+        SpendManager.Instance.Initialize(CurrentLevelData);
+        
         Wave.Instance.SetLevelData(CurrentLevelData);
         Wave.Instance.StartWave();
     }

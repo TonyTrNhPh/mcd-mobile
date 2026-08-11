@@ -57,11 +57,15 @@ public class SpendManager : MonoBehaviour
         OnMoneyChanged?.Invoke(TotalCoin);
     }
 
-    private void Initialize()
+    public void Initialize(LevelData levelData)
     {
-        AddCatCost = LevelManager.Instance.CurrentLevelData.baseAddCatCost;
-        RepairBarrierCost = LevelManager.Instance.CurrentLevelData.baseRepairBarrierCost;
+        AddCatCost = levelData.baseAddCatCost;
+        RepairBarrierCost = levelData.baseRepairBarrierCost;
+        TotalCoin = levelData.initialCoin;
+        
+        ResetAndSetCoins(TotalCoin);
     }
+    
     public bool TryAddCat()
     {
         if (!SpendCoin(AddCatCost))

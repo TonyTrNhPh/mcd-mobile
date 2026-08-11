@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d708a058dca49044281120f682f94e94, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  levelID: 1
+  levelName: Tutorial
   isBossLevel: 0
+  bonusGem: 10
   initialCoin: 1000
-  diamondReward: 10
   baseAddCatCost: 100
   addCatMultiplier: 2
   baseRepairBarrierCost: 200

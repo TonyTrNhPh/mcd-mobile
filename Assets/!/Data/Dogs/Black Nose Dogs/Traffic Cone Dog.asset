@@ -16,6 +16,6 @@ MonoBehaviour:
   dogDescription: I dont know
   damage: 20
   reloadTime: 1
-  health: 100
+  health: 50
   distance: 1.6
   skin: {fileID: 8432060573322760741, guid: ee05c535e2b554d40abaa34f110295cd, type: 3}

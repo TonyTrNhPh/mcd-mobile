@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using View.Manager;
 
 public class LevelSelection : MonoBehaviour
 {
@@ -48,12 +49,28 @@ public class LevelSelection : MonoBehaviour
 
     private void CreateLevelButtons()
     {
-        for(int i = 0; i < NODE_CONFIG.Length; i++)
+        IReadOnlyList<LevelData> levels = LevelManager.Instance.LevelDataList;
+        for (int i = 0; i < NODE_CONFIG.Length; i++)
         {
+            LevelData levelData = null;
+            ELevelButtonState state = ELevelButtonState.Locked;
+            
+            if (i < levels.Count && levels[i] != null)
+            {
+                state = ELevelButtonState.Unlocked;
+                levelData = levels[i];
+            }
+            
             LevelButton button = Instantiate(levelButtonPrefab, levelButtonParent);
-
             button.transform.localPosition = NODE_CONFIG[i];
+            button.Initialize(state, levelData);
+            button.OnLevelButtonClicked += HandleLevelButtonClicked;
         }
+    }
+
+    private void HandleLevelButtonClicked(LevelData levelData)
+    {
+        GameManager.Instance.StartLevel(levelData);
     }
 }
 
