@@ -15,12 +15,14 @@ public class Dog : MonoBehaviour
 
     public DogData dogData => _dogData;
     public int Level => _level;
+    public bool IsDead { get; private set; }
+    private Barrier _targetBarrier;
+    
 
     //---------- Event ---------//
-    public bool IsDead { get; private set; }
     public event Action<float> OnAttackBarrier;
-    private Barrier _targetBarrier;
-
+    public event Action OnDeath;
+    
     //---------- UI ----------//
     private float _currentHealth;
 
@@ -64,6 +66,16 @@ public class Dog : MonoBehaviour
 
         ChooseWalkDirection();
     }
+    
+    public void Initialize(DogData data)
+    {
+        _dogData = data;
+        _currentHealth = dogData.health;
+
+        _dogAnimation.Initialize(true);
+
+        _attackTimer = dogData.reloadTime;
+    }
 
     private void Update()
     {
@@ -90,17 +102,7 @@ public class Dog : MonoBehaviour
         float yPosition = _dogRenderer.transform.position.y;
         _sortingGroup.sortingOrder = Mathf.RoundToInt(-yPosition * 100);
     }
-
-    public void Initialize(DogData data)
-    {
-        _dogData = data;
-        _currentHealth = dogData.health;
-
-        _dogAnimation.Initialize(true);
-
-        _attackTimer = dogData.reloadTime;
-    }
-
+    
     public void TakeDamage(float damage)
     {
         if (IsDead)
@@ -126,6 +128,8 @@ public class Dog : MonoBehaviour
         SpendManager.Instance.EarnCoin(100);
         PlayAnimation(DeathAnim);
         StartCoroutine(DestroyAfterAnimation());
+        
+        OnDeath?.Invoke();
     }
 
     private IEnumerator DestroyAfterAnimation()

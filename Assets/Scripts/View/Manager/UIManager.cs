@@ -47,15 +47,12 @@ public class UIManager : MonoBehaviour
                 playMenu.SetActive(true);
                 break;
             case EMenu.Pause:
-                playMenu.SetActive(true);
                 pauseMenu.SetActive(true);
                 break;
             case EMenu.Win:
-                playMenu.SetActive(true);
                 winMenu.SetActive(true);
                 break;
             case EMenu.Lose:
-                playMenu.SetActive(true);
                 loseMenu.SetActive(true);
                 break;
         }
@@ -75,15 +72,12 @@ public class UIManager : MonoBehaviour
                 playMenu.SetActive(false);
                 break;
             case EMenu.Pause:
-                playMenu.SetActive(false);
                 pauseMenu.SetActive(false);
                 break;
             case EMenu.Win:
-                playMenu.SetActive(false);
                 winMenu.SetActive(false);
                 break;
             case EMenu.Lose:
-                playMenu.SetActive(false);
                 loseMenu.SetActive(false);
                 break;
         }

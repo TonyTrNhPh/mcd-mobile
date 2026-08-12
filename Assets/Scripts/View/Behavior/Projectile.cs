@@ -30,7 +30,6 @@ public class Projectile : MonoBehaviour
         
         if (dog.CompareTag("Enemy"))
         {
-            Debug.Log($"Projectile hit {dog.name} for {_damage} damage.");
             dog.TakeDamage(_damage);
             Destroy(gameObject);
         }

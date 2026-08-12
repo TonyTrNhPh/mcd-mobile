@@ -10,7 +10,7 @@ namespace View.Manager
         public AudioManager AudioManager => AudioManager.Instance;
         public UIManager UIManager => UIManager.Instance;
         public LevelManager LevelManager => LevelManager.Instance;
-        public SpawnManager SpawnManager => SpawnManager.Instance;
+        public DataManager DataManager => DataManager.Instance;
         public MergeManager MergeManager => MergeManager.Instance;
         public SpendManager SpendManager => SpendManager.Instance;
         
@@ -21,6 +21,9 @@ namespace View.Manager
         private LandingState _landingState;
         private HomeState _homeState;
         private PlayState _playState;
+        private PauseState _pauseState;
+        private WinState _winState;
+        private LoseState _loseState;
         
 
         private void Awake()
@@ -38,6 +41,9 @@ namespace View.Manager
             _landingState = new LandingState(this);
             _homeState = new HomeState(this);
             _playState = new PlayState(this);
+            _pauseState = new PauseState(this);
+            _winState = new WinState(this);
+            _loseState = new LoseState(this);
         }
 
         private void Start()
@@ -57,6 +63,9 @@ namespace View.Manager
                 EGameState.Landing => _landingState,
                 EGameState.Home => _homeState,
                 EGameState.Play => _playState,
+                EGameState.Pause => _pauseState,
+                EGameState.Win => _winState,
+                EGameState.Lose => _loseState,
 
                 _ => null
             };
@@ -79,11 +88,41 @@ namespace View.Manager
 
             ChangeState(EGameState.Play);
         }
+
+        public void RestartLevel()
+        {
+            // Handle Restart Level later
+            ChangeState(EGameState.Play);
+        }
+        
+        public void PauseLevel()
+        {
+            ChangeState(EGameState.Pause);
+        }
+        
+        public   void ResumeLevel()
+        {
+            ChangeState(EGameState.Play);
+        }
+        
+        public void ReturnHome()
+        {
+            ChangeState(EGameState.Home);
+        }
+
+        public void CompleteLevel()
+        {
+            ChangeState(EGameState.Win);
+        }
+        
+        public void FailedLevel()
+        {
+            ChangeState(EGameState.Lose);
+        }
     }
 
     public enum EGameState
     {
-        None,
         Landing,
         Home,
         Play,

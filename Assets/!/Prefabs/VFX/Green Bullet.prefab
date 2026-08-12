@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2444372970935145713}
   - component: {fileID: 6427235567815787370}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Green Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,10 +81,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1537912555
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2208703988740019828, guid: d5118f6df08c7cb43a1052f67b5c5a49, type: 3}
+  m_Sprite: {fileID: -5012934692103782227, guid: 563ad246db613bb41a1dc138d8d5e339, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -23,9 +23,13 @@ public class SpendManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Initialize(LevelData levelData)
     {
+        AddCatCost = levelData.baseAddCatCost;
+        RepairBarrierCost = levelData.baseRepairBarrierCost;
+        TotalCoin = levelData.initialCoin;
         
+        ResetAndSetCoins(TotalCoin);
     }
 
     public void EarnCoin(int amount)
@@ -56,22 +60,17 @@ public class SpendManager : MonoBehaviour
         TotalCoin = amount;
         OnMoneyChanged?.Invoke(TotalCoin);
     }
-
-    public void Initialize(LevelData levelData)
-    {
-        AddCatCost = levelData.baseAddCatCost;
-        RepairBarrierCost = levelData.baseRepairBarrierCost;
-        TotalCoin = levelData.initialCoin;
-        
-        ResetAndSetCoins(TotalCoin);
-    }
     
     public bool TryAddCat()
     {
+        if (!Board.Instance.HasEmptySlot())
+            return false;
+
         if (!SpendCoin(AddCatCost))
             return false;
 
-        SpawnManager.Instance.board.SpawnCat();
+        if (!Board.Instance.SpawnRandomCat())
+            return false;
 
         AddCatCost = Mathf.RoundToInt(
             AddCatCost * LevelManager.Instance.CurrentLevelData.addCatMultiplier
@@ -82,11 +81,12 @@ public class SpendManager : MonoBehaviour
 
     public bool TryRepairBarrier()
     {
+        if (!Barrier.Instance.RepairBarrier())
+            return false;
+        
         if (!SpendCoin(RepairBarrierCost))
             return false;
-
-        Barrier.Instance.RepairBarrier();
-
+        
         RepairBarrierCost = Mathf.RoundToInt(
             RepairBarrierCost * LevelManager.Instance.CurrentLevelData.repairBarrierMultiplier
         );

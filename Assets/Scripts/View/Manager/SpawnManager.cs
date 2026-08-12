@@ -1,15 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public static SpawnManager Instance; // Singleton Pattern
-
-    [SerializeField] private List<CatData> mergeableCatData;
-    [SerializeField] private List<CatData> allCatData;
-    
-    public Board board => Board.Instance;
-
+    public static SpawnManager Instance;
     private void Awake()
     {
         if (Instance == null)
@@ -22,14 +15,123 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public CatData GetRandomCat()
+    #region Normal
+    
+    public Cat SpawnCat(CatData catData, int level, Slot slot)
     {
-        return mergeableCatData[Random.Range(0, mergeableCatData.Count)];
+        if (catData == null)
+        {
+            Debug.LogWarning("SpawnManager SpawnCat(): catData is null");
+            return null;
+        }
+        
+        if (slot == null)
+        {
+            Debug.LogWarning("SpawnManager SpawnCat(): slot is null");
+            return null;
+        }
+        
+        GameObject prefab = catData.GetCatVisuals(level);
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"No cat prefab found for {catData.name} at level {level}");
+            return null;
+        }
+        
+        GameObject catObject = Instantiate(prefab, slot.transform.position, Quaternion.identity);
+        Cat cat = catObject.GetComponent<Cat>();
+        if (cat == null)
+        {
+            Debug.LogWarning("SpawnManager SpawnCat(): Cat component not found on prefab");
+            Destroy(catObject);
+            return null;
+        }
+        
+        cat.Initialize(catData, level, slot);
+        return cat;
     }
 
-    public List<CatData> GetAllCatData()
+    public Projectile SpawnProjectile(Dog target, Vector2 startPoint)
     {
-        allCatData.Reverse();
-        return allCatData;
+        if (target == null)
+        {
+            return null;
+        }
+        Vector2 targetPoint = target.GetHitPoint();
+
+        targetPoint.x += Random.Range(-3f, 3f);
+        targetPoint.y += Random.Range(-3f, 3f);
+
+        Vector2 direction = (targetPoint - startPoint).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
+
+        Projectile projectile = Instantiate(
+            DataManager.Instance.GetRandomBulletPrefab(),
+            startPoint,
+            rotation
+        );
+        return projectile;
     }
+    
+    public Dog SpawnDog(DogData dogData, GameObject spawnPoint, float min, float max)
+    {
+        if (dogData == null)
+        {
+            Debug.LogWarning("SpawnManager SpawnDog(): dogData is null");
+            return null;
+        }
+        
+        float randomY = Random.Range(min, max);
+        
+        Vector3 spawnPosition = new Vector3(
+            spawnPoint != null ? spawnPoint.transform.position.x : transform.position.x,
+            randomY,
+            spawnPoint != null ? spawnPoint.transform.position.z : transform.position.z
+        );
+        
+        GameObject go = Instantiate(dogData.skin, spawnPosition, Quaternion.identity, gameObject.transform);
+        Dog dog = go.GetComponent<Dog>();
+        if (dog == null)
+        {
+            Debug.LogWarning("SpawnManager SpawnDog(): Dog component not found on prefab");
+            Destroy(go);
+            return null;
+        }
+        return dog;
+    }
+    
+    public void SpawnBoss()
+    {
+        
+    }
+    
+    #endregion
+    
+    #region Utilities
+
+    public void SpawnGuardianCat()
+    {
+        
+    }
+
+    public void SpawnBoxingCat()
+    {
+        
+    }
+    
+    
+    public void SpawnSpike()
+    {
+        
+    }
+    
+    public void SpawnTNT()
+    {
+        
+    }
+
+    #endregion
+
 }

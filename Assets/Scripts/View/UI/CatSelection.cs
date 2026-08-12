@@ -10,7 +10,7 @@ public class CatSelection : MonoBehaviour
 
     private void Start()
     {
-        catData = SpawnManager.Instance.GetAllCatData();
+        catData = DataManager.Instance.GetAllCatData();
         CreateCatCards();
     }
     

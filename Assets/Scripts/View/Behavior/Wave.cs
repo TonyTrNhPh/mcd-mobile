@@ -13,6 +13,7 @@ public class Wave : MonoBehaviour
 
     //---------- Event ----------//
     public event Action<int, int> OnWaveChange;
+    public event Action OnLastEnemyDeath;
 
     private Coroutine _spawnRoutine;
     private LevelData _currentLevelData;
@@ -81,35 +82,12 @@ public class Wave : MonoBehaviour
         {
             for (int i = 0; i < enemyData.numberOfDogs; i++)
             {
-                SpawnSingleDog(enemyData.dogData);
+                Dog dog = SpawnManager.Instance.SpawnDog(enemyData.dogData, spawnPoint, minYPoint, maxYPoint);
+                dog.Initialize(enemyData.dogData);
+                
                 if (i < enemyData.numberOfDogs - 1)
                     yield return new WaitForSeconds(groupOfEnemies.betweenEachEnemy);
             }
-        }
-    }
-
-    private void SpawnSingleDog(DogData dogData)
-    {
-        if (dogData == null || dogData.skin == null)
-        {
-            Debug.LogWarning("DogData or its skin is null!");
-            return;
-        }
-
-        float randomY = Random.Range(minYPoint, maxYPoint);
-
-        Vector3 spawnPosition = new Vector3(
-            spawnPoint != null ? spawnPoint.transform.position.x : transform.position.x,
-            randomY,
-            spawnPoint != null ? spawnPoint.transform.position.z : transform.position.z
-        );
-
-        GameObject go = Instantiate(dogData.skin, spawnPosition, Quaternion.identity, gameObject.transform);
-
-        var dog = go.GetComponent<Dog>();
-        if (dog != null)
-        {
-            dog.Initialize(dogData);
         }
     }
 }

@@ -70,18 +70,6 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
         HandelAttack();
     }
-
-    private void HandelAttack()
-    {
-        _attackTimer += Time.deltaTime;
-
-        while (_attackTimer >= Data.GetReloadTime(_level, 0))
-        {
-            _attackTimer -= Data.GetReloadTime(_level, 0);
-            Shoot();
-        }
-    }
-
     public void MoveToSlot(Slot slot)
     {
         if (CurrentSlot != null)
@@ -175,7 +163,17 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         _attackTimer = Random.Range(0f, Data.GetReloadTime(_level, 0));
     }
     
-
+    private void HandelAttack()
+        {
+            _attackTimer += Time.deltaTime;
+    
+            while (_attackTimer >= Data.GetReloadTime(_level, 0))
+            {
+                _attackTimer -= Data.GetReloadTime(_level, 0);
+                Shoot();
+            }
+        }
+    
     private Dog FindClosestDog()
     {
         CleanTargetList();
@@ -204,12 +202,13 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
         if (target == null)
         {
-            Debug.Log("Shoot");
             return;
         }
 
         PlayAnimation(ShootAnim);
-        SpawnProjectile(target);
+        
+        Projectile projectile = SpawnManager.Instance.SpawnProjectile(target, firePoint.position);
+        projectile.Initialize((target.GetHitPoint() - (Vector2)firePoint.position).normalized, Data.GetDamage(_level, 0));
     }
 
     private void PlayAnimation(string animName) 
@@ -232,28 +231,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
                 break;
         }
     }
-
-    private void SpawnProjectile(Dog target)
-    {
-        Vector2 startPoint = firePoint.position;
-        Vector2 targetPoint = target.GetHitPoint();
-
-        targetPoint.x += Random.Range(-1f, 1f);
-        targetPoint.y += Random.Range(-1f, 1f);
-
-        Vector2 direction = (targetPoint - startPoint).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
-
-        Projectile p = Instantiate(
-            projectilePrefab,
-            startPoint,
-            rotation
-        );
-        p.Initialize(direction, Data.GetDamage(_level, 0));
-    }
-
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         Dog dog = other.GetComponentInParent<Dog>();

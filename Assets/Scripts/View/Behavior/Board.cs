@@ -19,20 +19,21 @@ public class Board : MonoBehaviour
         }
     }
     
-    public void SpawnCat()
+    public bool SpawnRandomCat()
     {
-        Slot currentSlot = GetFirstEmptySlot();
-        if (currentSlot != null)
+        Slot slot = GetFirstEmptySlot();
+        if (slot == null)
         {
-            CatData catData = SpawnManager.Instance.GetRandomCat();
-            GameObject catPrefab = catData.GetCatVisuals(0);
-            Cat cat = Instantiate(catPrefab).GetComponent<Cat>();
-            cat.Initialize(catData, 0,currentSlot);
-            return;
+            Debug.Log("All slots are occupied. Cannot spawn cat.");
+            return false;
         }
-        Debug.Log("All slots are occupied. Cannot spawn cat.");
+        
+        CatData catData = DataManager.Instance.GetRandomCat();
+        Cat cat = SpawnManager.Instance.SpawnCat(catData, 0, slot);
+        
+        return cat != null;
     }
-
+    
     public Slot GetFirstEmptySlot()
     {
         foreach (Slot slot in slots)
@@ -44,22 +45,34 @@ public class Board : MonoBehaviour
         return null;
     }
     
-    public Slot GetClosestSlot(Vector3 position)
+    public bool HasEmptySlot()
     {
-        Slot closest = null;
-        float minDistance = float.MaxValue;
-
-        foreach (Slot slot in slots)
+        foreach (var slot in slots)
         {
-            float distance = Vector2.Distance(position, slot.transform.position);
-
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                closest = slot;
-            }
+            if (slot.IsEmpty && slot.Type == SlotType.Ground)
+                return true;
         }
 
-        return closest;
+        return false;
     }
+    
+    public Slot GetClosestSlot(Vector3 position)
+        {
+            Slot closest = null;
+            float minDistance = float.MaxValue;
+    
+            foreach (Slot slot in slots)
+            {
+                float distance = Vector2.Distance(position, slot.transform.position);
+    
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closest = slot;
+                }
+            }
+    
+            return closest;
+        }
+    
 }

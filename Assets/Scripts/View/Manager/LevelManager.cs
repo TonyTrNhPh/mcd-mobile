@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using View.Manager;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-
-    [SerializeField] private List<LevelData> levelDataList;
-    
-    public IReadOnlyList<LevelData> LevelDataList => levelDataList;
+    public IReadOnlyList<LevelData> LevelDataList => DataManager.Instance.GetAllLevelData();
     public LevelData CurrentLevelData { get; private set; }
-    
-    
+
+    public Board Board => Board.Instance;
+    public Wave Wave => Wave.Instance;
+    public Barrier Barrier => Barrier.Instance;
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,11 +25,32 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-
+        // Barrier.OnBarrierDestroy += FailedLevel;
+        // Wave.OnLastEnemyDeath += CompleteLevel;
     }
-    
+
+    private void OnDisable()
+    {
+        // Barrier.OnBarrierDestroy -= FailedLevel;
+        // Wave.OnLastEnemyDeath -= CompleteLevel;
+    }
+
+    private void Initialize()
+    {
+        if (SpendManager.Instance == null)
+            return;
+
+        if (Board.Instance == null || Wave.Instance == null)
+            return;
+
+        SpendManager.Instance.Initialize(CurrentLevelData);
+
+        Wave.Instance.SetLevelData(CurrentLevelData);
+        Wave.Instance.StartWave();
+    }
+
     public bool LoadLevel(LevelData levelData)
     {
         if (levelData == null)
@@ -44,32 +66,13 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
-    public void CompleteLevel()
+    private void CompleteLevel()
     {
-        Debug.Log("Level Completed");
+        GameManager.Instance.CompleteLevel();
     }
 
-    private void Initialize()
+    private void FailedLevel()
     {
-        if (SpendManager.Instance == null)
-            return;
-        
-        if (Board.Instance == null || Wave.Instance == null)
-            return;
-        
-        SpendManager.Instance.Initialize(CurrentLevelData);
-        
-        Wave.Instance.SetLevelData(CurrentLevelData);
-        Wave.Instance.StartWave();
-    }
-
-    public void Win()
-    {
-        Debug.Log("YOU WIN");
-    }
-
-    public void Lose()
-    {
-        Debug.Log("GAME OVER");
+        GameManager.Instance.FailedLevel();
     }
 }

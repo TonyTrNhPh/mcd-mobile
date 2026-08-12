@@ -13,7 +13,7 @@ public class Barrier : MonoBehaviour
     
     public bool IsDestroy { get; private set; }
     //---------- Event---------//
-    public event Action OnDestroy;
+    public event Action OnBarrierDestroy;
     
     //---------- UI ----------//
     private float _currentHealth;
@@ -51,18 +51,19 @@ public class Barrier : MonoBehaviour
         }
     }
 
-    public void RepairBarrier()
+    public bool RepairBarrier()
     {
         if (IsDestroy)
-            return;
+            return false;
         
         _currentHealth = maxHealth;
         healthBarFill.fillAmount = 1f;
+        return true;
     }
 
     private void BarrierDestroy()
     {
         Debug.Log("Barrier destroyed");
-        OnDestroy?.Invoke();
+        OnBarrierDestroy?.Invoke();
     }
 }

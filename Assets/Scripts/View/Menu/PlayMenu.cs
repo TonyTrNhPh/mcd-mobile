@@ -1,17 +1,39 @@
 using System;
-using PotatoDevUI;
 using TMPro;
 using UnityEngine;
 using View.Manager;
+using UnityEngine.UI;
 
 public class PlayMenu : MonoBehaviour
 {
+    [Header("Texts")]
     [SerializeField] private TextMeshProUGUI totalCoinText;
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI addCatCoinText;
     [SerializeField] private TextMeshProUGUI repairBarrierCoinText;
+    
+    [Header("Buttons")]
+    [SerializeField] private Button addButton;
+    [SerializeField] private Button repairButton;
+    [SerializeField] private Button spikeButton;
+    [SerializeField] private Button tntButton;
+    [SerializeField] private Button guardianButton;
+    [SerializeField] private Button pauseButton;
 
 
+    #region Unity Life Cycle
+
+    private void Awake()
+    {
+        addButton.onClick.AddListener(OnAddButtonClicked);
+        repairButton.onClick.AddListener(OnRepairButtonClicked);
+        spikeButton.onClick.AddListener(OnSpikeButtonClicked);
+        tntButton.onClick.AddListener(OnTntButtonClicked);
+        guardianButton.onClick.AddListener(OnGuardianButtonClicked);
+        
+        pauseButton.onClick.AddListener(OnPauseButtonClicked);
+    }
+    
     private void Start()
     {
         UpdateCoinUI(SpendManager.Instance.TotalCoin);
@@ -21,6 +43,9 @@ public class PlayMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        if (SpendManager.Instance == null || Wave.Instance == null)
+            return;
+        
         SpendManager.Instance.OnMoneyChanged += UpdateCoinUI;
         Wave.Instance.OnWaveChange += UpdateWaveUI;
     }
@@ -33,9 +58,23 @@ public class PlayMenu : MonoBehaviour
         SpendManager.Instance.OnMoneyChanged -= UpdateCoinUI;
         Wave.Instance.OnWaveChange -= UpdateWaveUI;
     }
-    
 
-    public void OnAddButtonClicked()
+    private void OnDestroy()
+    {
+        addButton.onClick.RemoveListener(OnAddButtonClicked);
+        repairButton.onClick.RemoveListener(OnRepairButtonClicked);
+        spikeButton.onClick.RemoveListener(OnSpikeButtonClicked);
+        tntButton.onClick.RemoveListener(OnTntButtonClicked);
+        guardianButton.onClick.RemoveListener(OnGuardianButtonClicked);
+        
+        pauseButton.onClick.RemoveListener(OnPauseButtonClicked);
+    }
+
+    #endregion
+    
+    #region Button Click Handlers
+    
+    private void OnAddButtonClicked()
     {
         if (!SpendManager.Instance.TryAddCat())
         {
@@ -46,7 +85,7 @@ public class PlayMenu : MonoBehaviour
         UpdateAddCatCoinUI(SpendManager.Instance.AddCatCost);
     }
 
-    public void OnRepairButtonClicked()
+    private void OnRepairButtonClicked()
     {
         if (!SpendManager.Instance.TryRepairBarrier())
         {
@@ -57,6 +96,30 @@ public class PlayMenu : MonoBehaviour
         UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairBarrierCost);
     }
     
+    private void OnPauseButtonClicked()
+    {
+        GameManager.Instance.PauseLevel();
+    }
+    
+    public void OnSpikeButtonClicked()
+    {
+        
+    }
+    
+    private void OnTntButtonClicked()
+    {
+        
+    }
+
+    private void OnGuardianButtonClicked()
+    {
+        
+    }
+    #endregion
+
+
+    #region UI Updater
+
     private void UpdateCoinUI(int coinAmount)
     {
         totalCoinText.text = coinAmount.ToString();
@@ -76,6 +139,9 @@ public class PlayMenu : MonoBehaviour
     {
         repairBarrierCoinText.text = coinAmount.ToString();
     }
+    
+    #endregion
+    
 }
 
 public class PlayState : IState
