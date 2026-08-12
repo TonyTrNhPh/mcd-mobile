@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d708a058dca49044281120f682f94e94, type: 3}
+  m_Name: level_1
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  jsonFile: {fileID: 4900000, guid: 79d417ff9aa647a499cfe95a352aa7ef, type: 3}
+  levelID: 1
+  levelName: Tutorial
+  isBossLevel: 0
+  bonusGem: 10
+  initialCoin: 1000
+  barrierMaxHealth: 200
+  baseAddCatCost: 100
+  addCatMultiplier: 2
+  baseRepairBarrierCost: 200
+  repairBarrierMultiplier: 2
+  waves:
+  - nextWaveDelay: 3
+    timeline:
+    - time: 1
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 3
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 5
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 7
+      dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+  - nextWaveDelay: 4
+    timeline:
+    - time: 1
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 2
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 4
+      dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+    - time: 4
+      dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+    - time: 7
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 9
+      dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+  - nextWaveDelay: 5
+    timeline:
+    - time: 1
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 2
+      dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+    - time: 3
+      dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+    - time: 5
+      dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+    - time: 5
+      dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+    - time: 8
+      dogData: {fileID: 11400000, guid: 38a40ab267f3fbe48982ea401f16eb61, type: 2}

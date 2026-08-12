@@ -11817,7 +11817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848125251}
   m_Layer: 0
-  m_Name: ProjectilePool
+  m_Name: ObjectPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11831,12 +11831,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848125250}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 967410444}
+  m_Father: {fileID: 903270122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &852505789
 GameObject:
@@ -11939,10 +11939,11 @@ GameObject:
   m_Component:
   - component: {fileID: 860917222}
   - component: {fileID: 860917223}
-  - component: {fileID: 860917225}
   - component: {fileID: 860917224}
   - component: {fileID: 860917226}
   - component: {fileID: 860917227}
+  - component: {fileID: 860917228}
+  - component: {fileID: 860917225}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -12010,14 +12011,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e7fd08b990513a94bb98d4239cd6c433, type: 2}
   - {fileID: 11400000, guid: 217ec1ec601bc22439b82103cc31e656, type: 2}
   - {fileID: 11400000, guid: fda804d32e3b13940a7650f51e6aefff, type: 2}
-  dogData: []
+  allDogData:
+  - {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
+  - {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
+  - {fileID: 11400000, guid: 38a40ab267f3fbe48982ea401f16eb61, type: 2}
+  - {fileID: 11400000, guid: 5df251abf5efe234aae7793997be546d, type: 2}
+  - {fileID: 11400000, guid: 31a786e91ab2ec643974586bbb4c02c8, type: 2}
+  - {fileID: 11400000, guid: 65bb4bf5e50428941a3999f18b2ad163, type: 2}
+  - {fileID: 11400000, guid: 9274837f8d9e430419665edc77b6e756, type: 2}
+  - {fileID: 11400000, guid: 69c7d34c491f8e14eaed2ea47ff291ef, type: 2}
   bossData: []
   levelData:
   - {fileID: 11400000, guid: e9a0e63bb8e31d843b372cd68a6f32f4, type: 2}
   permanentUpgradeData: []
   bulletPrefabs:
-  - {fileID: 6427235567815787370, guid: 5654db49c28d5874bbfc52d57bae304f, type: 3}
-  - {fileID: 6427235567815787370, guid: 3318251f114cd68459292f49454741bd, type: 3}
   - {fileID: 6427235567815787370, guid: da945ae544321154a852db20131302aa, type: 3}
 --- !u!114 &860917226
 MonoBehaviour:
@@ -12043,6 +12050,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a0a2fd6cacc9544af1c2249673753f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+--- !u!114 &860917228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860917221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e4ede932b30e8499138c80a0d6ea3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
+  objectPool: {fileID: 848125250}
 --- !u!1 &867983287
 GameObject:
   m_ObjectHideFlags: 0
@@ -13121,6 +13141,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 967410444}
+  - {fileID: 848125251}
   m_Father: {fileID: 535894188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &917655341
@@ -13756,7 +13777,6 @@ Transform:
   - {fileID: 1336822588}
   - {fileID: 1658328251}
   - {fileID: 504900168}
-  - {fileID: 848125251}
   m_Father: {fileID: 903270122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970546417
@@ -19022,7 +19042,7 @@ MonoBehaviour:
   - {fileID: 1850278960}
   - {fileID: 1761132382}
   - {fileID: 209350520}
-  maxHealth: 500
+  maxHealth: 1
   healthBarFill: {fileID: 1547842274}
 --- !u!61 &1336822590
 BoxCollider2D:

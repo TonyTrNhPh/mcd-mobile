@@ -8,11 +8,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance;
     public IReadOnlyList<LevelData> LevelDataList => DataManager.Instance.GetAllLevelData();
     public LevelData CurrentLevelData { get; private set; }
-
-    public Board Board => Board.Instance;
-    public Wave Wave => Wave.Instance;
-    public Barrier Barrier => Barrier.Instance;
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -24,17 +20,14 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnEnable()
+    
+    private void OnDestroy()
     {
-        // Barrier.OnBarrierDestroy += FailedLevel;
-        // Wave.OnLastEnemyDeath += CompleteLevel;
-    }
-
-    private void OnDisable()
-    {
-        // Barrier.OnBarrierDestroy -= FailedLevel;
-        // Wave.OnLastEnemyDeath -= CompleteLevel;
+        if (Barrier.Instance != null)
+            Barrier.Instance.OnBarrierDestroy -= HandleBarrierDestroyed;
+        
+        if (Wave.Instance != null)
+            Wave.Instance.OnLevelCompleted -= HandleLevelCompleted;
     }
 
     private void Initialize()
@@ -47,8 +40,17 @@ public class LevelManager : MonoBehaviour
 
         SpendManager.Instance.Initialize(CurrentLevelData);
 
+        Barrier.Instance.SetLevelData(CurrentLevelData);
+        Barrier.Instance.Initialize();
+        
         Wave.Instance.SetLevelData(CurrentLevelData);
         Wave.Instance.StartWave();
+        
+        if (Barrier.Instance != null)
+            Barrier.Instance.OnBarrierDestroy += HandleBarrierDestroyed;
+            
+        if (Wave.Instance != null)
+            Wave.Instance.OnLevelCompleted += HandleLevelCompleted;
     }
 
     public bool LoadLevel(LevelData levelData)
@@ -66,13 +68,15 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
-    private void CompleteLevel()
+    private void HandleLevelCompleted()
     {
+        Debug.Log("You Win");
         GameManager.Instance.CompleteLevel();
     }
 
-    private void FailedLevel()
+    private void HandleBarrierDestroyed()
     {
+        Debug.Log("You Lose");
         GameManager.Instance.FailedLevel();
     }
 }

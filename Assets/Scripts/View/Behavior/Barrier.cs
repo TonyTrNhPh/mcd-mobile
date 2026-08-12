@@ -8,15 +8,18 @@ public class Barrier : MonoBehaviour
     public static Barrier Instance;
     
     [SerializeField] private List<GameObject> barriers = new List<GameObject>();
-    [SerializeField] private float maxHealth = 500f;
     [SerializeField] private Image healthBarFill;
     
     public bool IsDestroy { get; private set; }
     //---------- Event---------//
     public event Action OnBarrierDestroy;
-    
-    //---------- UI ----------//
+
+    //---------- Runtime ----------//
+    private LevelData _currentLevelData;
+    private float _maxHealth;
+    private float _repairHealthAmount;
     private float _currentHealth;
+    
     
     private void Awake()
     {
@@ -30,9 +33,21 @@ public class Barrier : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Initialize()
     {
-        _currentHealth = maxHealth; 
+        _maxHealth = _currentLevelData.barrierMaxHealth;
+        _repairHealthAmount = _currentLevelData.barrierMaxHealth;
+    }
+    
+    public void SetLevelData(LevelData levelData)
+    {
+        if (levelData == null)
+        {
+            Debug.LogError("LevelData is null");
+            return;
+        }
+        
+        _currentLevelData = levelData;
     }
 
     public void TakeDamage(float damage)
@@ -41,13 +56,13 @@ public class Barrier : MonoBehaviour
             return;
         
         _currentHealth -= damage;
-        Debug.Log("Barrier HP: "+_currentHealth);
-
-        healthBarFill.fillAmount = _currentHealth / maxHealth;
+        healthBarFill.fillAmount = _currentHealth / _maxHealth;
         
         if (_currentHealth <= 0)
         {
-            BarrierDestroy();
+            _currentHealth = 0;
+            IsDestroy = true;
+            OnBarrierDestroy?.Invoke();
         }
     }
 
@@ -55,15 +70,10 @@ public class Barrier : MonoBehaviour
     {
         if (IsDestroy)
             return false;
-        
-        _currentHealth = maxHealth;
-        healthBarFill.fillAmount = 1f;
-        return true;
-    }
 
-    private void BarrierDestroy()
-    {
-        Debug.Log("Barrier destroyed");
-        OnBarrierDestroy?.Invoke();
+        _currentHealth = _repairHealthAmount;
+        healthBarFill.fillAmount = _currentHealth / _maxHealth;
+        
+        return true;
     }
 }

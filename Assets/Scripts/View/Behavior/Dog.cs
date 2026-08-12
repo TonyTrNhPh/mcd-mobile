@@ -21,7 +21,7 @@ public class Dog : MonoBehaviour
 
     //---------- Event ---------//
     public event Action<float> OnAttackBarrier;
-    public event Action OnDeath;
+    public event Action<Dog> OnDeath;
     
     //---------- UI ----------//
     private float _currentHealth;
@@ -129,7 +129,7 @@ public class Dog : MonoBehaviour
         PlayAnimation(DeathAnim);
         StartCoroutine(DestroyAfterAnimation());
         
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(this);
     }
 
     private IEnumerator DestroyAfterAnimation()

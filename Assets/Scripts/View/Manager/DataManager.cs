@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private List<CatData> allCatData;
     
     [Header("Dog Data")]
-    [SerializeField] private List<DogData> dogData;
+    [SerializeField] private List<DogData> allDogData;
     
     [Header("Boss Data")]
     [SerializeField] private List<BossData> bossData;
@@ -56,4 +56,46 @@ public class DataManager : MonoBehaviour
     {
         return bulletPrefabs[Random.Range(0, bulletPrefabs.Count)];
     }
+    
+    public DogData GetDogData(string id)
+    {
+        foreach (DogData dogData in allDogData)
+        {
+            if (dogData == null)
+                continue;
+
+            if (dogData.dogID == id)
+                return dogData;
+        }
+
+        return null;
+    }
+    
+    public void ValidateDogData()
+    {
+        HashSet<string> ids = new HashSet<string>();
+
+        foreach (DogData dogData in allDogData)
+        {
+            if (dogData == null)
+                continue;
+
+            if (string.IsNullOrWhiteSpace(dogData.dogID))
+            {
+                Debug.LogError(
+                    $"DogData '{dogData.name}' has an empty ID."
+                );
+
+                continue;
+            }
+
+            if (!ids.Add(dogData.dogID))
+            {
+                Debug.LogError(
+                    $"Duplicate DogData ID: '{dogData.dogID}'"
+                );
+            }
+        }
+    }
 }
+

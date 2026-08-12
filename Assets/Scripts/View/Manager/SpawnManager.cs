@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance;
+    [SerializeField] private GameObject objectPool;
     private void Awake()
     {
         if (Instance == null)
@@ -70,7 +71,8 @@ public class SpawnManager : MonoBehaviour
         Projectile projectile = Instantiate(
             DataManager.Instance.GetRandomBulletPrefab(),
             startPoint,
-            rotation
+            rotation,
+            objectPool.transform
         );
         return projectile;
     }
@@ -91,7 +93,7 @@ public class SpawnManager : MonoBehaviour
             spawnPoint != null ? spawnPoint.transform.position.z : transform.position.z
         );
         
-        GameObject go = Instantiate(dogData.skin, spawnPosition, Quaternion.identity, gameObject.transform);
+        GameObject go = Instantiate(dogData.skin, spawnPosition, Quaternion.identity, objectPool.transform);
         Dog dog = go.GetComponent<Dog>();
         if (dog == null)
         {

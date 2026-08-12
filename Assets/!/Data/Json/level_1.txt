@@ -1,0 +1,83 @@
+{
+  "waves": [
+    {
+      "nextWaveDelay": 3,
+      "timeline": [
+        {
+          "time": 1,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 3,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 5,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 7,
+          "dogID": "enemy_lvl_2"
+        }
+      ]
+    },
+    {
+      "nextWaveDelay": 4,
+      "timeline": [
+        {
+          "time": 1,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 2,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 4,
+          "dogID": "enemy_lvl_2"
+        },
+        {
+          "time": 4,
+          "dogID": "enemy_lvl_2"
+        },
+        {
+          "time": 7,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 9,
+          "dogID": "enemy_lvl_2"
+        }
+      ]
+    },
+    {
+      "nextWaveDelay": 5,
+      "timeline": [
+        {
+          "time": 1,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 2,
+          "dogID": "enemy_lvl_2"
+        },
+        {
+          "time": 3,
+          "dogID": "enemy_lvl_1"
+        },
+        {
+          "time": 5,
+          "dogID": "enemy_lvl_2"
+        },
+        {
+          "time": 5,
+          "dogID": "enemy_lvl_2"
+        },
+        {
+          "time": 8,
+          "dogID": "enemy_lvl_3"
+        }
+      ]
+    }
+  ]
+}

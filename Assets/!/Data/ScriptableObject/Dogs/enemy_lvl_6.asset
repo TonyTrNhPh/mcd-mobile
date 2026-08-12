@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b4a51327d4387648a4dd2c33ad6f9cd, type: 3}
-  m_Name: Robber Dog
+  m_Name: enemy_lvl_6
   m_EditorClassIdentifier: Assembly-CSharp::DogData
-  dogName: Red Nose Dog
+  dogID: enemy_lvl_6
+  dogName: Black Nose Dog
   dogDescription: I dont know
+  skin: {fileID: 8432060573322760741, guid: a453411a645364a44acfb204ca9be0a5, type: 3}
   damage: 20
   reloadTime: 1
   health: 50
   distance: 1.6
-  skin: {fileID: 8432060573322760741, guid: 39d9db8e35c626d418c18681d458b77a, type: 3}

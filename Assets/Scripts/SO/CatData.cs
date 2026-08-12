@@ -3,7 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/CatData")]
 public class CatData : ScriptableObject
 {
-    [Header("Information")]
+    [Header("Information")] 
+    public string id;
     public string catName;
     [TextArea]public string catDescription;
     

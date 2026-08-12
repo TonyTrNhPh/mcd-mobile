@@ -7,16 +7,19 @@ public class Wave : MonoBehaviour
 {
     public static Wave Instance;
 
-    [SerializeField] private GameObject spawnPoint;
+    [Header("Spawn")] [SerializeField] private GameObject spawnPoint;
     [SerializeField] public float minYPoint = 0;
     [SerializeField] public float maxYPoint = 0;
 
-    //---------- Event ----------//
+    //---------- Events ----------//
     public event Action<int, int> OnWaveChange;
-    public event Action OnLastEnemyDeath;
+    public event Action OnLevelCompleted;
 
-    private Coroutine _spawnRoutine;
+    //---------- Runtime ----------//
+    private Coroutine _waveRoutine;
     private LevelData _currentLevelData;
+    private int _currentWaveIndex;
+    private int _aliveEnemyCount;
 
     private void Awake()
     {
@@ -34,7 +37,7 @@ public class Wave : MonoBehaviour
     {
         if (levelData == null)
         {
-            Debug.LogError("LevelData is null!");
+            Debug.LogError("Wave: LevelData is null!");
             return;
         }
 
@@ -45,49 +48,129 @@ public class Wave : MonoBehaviour
     {
         if (_currentLevelData == null)
         {
-            Debug.LogError("LevelData is null!");
+            Debug.LogError("Wave: LevelData is null!");
             return;
         }
-        
-        if (_spawnRoutine != null)
-            StopCoroutine(_spawnRoutine);
 
-        _spawnRoutine = StartCoroutine(SpawnWavesSequence());
+        if (_currentLevelData.waves == null ||
+            _currentLevelData.waves.Count == 0)
+        {
+            Debug.LogError("Wave: Level has no waves!");
+            return;
+        }
+
+        if (_waveRoutine != null)
+        {
+            StopCoroutine(_waveRoutine);
+        }
+
+        _currentWaveIndex = 0;
+        _aliveEnemyCount = 0;
+
+        _waveRoutine = StartCoroutine(RunWaves());
     }
 
-    private IEnumerator SpawnWavesSequence()
+    private IEnumerator RunWaves()
     {
         int totalWaves = _currentLevelData.waves.Count;
-        OnWaveChange?.Invoke(1, totalWaves);
 
-        for (int i = 0; i < totalWaves; i++)
+        while (_currentWaveIndex < totalWaves)
         {
-            WaveData waveData = _currentLevelData.waves[i];
-            yield return new WaitForSeconds(waveData.startDelay);
-            OnWaveChange?.Invoke(i + 1, totalWaves);
-            foreach (var groupOfEnemies in waveData.groupsOfEnemies)
+            WaveData currentWave =
+                _currentLevelData.waves[_currentWaveIndex];
+
+            OnWaveChange?.Invoke(
+                _currentWaveIndex + 1,
+                totalWaves
+            );
+
+            yield return StartCoroutine(
+                RunWaveTimeline(currentWave)
+            );
+
+            // Wait until every enemy from this wave dies
+            yield return new WaitUntil(() => _aliveEnemyCount <= 0
+            );
+
+            bool isLastWave =
+                _currentWaveIndex >= totalWaves - 1;
+
+            if (isLastWave)
             {
-                yield return StartCoroutine(SpawnGroup(groupOfEnemies));
-                yield return new WaitForSeconds(
-                    waveData.betweenEachGroup
-                );
+                OnLevelCompleted?.Invoke();
+                _waveRoutine = null;
+                yield break;
             }
+
+            // Wait before next wave
+            yield return new WaitForSeconds(
+                currentWave.nextWaveDelay
+            );
+
+            _currentWaveIndex++;
         }
-        _spawnRoutine = null;
+
+        _waveRoutine = null;
     }
 
-    private IEnumerator SpawnGroup(GroupOfEnemy groupOfEnemies)
+    private IEnumerator RunWaveTimeline(WaveData waveData)
     {
-        foreach (var enemyData in groupOfEnemies.enemyData)
+        if (waveData.timeline == null ||
+            waveData.timeline.Count == 0)
         {
-            for (int i = 0; i < enemyData.numberOfDogs; i++)
-            {
-                Dog dog = SpawnManager.Instance.SpawnDog(enemyData.dogData, spawnPoint, minYPoint, maxYPoint);
-                dog.Initialize(enemyData.dogData);
-                
-                if (i < enemyData.numberOfDogs - 1)
-                    yield return new WaitForSeconds(groupOfEnemies.betweenEachEnemy);
-            }
+            yield break;
         }
+
+        float previousTime = 0f;
+
+        foreach (SpawnEvent spawnEvent in waveData.timeline)
+        {
+            float waitTime = spawnEvent.time - previousTime;
+
+            if (waitTime > 0)
+            {
+                yield return new WaitForSeconds(waitTime);
+            }
+
+            SpawnEnemy(spawnEvent.dogData);
+
+            previousTime = spawnEvent.time;
+        }
+    }
+
+    private void SpawnEnemy(DogData dogData)
+    {
+        if (dogData == null)
+        {
+            Debug.LogWarning("Wave: DogData is null!");
+            return;
+        }
+
+
+        Dog dog = SpawnManager.Instance.SpawnDog(
+            dogData,
+            spawnPoint,
+            minYPoint,
+            maxYPoint
+        );
+
+        if (dog == null)
+            return;
+        
+        dog.Initialize(dogData);
+        
+        _aliveEnemyCount++;
+
+        dog.OnDeath += HandleEnemyDeath;
+    }
+
+    private void HandleEnemyDeath(Dog dog)
+    {
+        dog.OnDeath -= HandleEnemyDeath;
+
+        _aliveEnemyCount--;
+
+        if (_aliveEnemyCount < 0)
+            _aliveEnemyCount = 0;
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "SO/LevelData")]
 public class LevelData : ScriptableObject
 {
+    public TextAsset jsonFile;
+    
     [Header("Level Title")] 
     public int levelID;
     public string levelName;
@@ -14,6 +16,7 @@ public class LevelData : ScriptableObject
     
     [Header("Stronghold Configuration")]
     public int initialCoin = 0;
+    public float barrierMaxHealth = 0;
     
     [Header("Expense Configuration")] 
     public int baseAddCatCost = 100;
@@ -29,21 +32,33 @@ public class LevelData : ScriptableObject
 [System.Serializable]
 public class WaveData
 {
-    public float startDelay;
-    public float betweenEachGroup;
-    public List<GroupOfEnemy> groupsOfEnemies;
+    public float nextWaveDelay = 3f;
+    public List<SpawnEvent> timeline;
 }
 
 [System.Serializable]
-public class GroupOfEnemy
+public class SpawnEvent
 {
-    public float betweenEachEnemy;
-    public List<EnemyData>  enemyData;
-}
-
-[System.Serializable]
-public class EnemyData
-{
+    public float time;
     public DogData dogData;
-    public int numberOfDogs = 0;
+}
+
+[System.Serializable]
+public class LevelWaveJson
+{
+    public List<WaveJson> waves;
+}
+
+[System.Serializable]
+public class WaveJson
+{
+    public float nextWaveDelay;
+    public List<SpawnEventJson> timeline;
+}
+
+[System.Serializable]
+public class SpawnEventJson
+{
+    public float time;
+    public string dogID;
 }

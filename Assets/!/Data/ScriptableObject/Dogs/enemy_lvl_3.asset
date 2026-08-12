@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b4a51327d4387648a4dd2c33ad6f9cd, type: 3}
-  m_Name: Spiky Helmet Dog
+  m_Name: enemy_lvl_3
   m_EditorClassIdentifier: Assembly-CSharp::DogData
-  dogName: Red Nose Dog
+  dogID: enemy_lvl_3
+  dogName: Black Nose Dog
   dogDescription: I dont know
+  skin: {fileID: 8432060573322760741, guid: 997b4b205919c0d42a7dd20bf9b0603a, type: 3}
   damage: 20
   reloadTime: 1
   health: 50
   distance: 1.6
-  skin: {fileID: 8432060573322760741, guid: 86fb37ec88f0c464b844b1f9b6b38dca, type: 3}
