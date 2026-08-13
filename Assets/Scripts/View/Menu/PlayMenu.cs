@@ -34,13 +34,6 @@ public class PlayMenu : MonoBehaviour
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
     }
     
-    private void Start()
-    {
-        UpdateCoinUI(SpendManager.Instance.TotalCoin);
-        UpdateAddCatCoinUI(SpendManager.Instance.AddCatCost);
-        UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairBarrierCost);
-    }
-
     private void OnEnable()
     {
         if (SpendManager.Instance == null || Wave.Instance == null)
@@ -48,6 +41,8 @@ public class PlayMenu : MonoBehaviour
         
         SpendManager.Instance.OnMoneyChanged += UpdateCoinUI;
         Wave.Instance.OnWaveChange += UpdateWaveUI;
+        
+        UpdateUI();
     }
 
     private void OnDisable()
@@ -120,6 +115,24 @@ public class PlayMenu : MonoBehaviour
 
     #region UI Updater
 
+    private void UpdateUI()
+    {
+        if (SpendManager.Instance != null)
+        {
+            UpdateCoinUI(SpendManager.Instance.TotalCoin);
+            UpdateAddCatCoinUI(SpendManager.Instance.AddCatCost);
+            UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairBarrierCost);
+        }
+
+        if (Wave.Instance != null)
+        {
+            UpdateWaveUI(
+                Wave.Instance.CurrentWave,
+                Wave.Instance.TotalWave
+            );
+        }
+    }
+    
     private void UpdateCoinUI(int coinAmount)
     {
         totalCoinText.text = coinAmount.ToString();

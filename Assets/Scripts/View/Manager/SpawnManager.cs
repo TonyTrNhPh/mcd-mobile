@@ -1,9 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance;
     [SerializeField] private GameObject objectPool;
+
+    private readonly List<Cat> catOnScene = new List<Cat>();
+    private readonly List<Dog> dogsOnScene = new List<Dog>();
+    private readonly List<Projectile> projectilesOnScene = new List<Projectile>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -16,8 +22,15 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void Initialize()
+    {
+        RemoveAllDogs();
+        RemoveAllCats();
+        RemoveAllProjectiles();
+    }
+
     #region Normal
-    
+
     public Cat SpawnCat(CatData catData, int level, Slot slot)
     {
         if (catData == null)
@@ -25,13 +38,13 @@ public class SpawnManager : MonoBehaviour
             Debug.LogWarning("SpawnManager SpawnCat(): catData is null");
             return null;
         }
-        
+
         if (slot == null)
         {
             Debug.LogWarning("SpawnManager SpawnCat(): slot is null");
             return null;
         }
-        
+
         GameObject prefab = catData.GetCatVisuals(level);
 
         if (prefab == null)
@@ -39,7 +52,7 @@ public class SpawnManager : MonoBehaviour
             Debug.LogWarning($"No cat prefab found for {catData.name} at level {level}");
             return null;
         }
-        
+
         GameObject catObject = Instantiate(prefab, slot.transform.position, Quaternion.identity);
         Cat cat = catObject.GetComponent<Cat>();
         if (cat == null)
@@ -48,9 +61,23 @@ public class SpawnManager : MonoBehaviour
             Destroy(catObject);
             return null;
         }
-        
+
         cat.Initialize(catData, level, slot);
+
+        catOnScene.Add(cat);
+
         return cat;
+    }
+
+    public void RemoveAllCats()
+    {
+        foreach (Cat cat in catOnScene)
+        {
+            if (cat != null)
+                Destroy(cat.gameObject);
+        }
+
+        catOnScene.Clear();
     }
 
     public Projectile SpawnProjectile(Dog target, Vector2 startPoint)
@@ -59,6 +86,7 @@ public class SpawnManager : MonoBehaviour
         {
             return null;
         }
+
         Vector2 targetPoint = target.GetHitPoint();
 
         targetPoint.x += Random.Range(-3f, 3f);
@@ -74,9 +102,23 @@ public class SpawnManager : MonoBehaviour
             rotation,
             objectPool.transform
         );
+
+        projectilesOnScene.Add(projectile);
+
         return projectile;
     }
-    
+
+    public void RemoveAllProjectiles()
+    {
+        foreach (Projectile projectile in projectilesOnScene)
+        {
+            if (projectile != null)
+                Destroy(projectile.gameObject);
+        }
+
+        projectilesOnScene.Clear();
+    }
+
     public Dog SpawnDog(DogData dogData, GameObject spawnPoint, float min, float max)
     {
         if (dogData == null)
@@ -84,15 +126,15 @@ public class SpawnManager : MonoBehaviour
             Debug.LogWarning("SpawnManager SpawnDog(): dogData is null");
             return null;
         }
-        
+
         float randomY = Random.Range(min, max);
-        
+
         Vector3 spawnPosition = new Vector3(
             spawnPoint != null ? spawnPoint.transform.position.x : transform.position.x,
             randomY,
             spawnPoint != null ? spawnPoint.transform.position.z : transform.position.z
         );
-        
+
         GameObject go = Instantiate(dogData.skin, spawnPosition, Quaternion.identity, objectPool.transform);
         Dog dog = go.GetComponent<Dog>();
         if (dog == null)
@@ -101,39 +143,47 @@ public class SpawnManager : MonoBehaviour
             Destroy(go);
             return null;
         }
+
+        dogsOnScene.Add(dog);
+
         return dog;
     }
-    
+
+    public void RemoveAllDogs()
+    {
+        foreach (Dog dog in dogsOnScene)
+        {
+            if (dog != null)
+                Destroy(dog.gameObject);
+        }
+
+        dogsOnScene.Clear();
+    }
+
     public void SpawnBoss()
     {
-        
     }
-    
+
     #endregion
-    
+
     #region Utilities
 
     public void SpawnGuardianCat()
     {
-        
     }
 
     public void SpawnBoxingCat()
     {
-        
     }
-    
-    
+
+
     public void SpawnSpike()
     {
-        
     }
-    
+
     public void SpawnTNT()
     {
-        
     }
 
     #endregion
-
 }

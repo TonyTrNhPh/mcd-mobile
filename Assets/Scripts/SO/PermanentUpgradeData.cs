@@ -41,10 +41,14 @@ public enum PermanentUpgradeType
     TNTMaxQuantity,
     TNTSplashRange,
 
-    BarrierHealth,
-    BarrierRepairHealth,
-    BarrierRepairCountdown,
-    InitialCoin
+    //Stronghold upgrade
+    StrongholdHealth,
+    InitialCoin,
+    
+    RepairPrice,
+    RepairHealth,
+    RepairCountdown,
+    AddCatPrice,
 }
 
 

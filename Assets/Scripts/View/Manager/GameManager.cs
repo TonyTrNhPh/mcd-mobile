@@ -91,7 +91,9 @@ namespace View.Manager
 
         public void RestartLevel()
         {
-            // Handle Restart Level later
+            if (!LevelManager.RestartLevel())
+                return;
+            
             ChangeState(EGameState.Play);
         }
         

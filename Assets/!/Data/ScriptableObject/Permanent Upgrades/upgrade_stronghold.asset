@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: upgrade_stronghold
+  m_EditorClassIdentifier: Assembly-CSharp::PermanentUpgradeDatabase
+  upgrades:
+  - upgradeName: Stronghold Health
+    upgradeDescription: 
+    upgradeIcon: {fileID: -3155715034339490101, guid: a9f20a7481340bc48ae876e3790e72bc, type: 3}
+    type: 8
+    stats:
+    - price: 0
+      effectValue: 100
+    - price: 50
+      effectValue: 200
+    - price: 100
+      effectValue: 300
+    - price: 200
+      effectValue: 400
+    - price: 300
+      effectValue: 500
+    - price: 400
+      effectValue: 600
+  - upgradeName: Starting Coin
+    upgradeDescription: 
+    upgradeIcon: {fileID: 464206127066122051, guid: 7e838c3fbe043bf489963bf6dab9ac3f, type: 3}
+    type: 9
+    stats:
+    - price: 0
+      effectValue: 100
+    - price: 50
+      effectValue: 200
+    - price: 100
+      effectValue: 300
+    - price: 200
+      effectValue: 400
+    - price: 300
+      effectValue: 500
+    - price: 400
+      effectValue: 600
+  - upgradeName: Add Cat Price
+    upgradeDescription: 
+    upgradeIcon: {fileID: 2960404000037575680, guid: cbf6bad4a4c5e3a4180f0cb69209b8e9, type: 3}
+    type: 13
+    stats:
+    - price: 0
+      effectValue: 100
+    - price: 50
+      effectValue: 200
+    - price: 100
+      effectValue: 300
+    - price: 200
+      effectValue: 400
+    - price: 300
+      effectValue: 500
+    - price: 400
+      effectValue: 600
+  - upgradeName: Repair Price
+    upgradeDescription: 
+    upgradeIcon: {fileID: 2220408775479268081, guid: 2723bc9dfec32e043b3d0c8f175ea033, type: 3}
+    type: 10
+    stats:
+    - price: 0
+      effectValue: 100
+    - price: 50
+      effectValue: 200
+    - price: 100
+      effectValue: 300
+    - price: 200
+      effectValue: 400
+    - price: 300
+      effectValue: 500
+    - price: 400
+      effectValue: 600
+  - upgradeName: Repair Health
+    upgradeDescription: 
+    upgradeIcon: {fileID: 2220408775479268081, guid: 2723bc9dfec32e043b3d0c8f175ea033, type: 3}
+    type: 11
+    stats:
+    - price: 0
+      effectValue: 100
+    - price: 50
+      effectValue: 200
+    - price: 100
+      effectValue: 300
+    - price: 200
+      effectValue: 400
+    - price: 300
+      effectValue: 500
+    - price: 400
+      effectValue: 600
+  - upgradeName: Repair Count Down
+    upgradeDescription: 
+    upgradeIcon: {fileID: 2220408775479268081, guid: 2723bc9dfec32e043b3d0c8f175ea033, type: 3}
+    type: 12
+    stats:
+    - price: 0
+      effectValue: 100
+    - price: 50
+      effectValue: 200
+    - price: 100
+      effectValue: 300
+    - price: 200
+      effectValue: 400
+    - price: 300
+      effectValue: 500
+    - price: 400
+      effectValue: 600

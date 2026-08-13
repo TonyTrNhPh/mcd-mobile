@@ -25,11 +25,9 @@ public class SpendManager : MonoBehaviour
 
     public void Initialize(LevelData levelData)
     {
-        AddCatCost = levelData.baseAddCatCost;
-        RepairBarrierCost = levelData.baseRepairBarrierCost;
+        ResetCosts(levelData);
         TotalCoin = levelData.initialCoin;
-        
-        ResetAndSetCoins(TotalCoin);
+        OnMoneyChanged?.Invoke(TotalCoin);
     }
 
     public void EarnCoin(int amount)
@@ -55,9 +53,11 @@ public class SpendManager : MonoBehaviour
         return true;
     }
 
-    public void ResetAndSetCoins(int amount)
+    public void ResetCosts(LevelData levelData)
     {
-        TotalCoin = amount;
+        AddCatCost = levelData.baseAddCatCost;
+        RepairBarrierCost = levelData.baseRepairBarrierCost;
+        
         OnMoneyChanged?.Invoke(TotalCoin);
     }
     

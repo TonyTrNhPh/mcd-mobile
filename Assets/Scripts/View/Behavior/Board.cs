@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    public static Board Instance; // Singleton Pattern && Factory Pattern
+    public static Board Instance;
     
     [SerializeField] private List<Slot> slots = new List<Slot>();
     
@@ -16,6 +16,19 @@ public class Board : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void Initialize()
+    {
+        RemoveAllCatFromSlots();
+    }
+
+    private void RemoveAllCatFromSlots()
+    {
+        foreach (Slot slot in slots)
+        {
+            slot.RemoveCat();
         }
     }
     

@@ -7,7 +7,8 @@ public class Wave : MonoBehaviour
 {
     public static Wave Instance;
 
-    [Header("Spawn")] [SerializeField] private GameObject spawnPoint;
+    [Header("Spawner")] 
+    [SerializeField] private GameObject spawnPoint;
     [SerializeField] public float minYPoint = 0;
     [SerializeField] public float maxYPoint = 0;
 
@@ -20,6 +21,8 @@ public class Wave : MonoBehaviour
     private LevelData _currentLevelData;
     private int _currentWaveIndex;
     private int _aliveEnemyCount;
+    public int CurrentWave { get; private set; }
+    public int TotalWave { get; private set; }
 
     private void Awake()
     {
@@ -33,7 +36,14 @@ public class Wave : MonoBehaviour
         }
     }
 
-    public void SetLevelData(LevelData levelData)
+    public void Initialize(LevelData levelData)
+    {
+        SetLevelData(levelData);
+        StartWave();
+        
+    }
+    
+    private void SetLevelData(LevelData levelData)
     {
         if (levelData == null)
         {
@@ -43,8 +53,8 @@ public class Wave : MonoBehaviour
 
         _currentLevelData = levelData;
     }
-
-    public void StartWave()
+    
+    private void StartWave()
     {
         if (_currentLevelData == null)
         {
@@ -66,34 +76,38 @@ public class Wave : MonoBehaviour
 
         _currentWaveIndex = 0;
         _aliveEnemyCount = 0;
+        
+        TotalWave = _currentLevelData.waves.Count;
+        CurrentWave = 1;
 
         _waveRoutine = StartCoroutine(RunWaves());
     }
 
     private IEnumerator RunWaves()
     {
-        int totalWaves = _currentLevelData.waves.Count;
-
-        while (_currentWaveIndex < totalWaves)
+        while (_currentWaveIndex < TotalWave)
         {
             WaveData currentWave =
                 _currentLevelData.waves[_currentWaveIndex];
 
+            CurrentWave = _currentWaveIndex + 1;
+
             OnWaveChange?.Invoke(
-                _currentWaveIndex + 1,
-                totalWaves
+                CurrentWave,
+                TotalWave
             );
 
             yield return StartCoroutine(
                 RunWaveTimeline(currentWave)
             );
 
-            // Wait until every enemy from this wave dies
-            yield return new WaitUntil(() => _aliveEnemyCount <= 0
+            // Wait until all enemies from this wave die
+            yield return new WaitUntil(
+                () => _aliveEnemyCount <= 0
             );
 
             bool isLastWave =
-                _currentWaveIndex >= totalWaves - 1;
+                _currentWaveIndex >= TotalWave - 1;
 
             if (isLastWave)
             {
@@ -102,7 +116,7 @@ public class Wave : MonoBehaviour
                 yield break;
             }
 
-            // Wait before next wave
+            // Wait before starting the next wave
             yield return new WaitForSeconds(
                 currentWave.nextWaveDelay
             );
