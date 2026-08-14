@@ -28,11 +28,11 @@ MonoBehaviour:
     timeline:
     - time: 1
       dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
-    - time: 3
+    - time: 5
       dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
     - time: 5
       dogData: {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
-    - time: 7
+    - time: 10
       dogData: {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
   - nextWaveDelay: 4
     timeline:

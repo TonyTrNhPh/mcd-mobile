@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
   m_Name: SMG_Cat
   m_EditorClassIdentifier: Assembly-CSharp::CatData
+  id: 
   catName: Tom
   catDescription: Low damage, high reload time
   baseSize: {x: 264, y: 200}
@@ -27,21 +28,21 @@ MonoBehaviour:
   catUpgrades:
   - upgradePrice: 100
     catStats:
-    - attackDamage: 5
+    - attackDamage: 2
       reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
+      fireRange: 24
+    - attackDamage: 2
       reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
+      fireRange: 24
+    - attackDamage: 2
       reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
+      fireRange: 24
+    - attackDamage: 2
       reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
+      fireRange: 24
+    - attackDamage: 2
       reloadTime: 1
-      fireRange: 30
+      fireRange: 24
   - upgradePrice: 120
     catStats:
     - attackDamage: 5

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
   m_Name: Pistol_Cat
   m_EditorClassIdentifier: Assembly-CSharp::CatData
+  id: 
   catName: Jerry
   catDescription: Medium damage, medium reload speed
   baseSize: {x: 200, y: 200}
@@ -27,18 +28,18 @@ MonoBehaviour:
   catUpgrades:
   - upgradePrice: 100
     catStats:
-    - attackDamage: 10
-      reloadTime: 1
-      fireRange: 42
-    - attackDamage: 10
+    - attackDamage: 5
+      reloadTime: 2
+      fireRange: 28
+    - attackDamage: 5
+      reloadTime: 2
+      fireRange: 28
+    - attackDamage: 5
       reloadTime: 1.5
-      fireRange: 42
-    - attackDamage: 10
+      fireRange: 28
+    - attackDamage: 5
       reloadTime: 1.5
-      fireRange: 42
-    - attackDamage: 10
+      fireRange: 28
+    - attackDamage: 5
       reloadTime: 1.5
-      fireRange: 42
-    - attackDamage: 10
-      reloadTime: 1.5
-      fireRange: 42
+      fireRange: 28

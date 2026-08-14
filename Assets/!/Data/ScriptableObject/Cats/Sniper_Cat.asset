@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
   m_Name: Sniper_Cat
   m_EditorClassIdentifier: Assembly-CSharp::CatData
+  id: 
   catName: Spike
   catDescription: High damage, low reload speed
   baseSize: {x: 225, y: 200}
@@ -28,17 +29,17 @@ MonoBehaviour:
   - upgradePrice: 100
     catStats:
     - attackDamage: 30
-      reloadTime: 1
-      fireRange: 50
+      reloadTime: 4
+      fireRange: 36
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 50
+      fireRange: 36
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 50
+      fireRange: 36
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 50
+      fireRange: 36
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 50
+      fireRange: 36
