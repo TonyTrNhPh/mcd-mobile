@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
 
     #region Normal
 
-    public Cat SpawnCat(CatData catData, int level, Slot slot)
+    public Cat SpawnCat(CatData catData, int mergeLevel, int upgradeLevel,Slot slot)
     {
         if (catData == null)
         {
@@ -45,11 +45,11 @@ public class SpawnManager : MonoBehaviour
             return null;
         }
 
-        GameObject prefab = catData.GetCatVisuals(level);
+        GameObject prefab = catData.GetCatVisuals(mergeLevel);
 
         if (prefab == null)
         {
-            Debug.LogWarning($"No cat prefab found for {catData.name} at level {level}");
+            Debug.LogWarning($"No cat prefab found for {catData.name} at merge level {mergeLevel} and upgrade level {upgradeLevel}");
             return null;
         }
 
@@ -62,7 +62,7 @@ public class SpawnManager : MonoBehaviour
             return null;
         }
 
-        cat.Initialize(catData, level, slot);
+        cat.Initialize(catData, mergeLevel, upgradeLevel, slot);
 
         catOnScene.Add(cat);
 

@@ -44,9 +44,6 @@ public class Barrier : MonoBehaviour
         _maxHealth = _currentLevelData.barrierMaxHealth;
         _currentHealth = _maxHealth;
         _repairHealthAmount = _currentLevelData.barrierMaxHealth;
-        
-        Debug.Log(_maxHealth);
-        Debug.Log(_currentHealth);
     }
     
     private void SetLevelData(LevelData levelData)

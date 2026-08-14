@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using View.Manager;
 
 public class Board : MonoBehaviour
 {
@@ -42,7 +43,8 @@ public class Board : MonoBehaviour
         }
         
         CatData catData = DataManager.Instance.GetRandomCat();
-        Cat cat = SpawnManager.Instance.SpawnCat(catData, 0, slot);
+        int upgradeLevel = SaveManager.Instance.GetCatLevel(catData);
+        Cat cat = SpawnManager.Instance.SpawnCat(catData, 0, upgradeLevel,slot);// change the upgrade level after SaveManager
         
         return cat != null;
     }

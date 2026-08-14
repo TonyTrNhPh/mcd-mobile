@@ -16,7 +16,8 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     public Slot CurrentSlot { get; set; }
     public CatData Data => _catData;
-    public int Level => _level;
+    public int MergeLevel => _mergeLevel;
+    public int UpgradeLevel => _upgradeLevel;
 
     //---------- Animation ----------// 
     private SkeletonAnimation _catAnimation;
@@ -24,7 +25,8 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     //---------- Stat ----------//
     private CatData _catData;
-    private int _level;
+    private int _mergeLevel;
+    private int  _upgradeLevel;
 
     //---------- Variables ----------//
     private Vector3 _offset;
@@ -46,15 +48,16 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         _camera = Camera.main;
     }
 
-    public void Initialize(CatData data, int level, Slot slot)
+    public void Initialize(CatData data, int mergeLevel, int upgradeLevel, Slot slot)
     {
         _catData = data;
-        _level = level;
+        _mergeLevel = mergeLevel;
+        _upgradeLevel = upgradeLevel;
 
         _catAnimation.Initialize(true);
 
-        _attackTimer = Random.Range(0f, Data.GetReloadTime(_level, 0));
-        attackRangeCollider.radius = Data.GetFireRange(_level, 0);
+        _attackTimer = Random.Range(0f, Data.GetReloadTime(_mergeLevel, _upgradeLevel));
+        attackRangeCollider.radius = Data.GetFireRange(_mergeLevel, _upgradeLevel);
 
         MoveToSlot(slot);
         OnSlotChanged();
@@ -160,16 +163,16 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
             return;
         }
 
-        _attackTimer = Random.Range(0f, Data.GetReloadTime(_level, 0));
+        _attackTimer = Random.Range(0f, Data.GetReloadTime(_mergeLevel, _upgradeLevel));
     }
     
     private void HandelAttack()
         {
             _attackTimer += Time.deltaTime;
     
-            while (_attackTimer >= Data.GetReloadTime(_level, 0))
+            while (_attackTimer >= Data.GetReloadTime(_mergeLevel, _upgradeLevel))
             {
-                _attackTimer -= Data.GetReloadTime(_level, 0);
+                _attackTimer -= Data.GetReloadTime(_mergeLevel, _upgradeLevel);
                 Shoot();
             }
         }
@@ -208,7 +211,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         PlayAnimation(ShootAnim);
         
         Projectile projectile = SpawnManager.Instance.SpawnProjectile(target, firePoint.position);
-        projectile.Initialize((target.GetHitPoint() - (Vector2)firePoint.position).normalized, Data.GetDamage(_level, 0));
+        projectile.Initialize((target.GetHitPoint() - (Vector2)firePoint.position).normalized, Data.GetDamage(_mergeLevel, _upgradeLevel));
     }
 
     private void PlayAnimation(string animName) 

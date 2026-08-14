@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using View.Manager;
 
 public class CatSelection : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CatSelection : MonoBehaviour
     private void Start()
     {
         catData = DataManager.Instance.GetAllCatData();
+        
         CreateCatCards();
     }
     
@@ -18,8 +20,9 @@ public class CatSelection : MonoBehaviour
     {
         foreach (CatData cat in catData)
         {
+            SaveManager.Instance.ResetCatLevel(cat);
             CatCard card = Instantiate(catCardPrefab, transform);
-            card.Initialize(cat, 0); // replace 0 with current level later
+            card.Initialize(cat);
         }
     }
 }

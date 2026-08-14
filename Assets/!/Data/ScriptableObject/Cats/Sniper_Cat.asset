@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
   m_Name: Sniper_Cat
   m_EditorClassIdentifier: Assembly-CSharp::CatData
-  id: 
+  catID: 
   catName: Spike
   catDescription: High damage, low reload speed
   baseSize: {x: 225, y: 200}
@@ -26,20 +26,105 @@ MonoBehaviour:
   - catSkin: {fileID: 1074927879421123372, guid: 20242013b77981d479fa71b74aada9d3, type: 3}
   - catSkin: {fileID: 1074927879421123372, guid: 46156e81a27ba51458e18650b904d8ba, type: 3}
   catUpgrades:
+  - upgradePrice: 0
+    catStats:
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 0.1
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+  - upgradePrice: 100
+    catStats:
+    - attackDamage: 1
+      reloadTime: 0.1
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
   - upgradePrice: 100
     catStats:
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 36
+      fireRange: 40
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 36
+      fireRange: 40
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 36
+      fireRange: 40
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 36
+      fireRange: 40
     - attackDamage: 30
       reloadTime: 4
-      fireRange: 36
+      fireRange: 40
+  - upgradePrice: 100
+    catStats:
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+  - upgradePrice: 100
+    catStats:
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+  - upgradePrice: 100
+    catStats:
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40
+    - attackDamage: 30
+      reloadTime: 4
+      fireRange: 40

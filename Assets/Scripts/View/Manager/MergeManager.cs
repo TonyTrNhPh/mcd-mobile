@@ -4,7 +4,7 @@ public class MergeManager : MonoBehaviour
 {
     public static MergeManager Instance; // Singleton Pattern
     
-    private const int MAX_CAT_LEVEL = 4;
+    private const int MAX_CAT_MERGE_LEVEL = 4;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class MergeManager : MonoBehaviour
             return;
         }
 
-        if (current.Level != target.Level || current.Level == MAX_CAT_LEVEL || target.Level == MAX_CAT_LEVEL)
+        if (current.MergeLevel != target.MergeLevel || current.MergeLevel == MAX_CAT_MERGE_LEVEL || target.MergeLevel == MAX_CAT_MERGE_LEVEL)
         {
             current.MoveToOriginalSlot();
             return;
@@ -40,11 +40,13 @@ public class MergeManager : MonoBehaviour
         Destroy(target.gameObject);
         
         CatData nextCatData = target.Data;
-        int nextLevel = target.Level + 1;
-        GameObject catPrefab = nextCatData.catVisuals[nextLevel].catSkin;
+        int nextMergeLevel = target.MergeLevel + 1;
+        int upgradeLevel = target.UpgradeLevel;
+        
+        GameObject catPrefab = nextCatData.catVisuals[nextMergeLevel].catSkin;
 
 
         Cat cat = Instantiate(catPrefab).GetComponent<Cat>();
-        cat.Initialize(nextCatData, nextLevel, targetSlot);
+        cat.Initialize(nextCatData, nextMergeLevel, upgradeLevel ,targetSlot);
     }
 }

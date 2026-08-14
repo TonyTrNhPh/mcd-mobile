@@ -9246,7 +9246,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87101b6f22b74cd4daa2458734a4f730, type: 2}
   - {fileID: 11400000, guid: e7fd08b990513a94bb98d4239cd6c433, type: 2}
   - {fileID: 11400000, guid: 217ec1ec601bc22439b82103cc31e656, type: 2}
-  - {fileID: 11400000, guid: fda804d32e3b13940a7650f51e6aefff, type: 2}
   allDogData:
   - {fileID: 11400000, guid: 9a64592324040ed499500efe707485d3, type: 2}
   - {fileID: 11400000, guid: 55d1e8d81aeaca24180b543eeb8ced5f, type: 2}
@@ -9265,6 +9264,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dde8cc35143c34748a7e23ecef7ed9ae, type: 2}
   bulletPrefabs:
   - {fileID: 6427235567815787370, guid: da945ae544321154a852db20131302aa, type: 3}
+  - {fileID: 6427235567815787370, guid: 3318251f114cd68459292f49454741bd, type: 3}
+  - {fileID: 6427235567815787370, guid: 5654db49c28d5874bbfc52d57bae304f, type: 3}
 --- !u!114 &860917226
 MonoBehaviour:
   m_ObjectHideFlags: 0

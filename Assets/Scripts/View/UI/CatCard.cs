@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using View.Manager;
 
 public class CatCard : MonoBehaviour
 {
@@ -30,25 +31,55 @@ public class CatCard : MonoBehaviour
     private Sprite _catBaseSprite;
     private int _upgradePrice;
     
+    private CatData _catData;
+    
     private void Awake()
     {
         _catTransform = catModel.GetComponent<RectTransform>();
         _catAnimator  = catModel.GetComponent<Animator>();
         _catImage = catModel.GetComponent<Image>();
+        
+        upgradeButton.onClick.AddListener(HandleUpgradeButtonClicked);
     }
 
-    public void Initialize(CatData data, int upgradeLevel)
+    public void Initialize(CatData data)
     {
+        _catData = data;
+        
         _catName = data.GetCatName();
         _catBaseSize = data.GetBaseSize();
         _offset = data.GetOffset();
         _catBaseAnimationClip = data.GetBaseAnimation();
         _catBaseSprite = data.GetBaseSprite();
         
-        _upgradePrice = data.GetUpgradePrice(upgradeLevel);
-        _currentUpgradeLevel = upgradeLevel;
         _maxUpgradeLevel = data.GetMaxUpgradeLevel();
+        _currentUpgradeLevel = SaveManager.Instance.GetCatLevel(data);
         
+        _upgradePrice = data.GetUpgradePrice(_currentUpgradeLevel);
+        
+        UpdateCard();
+    }
+
+    private void HandleUpgradeButtonClicked()
+    {
+        UpgradeCat();
+    }
+    
+    private void UpgradeCat()
+    {
+        if (_currentUpgradeLevel >= _maxUpgradeLevel)
+            return;
+
+        _currentUpgradeLevel++;
+
+        SaveManager.Instance.SetCatLevel(
+            _catData,
+            _currentUpgradeLevel
+        );
+
+        _upgradePrice =
+            _catData.GetUpgradePrice(_currentUpgradeLevel);
+
         UpdateCard();
     }
 
@@ -57,6 +88,7 @@ public class CatCard : MonoBehaviour
         UpdateName(_catName);
         UpdatePrice(_upgradePrice);
         UpdateLevelProgress(_currentUpgradeLevel);
+        
         UpdateModel();
     }
 
