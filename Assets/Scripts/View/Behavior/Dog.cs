@@ -11,10 +11,8 @@ public class Dog : MonoBehaviour
     [SerializeField] private Transform hitPoint;
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Image healthBarFill;
-    [SerializeField] private float maxHealth;
 
     public DogData dogData => _dogData;
-    public int Level => _level;
     public bool IsDead { get; private set; }
     private Barrier _targetBarrier;
     
@@ -25,6 +23,7 @@ public class Dog : MonoBehaviour
     
     //---------- UI ----------//
     private float _currentHealth;
+    private float _maxHealth;
 
     //---------- Animation ----------// 
     private SkeletonAnimation _dogAnimation;
@@ -70,7 +69,9 @@ public class Dog : MonoBehaviour
     public void Initialize(DogData data)
     {
         _dogData = data;
-        _currentHealth = dogData.health;
+        _maxHealth = dogData.health;
+        _currentHealth = _maxHealth;
+        healthBarFill.fillAmount = 1;
 
         _dogAnimation.Initialize(true);
 
@@ -110,7 +111,7 @@ public class Dog : MonoBehaviour
 
         _currentHealth -= damage;
 
-        healthBarFill.fillAmount = _currentHealth / maxHealth;
+        healthBarFill.fillAmount = _currentHealth / _maxHealth;
 
         if (_currentHealth <= 0)
         {

@@ -20,7 +20,6 @@ public class CatSelection : MonoBehaviour
     {
         foreach (CatData cat in catData)
         {
-            SaveManager.Instance.ResetCatLevel(cat);
             CatCard card = Instantiate(catCardPrefab, transform);
             card.Initialize(cat);
         }

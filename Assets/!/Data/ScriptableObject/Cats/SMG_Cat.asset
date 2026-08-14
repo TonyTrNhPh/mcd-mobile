@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
-  m_Name: SMG_Cat
+  m_Name: smg_cat
   m_EditorClassIdentifier: Assembly-CSharp::CatData
-  catID: 
+  catID: smg_cat
   catName: Tom
   catDescription: Low damage, high reload time
   baseSize: {x: 264, y: 200}
