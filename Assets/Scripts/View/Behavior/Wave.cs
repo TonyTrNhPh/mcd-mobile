@@ -38,9 +38,13 @@ public class Wave : MonoBehaviour
 
     public void Initialize(LevelData levelData)
     {
+        EndWave();
+        
+        if (levelData == null)
+            return;
+        
         SetLevelData(levelData);
         StartWave();
-        
     }
     
     private void SetLevelData(LevelData levelData)
@@ -52,6 +56,11 @@ public class Wave : MonoBehaviour
         }
 
         _currentLevelData = levelData;
+    }
+
+    private void EndWave()
+    {
+        StopAllCoroutines();
     }
     
     private void StartWave()

@@ -23,11 +23,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Barrier.Instance != null)
-            Barrier.Instance.OnBarrierDestroy -= HandleBarrierDestroyed;
 
-        if (Wave.Instance != null)
-            Wave.Instance.OnLevelCompleted -= HandleLevelCompleted;
     }
 
     private void Initialize()
@@ -77,6 +73,41 @@ public class LevelManager : MonoBehaviour
         Initialize();
         
         return true;
+    }
+
+    public bool EndLevel()
+    {
+        if (CurrentLevelData == null)
+        {
+            Debug.LogError("Cannot end level: LevelData is null.");
+            return false;
+        }
+
+        HandleEndLevel();
+        
+        return true;
+    }
+
+    private void HandleEndLevel()
+    {
+        Debug.Log("Level Ended");
+        CurrentLevelData = null;
+        
+        if (SpendManager.Instance == null || SpawnManager.Instance == null)
+            return;
+        
+        if (Board.Instance == null || Wave.Instance == null || Barrier.Instance == null)
+            return;
+        
+        SpawnManager.Instance.Initialize();
+        
+        Wave.Instance.Initialize(CurrentLevelData);
+        Barrier.Instance.Initialize(CurrentLevelData);
+        
+        Board.Instance.Initialize();
+        
+        Barrier.Instance.OnBarrierDestroy -= HandleBarrierDestroyed;
+        Wave.Instance.OnLevelCompleted -= HandleLevelCompleted;
     }
 
     private void HandleLevelCompleted()

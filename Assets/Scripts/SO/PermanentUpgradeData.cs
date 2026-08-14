@@ -1,13 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SO/Permanent Upgrade Database")]
-public class PermanentUpgradeDatabase : ScriptableObject
+[CreateAssetMenu(menuName = "SO/Permanent Upgrade Data")]
+public class PermanentUpgradeData : ScriptableObject
 {
-    public PermanentUpgradeData[] upgrades;
+    public UpgradeCategory category;
+    public PermanentUpgrade[] upgrades;
 }
 
 [System.Serializable]
-public class PermanentUpgradeData
+public class PermanentUpgrade
 {
     [Header("Information")]
     public string upgradeName;
@@ -49,6 +50,13 @@ public enum PermanentUpgradeType
     RepairHealth,
     RepairCountdown,
     AddCatPrice,
+}
+
+public enum UpgradeCategory
+{
+    Stronghold,
+    Spike,
+    TNT
 }
 
 

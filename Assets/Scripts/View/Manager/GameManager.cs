@@ -11,8 +11,6 @@ namespace View.Manager
         public UIManager UIManager => UIManager.Instance;
         public LevelManager LevelManager => LevelManager.Instance;
         public DataManager DataManager => DataManager.Instance;
-        public MergeManager MergeManager => MergeManager.Instance;
-        public SpendManager SpendManager => SpendManager.Instance;
         
         public EGameState CurrentState {get; private set;}
         
@@ -104,11 +102,15 @@ namespace View.Manager
         
         public   void ResumeLevel()
         {
+            //Handle Resume Level - Start Counting
             ChangeState(EGameState.Play);
         }
         
         public void ReturnHome()
         {
+            if(!LevelManager.EndLevel())
+                return;
+            
             ChangeState(EGameState.Home);
         }
 

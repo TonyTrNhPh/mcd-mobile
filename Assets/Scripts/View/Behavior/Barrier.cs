@@ -35,8 +35,10 @@ public class Barrier : MonoBehaviour
 
     public void Initialize(LevelData levelData)
     {
-        SetLevelData(levelData);
+        if (levelData == null)
+            return;
         
+        SetLevelData(levelData);
         _maxHealth = _currentLevelData.barrierMaxHealth;
         _repairHealthAmount = _currentLevelData.barrierMaxHealth;
     }

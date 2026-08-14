@@ -56,6 +56,11 @@ public class DataManager : MonoBehaviour
     {
         return bulletPrefabs[Random.Range(0, bulletPrefabs.Count)];
     }
+
+    public List<PermanentUpgradeData> GetAllPermanentUpgradeData()
+    {
+        return permanentUpgradeData;
+    }
     
     public DogData GetDogData(string id)
     {

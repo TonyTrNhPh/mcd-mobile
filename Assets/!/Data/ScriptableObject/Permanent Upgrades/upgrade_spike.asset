@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44a22b7fa1c274438614014b634d523, type: 3}
+  m_Name: upgrade_spike
+  m_EditorClassIdentifier: Assembly-CSharp::PermanentUpgradeData
+  category: 1
+  upgrades:
+  - upgradeName: Spike Damage
+    upgradeDescription: 
+    upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
+    type: 0
+    stats:
+    - price: 0
+      effectValue: 10
+    - price: 100
+      effectValue: 20
+    - price: 100
+      effectValue: 30
+    - price: 100
+      effectValue: 40
+    - price: 100
+      effectValue: 50
+    - price: 100
+      effectValue: 100
+  - upgradeName: Spike Countdown
+    upgradeDescription: 
+    upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
+    type: 1
+    stats:
+    - price: 0
+      effectValue: 10
+    - price: 100
+      effectValue: 20
+    - price: 100
+      effectValue: 30
+    - price: 100
+      effectValue: 40
+    - price: 100
+      effectValue: 50
+    - price: 100
+      effectValue: 100
+  - upgradeName: Spike Max Quanity
+    upgradeDescription: 
+    upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
+    type: 2
+    stats:
+    - price: 0
+      effectValue: 10
+    - price: 100
+      effectValue: 20
+    - price: 100
+      effectValue: 30
+    - price: 100
+      effectValue: 40
+    - price: 100
+      effectValue: 50
+    - price: 100
+      effectValue: 100
+  - upgradeName: Spike Duration
+    upgradeDescription: 
+    upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
+    type: 3
+    stats:
+    - price: 0
+      effectValue: 10
+    - price: 100
+      effectValue: 20
+    - price: 100
+      effectValue: 30
+    - price: 100
+      effectValue: 40
+    - price: 100
+      effectValue: 50
+    - price: 100
+      effectValue: 100

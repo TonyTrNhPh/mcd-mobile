@@ -9,27 +9,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d44a22b7fa1c274438614014b634d523, type: 3}
   m_Name: upgrade_stronghold
   m_EditorClassIdentifier: Assembly-CSharp::PermanentUpgradeDatabase
+  category: 0
   upgrades:
   - upgradeName: Stronghold Health
     upgradeDescription: 
-    upgradeIcon: {fileID: -3155715034339490101, guid: a9f20a7481340bc48ae876e3790e72bc, type: 3}
+    upgradeIcon: {fileID: -2121648960874395129, guid: 25ea721ef14e40546b29dc88d3ef84bf, type: 3}
     type: 8
     stats:
-    - price: 0
+    - price: 100
       effectValue: 100
-    - price: 50
+    - price: 100
       effectValue: 200
     - price: 100
       effectValue: 300
-    - price: 200
+    - price: 100
       effectValue: 400
-    - price: 300
+    - price: 100
       effectValue: 500
-    - price: 400
-      effectValue: 600
+    - price: 100
+      effectValue: 500
   - upgradeName: Starting Coin
     upgradeDescription: 
     upgradeIcon: {fileID: 464206127066122051, guid: 7e838c3fbe043bf489963bf6dab9ac3f, type: 3}
@@ -41,11 +42,11 @@ MonoBehaviour:
       effectValue: 200
     - price: 100
       effectValue: 300
-    - price: 200
+    - price: 100
       effectValue: 400
-    - price: 300
+    - price: 4
       effectValue: 500
-    - price: 400
+    - price: 5
       effectValue: 600
   - upgradeName: Add Cat Price
     upgradeDescription: 
@@ -58,11 +59,11 @@ MonoBehaviour:
       effectValue: 200
     - price: 100
       effectValue: 300
-    - price: 200
+    - price: 100
       effectValue: 400
-    - price: 300
+    - price: 4
       effectValue: 500
-    - price: 400
+    - price: 5
       effectValue: 600
   - upgradeName: Repair Price
     upgradeDescription: 
@@ -75,11 +76,11 @@ MonoBehaviour:
       effectValue: 200
     - price: 100
       effectValue: 300
-    - price: 200
+    - price: 100
       effectValue: 400
-    - price: 300
+    - price: 4
       effectValue: 500
-    - price: 400
+    - price: 5
       effectValue: 600
   - upgradeName: Repair Health
     upgradeDescription: 
@@ -92,13 +93,13 @@ MonoBehaviour:
       effectValue: 200
     - price: 100
       effectValue: 300
-    - price: 200
+    - price: 100
       effectValue: 400
-    - price: 300
+    - price: 4
       effectValue: 500
-    - price: 400
+    - price: 5
       effectValue: 600
-  - upgradeName: Repair Count Down
+  - upgradeName: Repair Countdown
     upgradeDescription: 
     upgradeIcon: {fileID: 2220408775479268081, guid: 2723bc9dfec32e043b3d0c8f175ea033, type: 3}
     type: 12
@@ -109,9 +110,9 @@ MonoBehaviour:
       effectValue: 200
     - price: 100
       effectValue: 300
-    - price: 200
+    - price: 100
       effectValue: 400
-    - price: 300
+    - price: 4
       effectValue: 500
-    - price: 400
+    - price: 5
       effectValue: 600
