@@ -27,12 +27,8 @@ public class UIManager : MonoBehaviour
         }
     }
     
-    private void Start()
-    {
-
-    }
     
-    public void ShowMenu(EMenu menu)
+    public void ShowMenu(EMenu menu, object data = null)
     {
         HideAllMenu();
         switch (menu)

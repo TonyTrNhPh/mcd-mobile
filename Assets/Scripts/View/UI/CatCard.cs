@@ -70,15 +70,27 @@ public class CatCard : MonoBehaviour
         if (_currentUpgradeLevel >= _maxUpgradeLevel)
             return;
 
+        int price = _catData.GetUpgradePrice(_currentUpgradeLevel);
+
+        if (!SaveManager.Instance.SpendGems(price))
+            return;
+
         _currentUpgradeLevel++;
+
+        _upgradePrice = _currentUpgradeLevel < _maxUpgradeLevel
+            ? _catData.GetUpgradePrice(_currentUpgradeLevel)
+            : 0;
 
         SaveManager.Instance.SetCatLevel(
             _catData,
             _currentUpgradeLevel
         );
 
-        _upgradePrice =
-            _catData.GetUpgradePrice(_currentUpgradeLevel);
+        SaveManager.Instance.SaveData();
+
+        GameEvent.GemsChanged(
+            SaveManager.Instance.GetGems()
+        );
 
         UpdateCard();
     }

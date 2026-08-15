@@ -7,7 +7,7 @@ public class LevelData : ScriptableObject
     public TextAsset jsonFile;
     
     [Header("Level Title")] 
-    public int levelID;
+    public string levelID;
     public string levelName;
     public bool isBossLevel = false;
     

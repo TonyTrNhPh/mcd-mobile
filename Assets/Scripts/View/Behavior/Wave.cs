@@ -12,10 +12,6 @@ public class Wave : MonoBehaviour
     [SerializeField] public float minYPoint = 0;
     [SerializeField] public float maxYPoint = 0;
 
-    //---------- Events ----------//
-    public event Action<int, int> OnWaveChange;
-    public event Action OnLevelCompleted;
-
     //---------- Runtime ----------//
     private Coroutine _waveRoutine;
     private LevelData _currentLevelData;
@@ -101,7 +97,7 @@ public class Wave : MonoBehaviour
 
             CurrentWave = _currentWaveIndex + 1;
 
-            OnWaveChange?.Invoke(
+            GameEvent.WaveChanged(
                 CurrentWave,
                 TotalWave
             );
@@ -120,7 +116,7 @@ public class Wave : MonoBehaviour
 
             if (isLastWave)
             {
-                OnLevelCompleted?.Invoke();
+                GameEvent.LevelComplete(_currentLevelData.bonusGem);
                 _waveRoutine = null;
                 yield break;
             }

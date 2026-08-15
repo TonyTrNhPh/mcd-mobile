@@ -39,8 +39,8 @@ public class PlayMenu : MonoBehaviour
         if (SpendManager.Instance == null || Wave.Instance == null)
             return;
         
-        SpendManager.Instance.OnMoneyChanged += UpdateCoinUI;
-        Wave.Instance.OnWaveChange += UpdateWaveUI;
+        GameEvent.OnCoinChanged += UpdateCoinUI;
+        GameEvent.OnWaveChange += UpdateWaveUI;
         
         UpdateUI();
     }
@@ -50,8 +50,9 @@ public class PlayMenu : MonoBehaviour
         if (SpendManager.Instance == null || Wave.Instance == null)
             return;
 
-        SpendManager.Instance.OnMoneyChanged -= UpdateCoinUI;
-        Wave.Instance.OnWaveChange -= UpdateWaveUI;
+        GameEvent.OnCoinChanged -= UpdateCoinUI;
+        GameEvent.OnWaveChange += UpdateWaveUI;
+
     }
 
     private void OnDestroy()

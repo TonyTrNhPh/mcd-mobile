@@ -1,9 +1,29 @@
+using TMPro;
 using UnityEngine;
 using View.Manager;
 
 public class HomeMenu : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI gemText;
 
+    private void OnEnable()
+    {
+        GameEvent.OnGemsChanged += DisplayGemQuantity;
+
+        DisplayGemQuantity(
+            SaveManager.Instance.GetGems()
+        );
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.OnGemsChanged -= DisplayGemQuantity;
+    }
+
+    private void DisplayGemQuantity(int quantity)
+    {
+        gemText.text = quantity.ToString();
+    }
 }
 
 public class HomeState: IState

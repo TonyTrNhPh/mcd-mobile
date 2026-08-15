@@ -54,15 +54,23 @@ public class LevelButton : MonoBehaviour
             case ELevelButtonState.Unlocked:
                 _buttonImage.sprite = levelUnlockedSprite;
                 levelText.gameObject.SetActive(true);
-                levelText.text = $"{_levelData.levelID}";
+                levelText.text = $"{LevelIDFormater(_levelData.levelID)}";
                 break;
 
             case ELevelButtonState.Completed:
                 _buttonImage.sprite = levelCompletedSprite;
                 levelText.gameObject.SetActive(true);
-                levelText.text = $"{_levelData.levelID}";
+                levelText.text = $"{LevelIDFormater(_levelData.levelID)}";
                 break;
         }
+    }
+
+    private string LevelIDFormater(string levelID)
+    {
+        if (string.IsNullOrEmpty(levelID) || _levelData == null)
+            return "";
+    
+        return levelID.Replace("level_", "");
     }
 
     private void HandleClick()

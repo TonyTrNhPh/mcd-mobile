@@ -66,35 +66,55 @@ namespace View.Manager
             }
         }
         
-        [ContextMenu("Potato Dev/Reset All Cat Upgrades")]
-        private void ResetAllCatUpgrades()
+        [ContextMenu("Reset Data")]
+        private void ResetData()
         {
+            LoadData();
+            
+            if (_data == null)
+            {
+                Debug.LogError("No Data");
+                return;
+            }
+            
+            _data.gems = 0;
+            
             foreach (CatSaveData cat in _data.cats)
             {
                 cat.upgradeLevel = 0;
             }
-
+            
             SaveData();
-
-            Debug.Log("All cat upgrades reset to level 0.");
         }
         
-        public void ResetCatLevel(CatData catData)
+        public int GetGems()
         {
-            if (catData == null)
+            return _data.gems;
+        }
+        
+        public void AddGems(int amount)
+        {
+            if (amount <= 0)
                 return;
 
-            CatSaveData catSave = _data.cats.Find(
-                cat => cat.catID == catData.catID
-            );
-
-            if (catSave != null)
-            {
-                catSave.upgradeLevel = 0;
-                SaveData();
-            }
+            _data.gems += amount;
+            GameEvent.GemsChanged(_data.gems);
         }
+        
+        public bool SpendGems(int amount)
+        {
+            if (amount <= 0)
+                return false;
 
+            if (_data.gems < amount)
+                return false;
+
+            _data.gems -= amount;
+            GameEvent.GemsChanged(_data.gems);
+
+            return true;
+        }
+        
         public int GetCatLevel(CatData catData)
         {
             if (catData == null)
@@ -133,11 +153,8 @@ namespace View.Manager
             {
                 catSave.upgradeLevel = catLevel;
             }
-
-            SaveData();
         }
-
-
+        
         public float GetVolume()
         {
             return PlayerPrefs.GetFloat(CommonSaveKey.VolumeKey, CommonSaveKey.DefaultVolume);
@@ -206,6 +223,8 @@ namespace View.Manager
     [System.Serializable]
     public class GameSaveData
     {
+        public int gems = CommonSaveKey.DefaultGems;
+        public List<LevelSaveData> levels = new List<LevelSaveData>();
         public List<CatSaveData> cats = new List<CatSaveData>();
     }
 
@@ -214,5 +233,13 @@ namespace View.Manager
     {
         public string catID;
         public int upgradeLevel;
+    }
+    
+    [System.Serializable]
+    public class LevelSaveData
+    {
+        public string levelID;
+        public bool isCompleted = false;
+        public bool isUnlocked = false;
     }
 }

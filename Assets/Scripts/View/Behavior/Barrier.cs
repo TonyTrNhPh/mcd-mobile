@@ -11,8 +11,6 @@ public class Barrier : MonoBehaviour
     [SerializeField] private Image healthBarFill;
     
     public bool IsDestroy { get; private set; }
-    //---------- Event---------//
-    public event Action OnBarrierDestroy;
 
     //---------- Runtime ----------//
     private LevelData _currentLevelData;
@@ -74,7 +72,7 @@ public class Barrier : MonoBehaviour
         {
             _currentHealth = 0;
             IsDestroy = true;
-            OnBarrierDestroy?.Invoke();
+            GameEvent.BarrierDestroy();
         }
     }
 

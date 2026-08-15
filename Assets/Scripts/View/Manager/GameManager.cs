@@ -11,9 +11,9 @@ namespace View.Manager
         public UIManager UIManager => UIManager.Instance;
         public LevelManager LevelManager => LevelManager.Instance;
         public DataManager DataManager => DataManager.Instance;
-        
-        public EGameState CurrentState {get; private set;}
-        
+
+        public EGameState CurrentState { get; private set; }
+
         //---------- State ----------//
         private StateMachine _stateMachine;
         private LandingState _landingState;
@@ -22,7 +22,6 @@ namespace View.Manager
         private PauseState _pauseState;
         private WinState _winState;
         private LoseState _loseState;
-        
 
         private void Awake()
         {
@@ -34,8 +33,9 @@ namespace View.Manager
             {
                 Destroy(gameObject);
             }
+
             _stateMachine = new StateMachine();
-            
+
             _landingState = new LandingState(this);
             _homeState = new HomeState(this);
             _playState = new PlayState(this);
@@ -53,7 +53,7 @@ namespace View.Manager
         {
             _stateMachine.Update();
         }
-        
+
         public void ChangeState(EGameState state)
         {
             IState newState = state switch
@@ -78,7 +78,7 @@ namespace View.Manager
 
             _stateMachine.ChangeState(newState);
         }
-        
+
         public void StartLevel(LevelData levelData)
         {
             if (!LevelManager.LoadLevel(levelData))
@@ -91,34 +91,44 @@ namespace View.Manager
         {
             if (!LevelManager.RestartLevel())
                 return;
-            
+
             ChangeState(EGameState.Play);
         }
-        
+
         public void PauseLevel()
         {
             ChangeState(EGameState.Pause);
         }
-        
-        public   void ResumeLevel()
+
+        public void ResumeLevel()
         {
             //Handle Resume Level - Start Counting
             ChangeState(EGameState.Play);
         }
-        
+
         public void ReturnHome()
         {
-            if(!LevelManager.EndLevel())
+            if (!LevelManager.EndLevel())
                 return;
-            
+
             ChangeState(EGameState.Home);
         }
 
-        public void CompleteLevel()
+        public void ReturnHomeWhenWin()
         {
+            ChangeState(EGameState.Home);
+        }
+
+        public void CompleteLevel(int bonusGem)
+        {
+            if (bonusGem > 0)
+            {
+                SaveManager.AddGems(bonusGem);
+            }
+            SaveManager.SaveData();
             ChangeState(EGameState.Win);
         }
-        
+
         public void FailedLevel()
         {
             ChangeState(EGameState.Lose);

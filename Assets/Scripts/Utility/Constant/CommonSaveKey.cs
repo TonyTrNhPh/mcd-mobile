@@ -8,6 +8,7 @@ namespace Utility.Constant
         public const string LanguageKey = "save.language";
         public const string DefaultLanguage = "en";
         
+        public const int DefaultGems = 0;
         public const float DefaultVolume = 1f;
         public const bool DefaultVibration = true;
         public const bool DefaultDarkMode = false;
