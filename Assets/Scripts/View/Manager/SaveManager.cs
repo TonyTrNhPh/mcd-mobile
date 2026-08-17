@@ -98,7 +98,8 @@ namespace View.Manager
                 return;
 
             _data.gems += amount;
-            GameEvent.GemsChanged(_data.gems);
+            
+            GameEvent.HandleCoinChanged(_data.gems);
         }
         
         public bool SpendGems(int amount)
@@ -110,7 +111,8 @@ namespace View.Manager
                 return false;
 
             _data.gems -= amount;
-            GameEvent.GemsChanged(_data.gems);
+            
+            GameEvent.HandleCoinChanged(_data.gems);
 
             return true;
         }

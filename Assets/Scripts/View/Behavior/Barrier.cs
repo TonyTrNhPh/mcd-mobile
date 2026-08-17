@@ -37,11 +37,7 @@ public class Barrier : MonoBehaviour
             return;
         
         SetLevelData(levelData);
-        ResetHealthBar();
-        
-        _maxHealth = _currentLevelData.barrierMaxHealth;
-        _currentHealth = _maxHealth;
-        _repairHealthAmount = _currentLevelData.barrierMaxHealth;
+        Reset();
     }
     
     private void SetLevelData(LevelData levelData)
@@ -55,9 +51,14 @@ public class Barrier : MonoBehaviour
         _currentLevelData = levelData;
     }
 
-    private void ResetHealthBar()
+    private void Reset()
     {
+        IsDestroy = false;
         healthBarFill.fillAmount = 1;
+        
+        _maxHealth = _currentLevelData.barrierMaxHealth;
+        _currentHealth = _maxHealth;
+        _repairHealthAmount = _currentLevelData.barrierMaxHealth;
     }
 
     public void TakeDamage(float damage)
@@ -72,7 +73,8 @@ public class Barrier : MonoBehaviour
         {
             _currentHealth = 0;
             IsDestroy = true;
-            GameEvent.BarrierDestroy();
+
+            GameEvent.HandleLevelLost();
         }
     }
 

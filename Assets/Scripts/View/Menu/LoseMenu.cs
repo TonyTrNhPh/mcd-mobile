@@ -4,29 +4,29 @@ using View.Manager;
 
 public class LoseMenu : MonoBehaviour
 {
-    [SerializeField] private Button homeButton;
+    [SerializeField] private Button returnButton;
     [SerializeField] private Button restartButton;
 
     private void Awake()
     {
-        homeButton.onClick.AddListener(OnHomeButtonClicked);
-        restartButton.onClick.AddListener(OnRestartButtonClicked);
+        returnButton.onClick.AddListener(HandleReturnButtonClicked);
+        restartButton.onClick.AddListener(HandleRestartButtonClicked);
     }
 
     private void OnDestroy()
     {
-        homeButton.onClick.RemoveListener(OnHomeButtonClicked);
-        restartButton.onClick.RemoveListener(OnRestartButtonClicked);
+        returnButton.onClick.RemoveListener(HandleReturnButtonClicked);
+        restartButton.onClick.RemoveListener(HandleRestartButtonClicked);
     }
 
-    private void OnHomeButtonClicked()
+    private void HandleReturnButtonClicked()
     {
-        GameManager.Instance.ReturnHome();
+        GameEvent.HandleReturnButtonClicked();
     }
 
-    private void OnRestartButtonClicked()
+    private void HandleRestartButtonClicked()
     {
-        GameManager.Instance.RestartLevel();
+        GameEvent.HandleRestartButtonClicked();
     }
 }
 

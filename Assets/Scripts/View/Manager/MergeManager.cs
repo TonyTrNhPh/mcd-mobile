@@ -20,6 +20,18 @@ public class MergeManager : MonoBehaviour
 
     public void MergeCat(Cat current, Cat target)
     {
+        if (current.Data != target.Data)
+        {
+            current.MoveToOriginalSlot();
+            return;
+        }
+
+        if (current.MergeLevel != target.MergeLevel || current.MergeLevel == MAX_CAT_MERGE_LEVEL || target.MergeLevel == MAX_CAT_MERGE_LEVEL)
+        {
+            current.MoveToOriginalSlot();
+            return;
+        }
+        
         Slot targetSlot = target.CurrentSlot;
 
         targetSlot.RemoveCat();

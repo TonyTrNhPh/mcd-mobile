@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace View.Manager
@@ -49,6 +50,31 @@ namespace View.Manager
             ChangeState(EGameState.Landing);
         }
 
+        private void OnEnable()
+        {
+            GameEvent.OnLevelButtonClicked += HandleLevelStart;
+            GameEvent.OnRestartButtonClicked += HandleLevelRestart;
+            GameEvent.OnResumeButtonClicked += HandleLevelResume;
+            GameEvent.OnReturnButtonClicked += HandleReturnHome;
+            GameEvent.OnPauseButtonClicked += HandleLevelPause;
+            
+            GameEvent.OnLevelWon += HandleLevelWon;
+            GameEvent.OnLevelLost += HandleLevelLost;
+        }
+
+        private void OnDisable()
+        {
+            GameEvent.OnLevelButtonClicked -= HandleLevelStart;
+            GameEvent.OnRestartButtonClicked -= HandleLevelRestart;
+            GameEvent.OnResumeButtonClicked -= HandleLevelResume;
+            GameEvent.OnReturnButtonClicked -= HandleReturnHome;
+            GameEvent.OnPauseButtonClicked -= HandleLevelPause;
+            
+
+            GameEvent.OnLevelWon -= HandleLevelWon;
+            GameEvent.OnLevelLost -= HandleLevelLost;
+        }
+
         private void Update()
         {
             _stateMachine.Update();
@@ -79,7 +105,7 @@ namespace View.Manager
             _stateMachine.ChangeState(newState);
         }
 
-        public void StartLevel(LevelData levelData)
+        public void HandleLevelStart(LevelData levelData)
         {
             if (!LevelManager.LoadLevel(levelData))
                 return;
@@ -87,7 +113,7 @@ namespace View.Manager
             ChangeState(EGameState.Play);
         }
 
-        public void RestartLevel()
+        public void HandleLevelRestart()
         {
             if (!LevelManager.RestartLevel())
                 return;
@@ -95,31 +121,25 @@ namespace View.Manager
             ChangeState(EGameState.Play);
         }
 
-        public void PauseLevel()
+        public void HandleLevelPause()
         {
             ChangeState(EGameState.Pause);
         }
 
-        public void ResumeLevel()
+        public void HandleLevelResume()
         {
-            //Handle Resume Level - Start Counting
             ChangeState(EGameState.Play);
         }
 
-        public void ReturnHome()
+        public void HandleReturnHome()
         {
             if (!LevelManager.EndLevel())
                 return;
 
             ChangeState(EGameState.Home);
         }
-
-        public void ReturnHomeWhenWin()
-        {
-            ChangeState(EGameState.Home);
-        }
-
-        public void CompleteLevel(int bonusGem)
+        
+        public void HandleLevelWon(int bonusGem)
         {
             if (bonusGem > 0)
             {
@@ -129,10 +149,11 @@ namespace View.Manager
             ChangeState(EGameState.Win);
         }
 
-        public void FailedLevel()
+        public void HandleLevelLost()
         {
             ChangeState(EGameState.Lose);
         }
+        
     }
 
     public enum EGameState

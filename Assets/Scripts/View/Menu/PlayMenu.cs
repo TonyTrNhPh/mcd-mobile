@@ -25,13 +25,13 @@ public class PlayMenu : MonoBehaviour
 
     private void Awake()
     {
-        addButton.onClick.AddListener(OnAddButtonClicked);
-        repairButton.onClick.AddListener(OnRepairButtonClicked);
-        spikeButton.onClick.AddListener(OnSpikeButtonClicked);
-        tntButton.onClick.AddListener(OnTntButtonClicked);
-        guardianButton.onClick.AddListener(OnGuardianButtonClicked);
+        addButton.onClick.AddListener(HandleAddButtonClicked);
+        repairButton.onClick.AddListener(HandleRepairButtonClicked);
+        spikeButton.onClick.AddListener(HandleSpikeButtonClicked);
+        tntButton.onClick.AddListener(HandleTntButtonClicked);
+        guardianButton.onClick.AddListener(HandleGuardianButtonClicked);
         
-        pauseButton.onClick.AddListener(OnPauseButtonClicked);
+        pauseButton.onClick.AddListener(HandlePauseButtonClicked);
     }
     
     private void OnEnable()
@@ -57,20 +57,20 @@ public class PlayMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        addButton.onClick.RemoveListener(OnAddButtonClicked);
-        repairButton.onClick.RemoveListener(OnRepairButtonClicked);
-        spikeButton.onClick.RemoveListener(OnSpikeButtonClicked);
-        tntButton.onClick.RemoveListener(OnTntButtonClicked);
-        guardianButton.onClick.RemoveListener(OnGuardianButtonClicked);
+        addButton.onClick.RemoveListener(HandleAddButtonClicked);
+        repairButton.onClick.RemoveListener(HandleRepairButtonClicked);
+        spikeButton.onClick.RemoveListener(HandleSpikeButtonClicked);
+        tntButton.onClick.RemoveListener(HandleTntButtonClicked);
+        guardianButton.onClick.RemoveListener(HandleGuardianButtonClicked);
         
-        pauseButton.onClick.RemoveListener(OnPauseButtonClicked);
+        pauseButton.onClick.RemoveListener(HandlePauseButtonClicked);
     }
 
     #endregion
     
     #region Button Click Handlers
     
-    private void OnAddButtonClicked()
+    private void HandleAddButtonClicked()
     {
         if (!SpendManager.Instance.TryAddCat())
         {
@@ -81,7 +81,7 @@ public class PlayMenu : MonoBehaviour
         UpdateAddCatCoinUI(SpendManager.Instance.AddCatCost);
     }
 
-    private void OnRepairButtonClicked()
+    private void HandleRepairButtonClicked()
     {
         if (!SpendManager.Instance.TryRepairBarrier())
         {
@@ -92,22 +92,22 @@ public class PlayMenu : MonoBehaviour
         UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairBarrierCost);
     }
     
-    private void OnPauseButtonClicked()
+    private void HandlePauseButtonClicked()
     {
-        GameManager.Instance.PauseLevel();
+        GameEvent.HandlePauseButtonClicked();
     }
     
-    public void OnSpikeButtonClicked()
+    public void HandleSpikeButtonClicked()
     {
         
     }
     
-    private void OnTntButtonClicked()
+    private void HandleTntButtonClicked()
     {
         
     }
 
-    private void OnGuardianButtonClicked()
+    private void HandleGuardianButtonClicked()
     {
         
     }

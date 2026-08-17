@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,42 +8,28 @@ public class WinMenu : MonoBehaviour
 {
     [Header("Texts")] [SerializeField] private TextMeshProUGUI bonusGemText;
 
-    [Header("Buttons")] [SerializeField] private Button homeButton;
+    [Header("Buttons")] [SerializeField] private Button returnButton;
 
     private void Awake()
     {
-        homeButton.onClick.AddListener(OnHomeButtonClicked);
+        returnButton.onClick.AddListener(HandleReturnButtonClicked);
+        GameEvent.OnLevelWon += DisplayBonusGem;
     }
     
-
-    private void OnEnable()
-    {
-        GameEvent.OnLevelComplete += DisplayBonusGem;
-
-        // If the UI was enabled after the level complete event fired, ensure
-        // the bonus gem is displayed by reading the last stored value.
-        DisplayBonusGem(GameEvent.LastLevelBonusGem);
-    }
-
-    private void OnDisable()
-    {
-        GameEvent.OnLevelComplete -= DisplayBonusGem;
-    }
-
-    private void DisplayBonusGem(int bonusGem)
-    {
-        Debug.Log(bonusGem);
-        bonusGemText.text = bonusGem.ToString();
-    }
-
     private void OnDestroy()
     {
-        homeButton.onClick.RemoveListener(OnHomeButtonClicked);
+        returnButton.onClick.RemoveListener(HandleReturnButtonClicked);
+        GameEvent.OnLevelWon -= DisplayBonusGem;
     }
-
-    private void OnHomeButtonClicked()
+    
+    private void DisplayBonusGem(int bonusGem)
     {
-        GameManager.Instance.ReturnHome();
+        bonusGemText.text = bonusGem.ToString();
+    }
+    
+    private void HandleReturnButtonClicked()
+    {
+        GameEvent.HandleReturnButtonClicked();
     }
 }
 

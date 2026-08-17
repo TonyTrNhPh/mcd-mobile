@@ -88,9 +88,7 @@ public class CatCard : MonoBehaviour
 
         SaveManager.Instance.SaveData();
 
-        GameEvent.GemsChanged(
-            SaveManager.Instance.GetGems()
-        );
+        GameEvent.HandleGemsChanged(SaveManager.Instance.GetGems());
 
         UpdateCard();
     }

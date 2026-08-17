@@ -97,10 +97,7 @@ public class Wave : MonoBehaviour
 
             CurrentWave = _currentWaveIndex + 1;
 
-            GameEvent.WaveChanged(
-                CurrentWave,
-                TotalWave
-            );
+            GameEvent.HandleWaveChanged(CurrentWave,TotalWave);
 
             yield return StartCoroutine(
                 RunWaveTimeline(currentWave)
@@ -111,12 +108,11 @@ public class Wave : MonoBehaviour
                 () => _aliveEnemyCount <= 0
             );
 
-            bool isLastWave =
-                _currentWaveIndex >= TotalWave - 1;
+            bool isLastWave = _currentWaveIndex >= TotalWave - 1;
 
             if (isLastWave)
             {
-                GameEvent.LevelComplete(_currentLevelData.bonusGem);
+                GameEvent.HandleLevelWon(_currentLevelData.bonusGem);
                 _waveRoutine = null;
                 yield break;
             }

@@ -10,9 +10,7 @@ public class HomeMenu : MonoBehaviour
     {
         GameEvent.OnGemsChanged += DisplayGemQuantity;
 
-        DisplayGemQuantity(
-            SaveManager.Instance.GetGems()
-        );
+        DisplayGemQuantity(SaveManager.Instance.GetGems());
     }
 
     private void OnDisable()

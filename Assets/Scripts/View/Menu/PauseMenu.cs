@@ -6,7 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button resumeButton;
-    [SerializeField] private Button homeButton;
+    [SerializeField] private Button returnButton;
     [SerializeField] private Button bgmButton;
     [SerializeField] private Button sfxButton;
     [SerializeField] private Button vibrationButton;
@@ -15,57 +15,57 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        restartButton.onClick.AddListener(OnRestartClicked);
-        resumeButton.onClick.AddListener(OnResumeClicked);
-        homeButton.onClick.AddListener(OnHomeClicked);
-        bgmButton.onClick.AddListener(OnBGMClicked);
-        sfxButton.onClick.AddListener(OnSFXClicked);
-        vibrationButton.onClick.AddListener(OnVibrationClicked);
-        helpButton.onClick.AddListener(OnHelpClicked);
+        restartButton.onClick.AddListener(HandleRestartButtonClicked);
+        resumeButton.onClick.AddListener(HandleResumeButtonClicked);
+        returnButton.onClick.AddListener(HandleReturnButtonClicked);
+        bgmButton.onClick.AddListener(HandleBGMButtonClicked);
+        sfxButton.onClick.AddListener(HandleSFXButtonClicked);
+        vibrationButton.onClick.AddListener(HandleVibrationButtonClicked);
+        helpButton.onClick.AddListener(HandleHelpButtonClicked);
     }
     
     private void OnDestroy()
     {
-        restartButton.onClick.RemoveListener(OnRestartClicked);
-        resumeButton.onClick.RemoveListener(OnResumeClicked);
-        homeButton.onClick.RemoveListener(OnHomeClicked);
-        bgmButton.onClick.RemoveListener(OnBGMClicked);
-        sfxButton.onClick.RemoveListener(OnSFXClicked);
-        vibrationButton.onClick.RemoveListener(OnVibrationClicked);
-        helpButton.onClick.RemoveListener(OnHelpClicked);
+        restartButton.onClick.RemoveListener(HandleRestartButtonClicked);
+        resumeButton.onClick.RemoveListener(HandleResumeButtonClicked);
+        returnButton.onClick.RemoveListener(HandleReturnButtonClicked);
+        bgmButton.onClick.RemoveListener(HandleBGMButtonClicked);
+        sfxButton.onClick.RemoveListener(HandleSFXButtonClicked);
+        vibrationButton.onClick.RemoveListener(HandleVibrationButtonClicked);
+        helpButton.onClick.RemoveListener(HandleHelpButtonClicked);
     }
 
-    private void OnRestartClicked()
+    private void HandleRestartButtonClicked()
     {
-        GameManager.Instance.RestartLevel();
+        GameEvent.HandleRestartButtonClicked();
     }
 
-    private void OnResumeClicked()
+    private void HandleResumeButtonClicked()
     {
-        GameManager.Instance.ResumeLevel();
+        GameEvent.HandleResumeButtonClicked();
     }
 
-    private void OnHomeClicked()
+    private void HandleReturnButtonClicked()
     {
-        GameManager.Instance.ReturnHome();
+        GameEvent.HandleReturnButtonClicked();
     }
 
-    private void OnBGMClicked()
+    private void HandleBGMButtonClicked()
     {
         Debug.Log("BGM");
     }
     
-    private void OnSFXClicked()
+    private void HandleSFXButtonClicked()
     {
         Debug.Log("SFX");
     }
 
-    private void OnVibrationClicked()
+    private void HandleVibrationButtonClicked()
     {
         Debug.Log("Vibration");
     }
 
-    private void OnHelpClicked()
+    private void HandleHelpButtonClicked()
     {
         Debug.Log("Help");
     }

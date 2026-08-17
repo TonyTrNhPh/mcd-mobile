@@ -27,7 +27,7 @@ public class SpendManager : MonoBehaviour
     {
         ResetCosts(levelData);
         TotalCoin = levelData.initialCoin;
-        GameEvent.CoinChanged(TotalCoin);
+        GameEvent.HandleCoinChanged(TotalCoin);
     }
 
     public void EarnCoin(int amount)
@@ -37,7 +37,7 @@ public class SpendManager : MonoBehaviour
         
         TotalCoin += amount;
         
-        GameEvent.CoinChanged(TotalCoin);
+        GameEvent.HandleCoinChanged(TotalCoin);
     }
 
     public bool SpendCoin(int amount)
@@ -49,7 +49,8 @@ public class SpendManager : MonoBehaviour
 
         TotalCoin -= amount;
         
-        GameEvent.CoinChanged(TotalCoin);
+        GameEvent.HandleCoinChanged(TotalCoin);
+
         return true;
     }
 
@@ -58,7 +59,7 @@ public class SpendManager : MonoBehaviour
         AddCatCost = levelData.baseAddCatCost;
         RepairBarrierCost = levelData.baseRepairBarrierCost;
         
-        GameEvent.CoinChanged(TotalCoin);
+        GameEvent.HandleCoinChanged(TotalCoin);
     }
     
     public bool TryAddCat()

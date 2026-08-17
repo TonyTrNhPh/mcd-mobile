@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: level_2
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   jsonFile: {fileID: 4900000, guid: 79d417ff9aa647a499cfe95a352aa7ef, type: 3}
-  levelID: level_2
+  levelID: 2
   levelName: Tutorial
   isBossLevel: 0
-  bonusGem: 100
+  bonusGem: 60
   initialCoin: 1000
   barrierMaxHealth: 200
   baseAddCatCost: 100

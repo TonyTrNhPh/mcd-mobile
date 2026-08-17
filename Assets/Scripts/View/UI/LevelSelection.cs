@@ -64,13 +64,7 @@ public class LevelSelection : MonoBehaviour
             LevelButton button = Instantiate(levelButtonPrefab, levelButtonParent);
             button.transform.localPosition = NODE_CONFIG[i];
             button.Initialize(state, levelData);
-            button.OnLevelButtonClicked += HandleLevelButtonClicked;
         }
-    }
-
-    private void HandleLevelButtonClicked(LevelData levelData)
-    {
-        GameManager.Instance.StartLevel(levelData);
     }
 }
 

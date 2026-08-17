@@ -23,8 +23,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEvent.OnBarrierDestroy -= HandleBarrierDestroyed;
-        GameEvent.OnLevelComplete -= HandleLevelCompleted;
+        
     }
 
     private void Initialize()
@@ -43,12 +42,6 @@ public class LevelManager : MonoBehaviour
 
         Barrier.Instance.Initialize(CurrentLevelData);
         Wave.Instance.Initialize(CurrentLevelData);
-
-        GameEvent.OnBarrierDestroy -= HandleBarrierDestroyed;
-        GameEvent.OnBarrierDestroy += HandleBarrierDestroyed;
-
-        GameEvent.OnLevelComplete -= HandleLevelCompleted;
-        GameEvent.OnLevelComplete += HandleLevelCompleted;
     }
 
     public bool LoadLevel(LevelData levelData)
@@ -92,17 +85,6 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
-    public bool WinLevel()
-    {
-        if (CurrentLevelData == null)
-        {
-            Debug.LogError("Cannot win the level: LevelData is null.");
-            return false;
-        }
-        
-        HandleLevelCompleted(CurrentLevelData.bonusGem);
-        return true;
-    }
 
     private void HandleEndLevel()
     {
@@ -121,19 +103,5 @@ public class LevelManager : MonoBehaviour
         Barrier.Instance.Initialize(CurrentLevelData);
 
         Board.Instance.Initialize();
-
-        GameEvent.OnBarrierDestroy -= HandleBarrierDestroyed;
-        GameEvent.OnLevelComplete -= HandleLevelCompleted;
-    }
-
-    private void HandleLevelCompleted(int gem)
-    {
-        GameManager.Instance.CompleteLevel(gem);
-    }
-
-    private void HandleBarrierDestroyed()
-    {
-        Debug.Log("You Lose");
-        GameManager.Instance.FailedLevel();
     }
 }

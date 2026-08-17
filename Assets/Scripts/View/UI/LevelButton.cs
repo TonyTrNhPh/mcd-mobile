@@ -18,20 +18,17 @@ public class LevelButton : MonoBehaviour
 
     //---------- Data ----------//
     private LevelData _levelData;
-
-    //---------- Event ----------//
-    public event Action<LevelData> OnLevelButtonClicked;
-
+    
     private void Awake()
     {
         _buttonImage = GetComponent<Image>();
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(HandleClick);
+        _button.onClick.AddListener(HandleLevelButtonClick);
     }
 
     private void OnDestroy()
     {
-        _button.onClick.RemoveListener(HandleClick);
+        _button.onClick.RemoveListener(HandleLevelButtonClick);
     }
 
     public void Initialize(ELevelButtonState state, LevelData data)
@@ -73,7 +70,7 @@ public class LevelButton : MonoBehaviour
         return levelID.Replace("level_", "");
     }
 
-    private void HandleClick()
+    private void HandleLevelButtonClick()
     {
         if (_currentState == ELevelButtonState.Locked)
             return;
@@ -81,7 +78,7 @@ public class LevelButton : MonoBehaviour
         if (_levelData == null)
             return;
 
-        OnLevelButtonClicked?.Invoke(_levelData);
+        GameEvent.HandleLevelButtonClicked(_levelData);
     }
 }
 
