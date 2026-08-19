@@ -13,9 +13,7 @@ public class Barrier : MonoBehaviour
     public bool IsDestroy { get; private set; }
 
     //---------- Runtime ----------//
-    private LevelData _currentLevelData;
     private float _maxHealth;
-    private float _repairHealthAmount;
     private float _currentHealth;
     
     
@@ -31,34 +29,21 @@ public class Barrier : MonoBehaviour
         }
     }
 
-    public void Initialize(LevelData levelData)
+    public void Initialize()
     {
-        if (levelData == null)
-            return;
-        
-        SetLevelData(levelData);
         Reset();
+        Debug.Log("Max stronghold health for level: "+UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.StrongholdHealth));
+        Debug.Log("Repair health amount for level: "+ UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.RepairHealth));
     }
     
-    private void SetLevelData(LevelData levelData)
-    {
-        if (levelData == null)
-        {
-            Debug.LogError("LevelData is null");
-            return;
-        }
-        
-        _currentLevelData = levelData;
-    }
 
     private void Reset()
     {
         IsDestroy = false;
         healthBarFill.fillAmount = 1;
         
-        _maxHealth = _currentLevelData.barrierMaxHealth;
+        _maxHealth = UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.StrongholdHealth);
         _currentHealth = _maxHealth;
-        _repairHealthAmount = _currentLevelData.barrierMaxHealth;
     }
 
     public void TakeDamage(float damage)
@@ -83,7 +68,8 @@ public class Barrier : MonoBehaviour
         if (IsDestroy)
             return false;
 
-        _currentHealth = _repairHealthAmount;
+        _currentHealth += UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.RepairHealth);
+        
         healthBarFill.fillAmount = _currentHealth / _maxHealth;
         
         return true;

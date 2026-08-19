@@ -17,7 +17,7 @@ MonoBehaviour:
   - upgradeName: TNT Damage
     upgradeDescription: 
     upgradeIcon: {fileID: 752903079900857444, guid: b2c72fc5af30ca843beedd43bc02536b, type: 3}
-    type: 4
+    type: 5
     stats:
     - price: 0
       effectValue: 10
@@ -34,7 +34,7 @@ MonoBehaviour:
   - upgradeName: TNT Countdown
     upgradeDescription: 
     upgradeIcon: {fileID: 8061791436399067726, guid: 2991f104abf635d4ba4560686da24fe2, type: 3}
-    type: 5
+    type: 6
     stats:
     - price: 0
       effectValue: 10
@@ -51,7 +51,7 @@ MonoBehaviour:
   - upgradeName: TNT Max Quanity
     upgradeDescription: 
     upgradeIcon: {fileID: 752903079900857444, guid: b2c72fc5af30ca843beedd43bc02536b, type: 3}
-    type: 6
+    type: 7
     stats:
     - price: 0
       effectValue: 10
@@ -68,7 +68,7 @@ MonoBehaviour:
   - upgradeName: TNT Duration
     upgradeDescription: 
     upgradeIcon: {fileID: 6064895811892121939, guid: 1624d88d516b88845984392064810942, type: 3}
-    type: 7
+    type: 8
     stats:
     - price: 0
       effectValue: 10

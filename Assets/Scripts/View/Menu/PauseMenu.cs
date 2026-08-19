@@ -68,6 +68,7 @@ public class PauseMenu : MonoBehaviour
     private void HandleHelpButtonClicked()
     {
         Debug.Log("Help");
+        GameEvent.HandleLevelWon(1000);
     }
 }
 

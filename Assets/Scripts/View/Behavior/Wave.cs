@@ -30,6 +30,13 @@ public class Wave : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        GameEvent.OnLevelWon += EndWave;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.OnLevelWon -= EndWave;
     }
 
     public void Initialize(LevelData levelData)
@@ -54,7 +61,7 @@ public class Wave : MonoBehaviour
         _currentLevelData = levelData;
     }
 
-    private void EndWave()
+    private void EndWave(int gem = 0)
     {
         StopAllCoroutines();
     }

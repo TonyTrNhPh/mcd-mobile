@@ -145,7 +145,9 @@ namespace View.Manager
             {
                 SaveManager.AddGems(bonusGem);
             }
+            // Handle save level state
             SaveManager.SaveData();
+            
             ChangeState(EGameState.Win);
         }
 

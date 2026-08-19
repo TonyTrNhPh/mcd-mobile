@@ -78,7 +78,7 @@ public class PlayMenu : MonoBehaviour
             return;
         }
 
-        UpdateAddCatCoinUI(SpendManager.Instance.AddCatCost);
+        UpdateAddCatCoinUI(SpendManager.Instance.AddCatPrice);
     }
 
     private void HandleRepairButtonClicked()
@@ -89,7 +89,7 @@ public class PlayMenu : MonoBehaviour
             return;
         }
 
-        UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairBarrierCost);
+        UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairPrice);
     }
     
     private void HandlePauseButtonClicked()
@@ -121,8 +121,8 @@ public class PlayMenu : MonoBehaviour
         if (SpendManager.Instance != null)
         {
             UpdateCoinUI(SpendManager.Instance.TotalCoin);
-            UpdateAddCatCoinUI(SpendManager.Instance.AddCatCost);
-            UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairBarrierCost);
+            UpdateAddCatCoinUI(SpendManager.Instance.AddCatPrice);
+            UpdateRepairBarrierCoinUI(SpendManager.Instance.RepairPrice);
         }
 
         if (Wave.Instance != null)

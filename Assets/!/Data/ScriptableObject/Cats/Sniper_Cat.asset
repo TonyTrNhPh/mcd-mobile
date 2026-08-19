@@ -28,7 +28,7 @@ MonoBehaviour:
   catUpgrades:
   - upgradePrice: 0
     catStats:
-    - attackDamage: 30
+    - attackDamage: 50
       reloadTime: 4
       fireRange: 40
     - attackDamage: 50

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,8 +27,12 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    
+
+    private void Start()
+    {
+        EnsureAllMenu();
+    }
+
     public void ShowMenu(EMenu menu, object data = null)
     {
         HideAllMenu();
@@ -87,6 +92,16 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         winMenu.SetActive(false);
         loseMenu.SetActive(false);
+    }
+
+    public void EnsureAllMenu()
+    {
+        landingMenu.SetActive(true);
+        homeMenu.SetActive(true);
+        playMenu.SetActive(true);
+        pauseMenu.SetActive(true);
+        winMenu.SetActive(true);
+        loseMenu.SetActive(true);
     }
 }
 

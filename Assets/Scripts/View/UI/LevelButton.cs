@@ -9,6 +9,8 @@ public class LevelButton : MonoBehaviour
     [SerializeField] private Sprite levelLockedSprite;
     [SerializeField] private Sprite levelUnlockedSprite;
     [SerializeField] private Sprite levelCompletedSprite;
+    [SerializeField] private Sprite levelBossSprite;
+    [SerializeField] private GameObject levelBossIcon;
     [SerializeField] private TextMeshProUGUI levelText;
 
     //---------- Visual ----------//
@@ -49,7 +51,16 @@ public class LevelButton : MonoBehaviour
                 break;
 
             case ELevelButtonState.Unlocked:
-                _buttonImage.sprite = levelUnlockedSprite;
+                if (_levelData.isBossLevel)
+                {
+                    _buttonImage.sprite = levelBossSprite;
+                    levelBossIcon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    _buttonImage.sprite = levelUnlockedSprite;
+                    levelBossIcon.gameObject.SetActive(false);
+                }
                 levelText.gameObject.SetActive(true);
                 levelText.text = $"{LevelIDFormater(_levelData.levelID)}";
                 break;

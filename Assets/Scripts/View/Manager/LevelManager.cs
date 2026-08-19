@@ -35,12 +35,11 @@ public class LevelManager : MonoBehaviour
             return;
 
         SpawnManager.Instance.Initialize();
-
-        SpendManager.Instance.Initialize(CurrentLevelData);
+        SpendManager.Instance.Initialize();
 
         Board.Instance.Initialize();
 
-        Barrier.Instance.Initialize(CurrentLevelData);
+        Barrier.Instance.Initialize();
         Wave.Instance.Initialize(CurrentLevelData);
     }
 
@@ -98,10 +97,10 @@ public class LevelManager : MonoBehaviour
             return;
 
         SpawnManager.Instance.Initialize();
-
+        
+        Barrier.Instance.Initialize();
         Wave.Instance.Initialize(CurrentLevelData);
-        Barrier.Instance.Initialize(CurrentLevelData);
-
+        
         Board.Instance.Initialize();
     }
 }

@@ -372,7 +372,7 @@ MonoBehaviour:
   upgradeIcon: {fileID: 2735003908217665434}
   upgradeButton: {fileID: 1862239764175078254}
   buttonFillImage: {fileID: 2735003908217665434}
-  upgradePrice: {fileID: 2848695607976711895}
+  upgradePriceText: {fileID: 2848695607976711895}
 --- !u!1 &3165948852225967081
 GameObject:
   m_ObjectHideFlags: 0

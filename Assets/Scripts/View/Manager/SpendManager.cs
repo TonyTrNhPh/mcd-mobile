@@ -1,16 +1,14 @@
 using System;
 using UnityEngine;
+using View.Manager;
 
 public class SpendManager : MonoBehaviour
 {
     public static SpendManager Instance;
     public int TotalCoin { get; private set; }
-    public int AddCatCost { get; private set; }
-    public int RepairBarrierCost { get; private set; }
-    
-    //---------- Event ----------//
-    
-    
+    public int AddCatPrice { get; private set; }
+    public int RepairPrice { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -23,10 +21,16 @@ public class SpendManager : MonoBehaviour
         }
     }
 
-    public void Initialize(LevelData levelData)
+    public void Initialize()
     {
-        ResetCosts(levelData);
-        TotalCoin = levelData.initialCoin;
+        AddCatPrice = Mathf.RoundToInt(UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.AddCatPrice));
+        RepairPrice = Mathf.RoundToInt(UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.RepairPrice));
+        TotalCoin = Mathf.RoundToInt(UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.InitialCoin));
+
+        Debug.Log("Initial coin for level: "+TotalCoin);
+        Debug.Log("Base add cat price for level: "+AddCatPrice);
+        Debug.Log("Base repairt price for level: "+RepairPrice);
+        
         GameEvent.HandleCoinChanged(TotalCoin);
     }
 
@@ -34,9 +38,9 @@ public class SpendManager : MonoBehaviour
     {
         if (amount <= 0)
             return;
-        
+
         TotalCoin += amount;
-        
+
         GameEvent.HandleCoinChanged(TotalCoin);
     }
 
@@ -48,34 +52,26 @@ public class SpendManager : MonoBehaviour
             return false;
 
         TotalCoin -= amount;
-        
+
         GameEvent.HandleCoinChanged(TotalCoin);
 
         return true;
     }
 
-    public void ResetCosts(LevelData levelData)
-    {
-        AddCatCost = levelData.baseAddCatCost;
-        RepairBarrierCost = levelData.baseRepairBarrierCost;
-        
-        GameEvent.HandleCoinChanged(TotalCoin);
-    }
-    
+
     public bool TryAddCat()
     {
         if (!Board.Instance.HasEmptySlot())
             return false;
 
-        if (!SpendCoin(AddCatCost))
+        if (!SpendCoin(AddCatPrice))
             return false;
 
         if (!Board.Instance.SpawnRandomCat())
             return false;
 
-        AddCatCost = Mathf.RoundToInt(
-            AddCatCost * LevelManager.Instance.CurrentLevelData.addCatMultiplier
-        );
+        AddCatPrice = Mathf.RoundToInt(AddCatPrice * 1.0f);
+        // Handle different way to increase the price in level
 
         return true;
     }
@@ -84,16 +80,13 @@ public class SpendManager : MonoBehaviour
     {
         if (!Barrier.Instance.RepairBarrier())
             return false;
-        
-        if (!SpendCoin(RepairBarrierCost))
+
+        if (!SpendCoin(RepairPrice))
             return false;
-        
-        RepairBarrierCost = Mathf.RoundToInt(
-            RepairBarrierCost * LevelManager.Instance.CurrentLevelData.repairBarrierMultiplier
-        );
+
+        RepairPrice = Mathf.RoundToInt(RepairPrice *1.0f);
+        // Handle different way to increase the price in level
 
         return true;
     }
-    
 }
-

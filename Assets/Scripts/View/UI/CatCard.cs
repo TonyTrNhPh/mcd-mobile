@@ -15,21 +15,12 @@ public class CatCard : MonoBehaviour
     [Header("Button")]
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Image upgradeFillImage;
-    [SerializeField] private TextMeshProUGUI upgradePrice;
+    [SerializeField] private TextMeshProUGUI upgradePriceText;
     
     //---------- Cat Model ----------//
     private RectTransform _catTransform;
     private Image _catImage;
     private Animator _catAnimator;
-    
-    private int _currentUpgradeLevel;
-    private int _maxUpgradeLevel;
-    private string _catName;
-    private Vector2 _catBaseSize;
-    private Vector2 _offset;
-    private RuntimeAnimatorController _catBaseAnimationClip;
-    private Sprite _catBaseSprite;
-    private int _upgradePrice;
     
     private CatData _catData;
     
@@ -46,86 +37,70 @@ public class CatCard : MonoBehaviour
     {
         _catData = data;
         
-        _catName = data.GetCatName();
-        _catBaseSize = data.GetBaseSize();
-        _offset = data.GetOffset();
-        _catBaseAnimationClip = data.GetBaseAnimation();
-        _catBaseSprite = data.GetBaseSprite();
-        
-        _maxUpgradeLevel = data.GetMaxUpgradeLevel();
-        _currentUpgradeLevel = SaveManager.Instance.GetCatLevel(data);
-        
-        _upgradePrice = data.GetUpgradePrice(_currentUpgradeLevel);
-        
         UpdateCard();
     }
 
     private void HandleUpgradeButtonClicked()
     {
-        UpgradeCat();
-    }
-    
-    private void UpgradeCat()
-    {
-        if (_currentUpgradeLevel >= _maxUpgradeLevel)
+        if(_catData == null)
             return;
 
-        int price = _catData.GetUpgradePrice(_currentUpgradeLevel);
-
-        if (!SaveManager.Instance.SpendGems(price))
+        if(!UpgradeManager.Instance.TryUpgradeCat(_catData))
             return;
-
-        _currentUpgradeLevel++;
-
-        _upgradePrice = _currentUpgradeLevel < _maxUpgradeLevel
-            ? _catData.GetUpgradePrice(_currentUpgradeLevel)
-            : 0;
-
-        SaveManager.Instance.SetCatLevel(
-            _catData,
-            _currentUpgradeLevel
-        );
-
-        SaveManager.Instance.SaveData();
-
-        GameEvent.HandleGemsChanged(SaveManager.Instance.GetGems());
-
+        
         UpdateCard();
     }
 
+
     private void UpdateCard()
     {
-        UpdateName(_catName);
-        UpdatePrice(_upgradePrice);
-        UpdateLevelProgress(_currentUpgradeLevel);
-        
+        int currentLevel = UpgradeManager.Instance.GetCatUpgradeLevel(_catData);
+
+        int maxLevel = _catData.GetMaxUpgradeLevel();
+
+        bool maxed = currentLevel >= maxLevel;
+
+        int price = maxed ? 0 : UpgradeManager.Instance.GetCatUpgradePrice(_catData);
+
+        UpdateName();
+        UpdatePrice(price);
+        UpdateLevelProgress(currentLevel);
+        UpdateUpgradeButton(maxed);
         UpdateModel();
     }
 
-    private void UpdateName(string cardName)
+    private void UpdateName()
     {
-        catName.text = cardName;
+        catName.text = _catData.GetCatName();
     }
 
-    private void UpdatePrice(int cardPrice)
+    private void UpdatePrice(int price)
     {
-        upgradePrice.text = cardPrice.ToString();
+        upgradePriceText.text = price <=0 ? "Max": price.ToString();
     }
 
-    private void UpdateLevelProgress(int cardLevel)
+    private void UpdateLevelProgress(int level)
     {
         for (int i = 0; i < catLevels.Count; i++)
         {
-            catLevels[i].SetActive(i < cardLevel);
+            catLevels[i].SetActive(i < level);
         }
+    }
+    
+    private void UpdateUpgradeButton(bool maxed)
+    {
+        upgradeButton.interactable = !maxed;
     }
 
     private void UpdateModel()
     {
-        _catImage.sprite = _catBaseSprite;
-        _catTransform.sizeDelta = _catBaseSize;
-        _catTransform.anchoredPosition = _offset;
-        _catAnimator.runtimeAnimatorController = _catBaseAnimationClip;
+        _catImage.sprite = _catData.GetBaseSprite();
+        _catTransform.sizeDelta = _catData.GetBaseSize();
+        _catTransform.anchoredPosition = _catData.GetOffset();
+
+        _catAnimator.runtimeAnimatorController =
+            _catData.GetBaseAnimation();
+
         _catAnimator.Play("Idle");
     }
     

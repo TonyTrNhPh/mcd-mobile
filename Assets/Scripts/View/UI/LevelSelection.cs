@@ -8,6 +8,8 @@ public class LevelSelection : MonoBehaviour
     [SerializeField] private LevelButton levelButtonPrefab;
     [SerializeField] private Transform levelButtonParent;
     
+    private IReadOnlyList<LevelData> LevelDataList => DataManager.Instance.GetAllLevelData();
+    
     private static readonly Vector2[] NODE_CONFIG =
     {
         new Vector2(-3345, 20),
@@ -49,16 +51,15 @@ public class LevelSelection : MonoBehaviour
 
     private void CreateLevelButtons()
     {
-        IReadOnlyList<LevelData> levels = LevelManager.Instance.LevelDataList;
         for (int i = 0; i < NODE_CONFIG.Length; i++)
         {
             LevelData levelData = null;
             ELevelButtonState state = ELevelButtonState.Locked;
             
-            if (i < levels.Count && levels[i] != null)
+            if (i < LevelDataList.Count && LevelDataList[i] != null)
             {
                 state = ELevelButtonState.Unlocked;
-                levelData = levels[i];
+                levelData = LevelDataList[i];
             }
             
             LevelButton button = Instantiate(levelButtonPrefab, levelButtonParent);

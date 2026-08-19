@@ -40,21 +40,30 @@ namespace View.Manager
                 _data = new GameSaveData();
                 return;
             }
-            
+
             BinaryFormatter bf = new BinaryFormatter();
 
             using (FileStream file = File.Open(FullPath, FileMode.Open))
             {
                 _data = (GameSaveData)bf.Deserialize(file);
             }
+
+            if (_data.upgrades == null)
+                _data.upgrades = new List<UpgradeSaveData>();
+
+            if (_data.cats == null)
+                _data.cats = new List<CatSaveData>();
+
+            if (_data.levels == null)
+                _data.levels = new List<LevelSaveData>();
         }
-        
+
         public void SaveData()
         {
             BinaryFormatter bf = new BinaryFormatter();
-            
+
             string directory = Path.GetDirectoryName(FullPath);
-            
+
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
@@ -65,7 +74,7 @@ namespace View.Manager
                 bf.Serialize(file, _data);
             }
         }
-        
+
         [ContextMenu("Reset Data")]
         private void ResetData()
         {
@@ -73,35 +82,55 @@ namespace View.Manager
             
             if (_data == null)
             {
-                Debug.LogError("No Data");
+                Debug.LogError("SaveManager: Save data is null.");
                 return;
             }
-            
-            _data.gems = 0;
-            
-            foreach (CatSaveData cat in _data.cats)
+
+            _data.gems = CommonSaveKey.DefaultGems;
+
+            if (_data.cats != null)
             {
-                cat.upgradeLevel = 0;
+                foreach (CatSaveData cat in _data.cats)
+                {
+                    cat.upgradeLevel = 0;
+                }
             }
-            
+
+            if (_data.upgrades != null)
+            {
+                foreach (UpgradeSaveData upgrade in _data.upgrades)
+                {
+                    upgrade.upgradeLevel = 0;
+                }
+            }
+
+            if (_data.levels != null)
+            {
+                foreach (LevelSaveData level in _data.levels)
+                {
+                    level.isCompleted = false;
+                    level.isUnlocked = false;
+                }
+            }
+
             SaveData();
         }
-        
+
         public int GetGems()
         {
             return _data.gems;
         }
-        
+
         public void AddGems(int amount)
         {
             if (amount <= 0)
                 return;
 
             _data.gems += amount;
-            
+
             GameEvent.HandleCoinChanged(_data.gems);
         }
-        
+
         public bool SpendGems(int amount)
         {
             if (amount <= 0)
@@ -111,19 +140,18 @@ namespace View.Manager
                 return false;
 
             _data.gems -= amount;
-            
+
             GameEvent.HandleCoinChanged(_data.gems);
 
             return true;
         }
-        
+
         public int GetCatLevel(CatData catData)
         {
             if (catData == null)
                 return 0;
 
-            CatSaveData catSave = _data.cats.Find(
-                cat => cat.catID == catData.catID
+            CatSaveData catSave = _data.cats.Find(cat => cat.catID == catData.catID
             );
 
             if (catSave == null)
@@ -137,8 +165,7 @@ namespace View.Manager
             if (catData == null)
                 return;
 
-            CatSaveData catSave = _data.cats.Find(
-                cat => cat.catID == catData.catID
+            CatSaveData catSave = _data.cats.Find(cat => cat.catID == catData.catID
             );
 
             if (catSave == null)
@@ -156,7 +183,39 @@ namespace View.Manager
                 catSave.upgradeLevel = catLevel;
             }
         }
-        
+
+        public int GetUpgradeLevelByType(PermanentUpgradeType type)
+        {
+            UpgradeSaveData upgradeSave = _data.upgrades.Find(upgrade => upgrade.type == type
+            );
+
+            if (upgradeSave == null)
+                return 0;
+
+            return upgradeSave.upgradeLevel;
+        }
+
+        public void SetUpgradeLevelByType(PermanentUpgradeType type, int upgradeLevel)
+        {
+            UpgradeSaveData upgradeSave = _data.upgrades.Find(upgrade => upgrade.type == type
+            );
+
+            if (upgradeSave == null)
+            {
+                upgradeSave = new UpgradeSaveData
+                {
+                    type = type,
+                    upgradeLevel = upgradeLevel
+                };
+
+                _data.upgrades.Add(upgradeSave);
+            }
+            else
+            {
+                upgradeSave.upgradeLevel = upgradeLevel;
+            }
+        }
+
         public float GetVolume()
         {
             return PlayerPrefs.GetFloat(CommonSaveKey.VolumeKey, CommonSaveKey.DefaultVolume);
@@ -228,15 +287,23 @@ namespace View.Manager
         public int gems = CommonSaveKey.DefaultGems;
         public List<LevelSaveData> levels = new List<LevelSaveData>();
         public List<CatSaveData> cats = new List<CatSaveData>();
+        public List<UpgradeSaveData> upgrades = new List<UpgradeSaveData>();
+    }
+
+    [System.Serializable]
+    public class UpgradeSaveData
+    {
+        public PermanentUpgradeType type = PermanentUpgradeType.None;
+        public int upgradeLevel = 0;
     }
 
     [System.Serializable]
     public class CatSaveData
     {
         public string catID;
-        public int upgradeLevel;
+        public int upgradeLevel = 0;
     }
-    
+
     [System.Serializable]
     public class LevelSaveData
     {

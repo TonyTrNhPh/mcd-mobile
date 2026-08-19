@@ -15,14 +15,8 @@ MonoBehaviour:
   jsonFile: {fileID: 4900000, guid: 79d417ff9aa647a499cfe95a352aa7ef, type: 3}
   levelID: 2
   levelName: Tutorial
-  isBossLevel: 0
+  isBossLevel: 1
   bonusGem: 60
-  initialCoin: 1000
-  barrierMaxHealth: 200
-  baseAddCatCost: 100
-  addCatMultiplier: 2
-  baseRepairBarrierCost: 200
-  repairBarrierMultiplier: 2
   waves:
   - nextWaveDelay: 3
     timeline:

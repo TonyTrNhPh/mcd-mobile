@@ -17,7 +17,7 @@ MonoBehaviour:
   - upgradeName: Stronghold Health
     upgradeDescription: 
     upgradeIcon: {fileID: -2121648960874395129, guid: 25ea721ef14e40546b29dc88d3ef84bf, type: 3}
-    type: 8
+    type: 9
     stats:
     - price: 100
       effectValue: 100
@@ -30,11 +30,11 @@ MonoBehaviour:
     - price: 100
       effectValue: 500
     - price: 100
-      effectValue: 500
+      effectValue: 600
   - upgradeName: Starting Coin
     upgradeDescription: 
     upgradeIcon: {fileID: 464206127066122051, guid: 7e838c3fbe043bf489963bf6dab9ac3f, type: 3}
-    type: 9
+    type: 10
     stats:
     - price: 0
       effectValue: 100
@@ -51,7 +51,7 @@ MonoBehaviour:
   - upgradeName: Add Cat Price
     upgradeDescription: 
     upgradeIcon: {fileID: 2960404000037575680, guid: cbf6bad4a4c5e3a4180f0cb69209b8e9, type: 3}
-    type: 13
+    type: 14
     stats:
     - price: 0
       effectValue: 100
@@ -68,7 +68,7 @@ MonoBehaviour:
   - upgradeName: Repair Price
     upgradeDescription: 
     upgradeIcon: {fileID: 2220408775479268081, guid: 2723bc9dfec32e043b3d0c8f175ea033, type: 3}
-    type: 10
+    type: 11
     stats:
     - price: 0
       effectValue: 100
@@ -85,7 +85,7 @@ MonoBehaviour:
   - upgradeName: Repair Health
     upgradeDescription: 
     upgradeIcon: {fileID: 2220408775479268081, guid: 2723bc9dfec32e043b3d0c8f175ea033, type: 3}
-    type: 11
+    type: 12
     stats:
     - price: 0
       effectValue: 100
@@ -102,7 +102,7 @@ MonoBehaviour:
   - upgradeName: Repair Countdown
     upgradeDescription: 
     upgradeIcon: {fileID: 2220408775479268081, guid: 2723bc9dfec32e043b3d0c8f175ea033, type: 3}
-    type: 12
+    type: 13
     stats:
     - price: 0
       effectValue: 100

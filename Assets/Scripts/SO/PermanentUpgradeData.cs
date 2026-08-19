@@ -5,20 +5,18 @@ public class PermanentUpgradeData : ScriptableObject
 {
     public UpgradeCategory category;
     public PermanentUpgrade[] upgrades;
+    
 }
 
 [System.Serializable]
 public class PermanentUpgrade
 {
-    [Header("Information")]
-    public string upgradeName;
-    [TextArea]public string upgradeDescription;
+    [Header("Information")] public string upgradeName;
+    [TextArea] public string upgradeDescription;
 
-    [Header("Visuals")]
-    public Sprite upgradeIcon;
-    
-    [Header("Upgrade Stats")]
-    public PermanentUpgradeType type;
+    [Header("Visuals")] public Sprite upgradeIcon;
+
+    [Header("Upgrade Stats")] public PermanentUpgradeType type;
     public UpgradeStatData[] stats;
 }
 
@@ -32,6 +30,8 @@ public class UpgradeStatData
 
 public enum PermanentUpgradeType
 {
+    None,
+    
     SpikeDamage,
     SpikeCountdown,
     SpikeMaxQuantity,
@@ -42,10 +42,9 @@ public enum PermanentUpgradeType
     TNTMaxQuantity,
     TNTSplashRange,
 
-    //Stronghold upgrade
     StrongholdHealth,
     InitialCoin,
-    
+
     RepairPrice,
     RepairHealth,
     RepairCountdown,
@@ -58,6 +57,3 @@ public enum UpgradeCategory
     Spike,
     TNT
 }
-
-
-

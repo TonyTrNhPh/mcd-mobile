@@ -8,22 +8,15 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeName;
     [SerializeField] private TextMeshProUGUI upgradeDescription;
     [SerializeField] private Image upgradeIcon;
-    
+
     [Header("Button")]
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Image buttonFillImage;
-    [SerializeField] private TextMeshProUGUI upgradePrice;
+    [SerializeField] private TextMeshProUGUI upgradePriceText;
 
     private PermanentUpgrade _currentUpgrade;
-    private int _currentLevel = 0;
-    private int _nextLevel = 0;
 
-    private void Awake()
-    {
-        
-    }
-    
-    public void Initialize(PermanentUpgrade upgrade, int currentLevel = 0)
+    public void Initialize(PermanentUpgrade upgrade)
     {
         if (upgrade == null)
         {
@@ -32,89 +25,95 @@ public class UpgradeCard : MonoBehaviour
         }
 
         _currentUpgrade = upgrade;
-        _currentLevel = Mathf.Clamp(currentLevel, 0, upgrade.stats.Length - 1);
 
         if (upgradeButton != null)
         {
             upgradeButton.onClick.RemoveAllListeners();
-            upgradeButton.onClick.AddListener(OnUpgradeButtonClicked);
+            upgradeButton.onClick.AddListener(HandleUpgradeButtonClicked);
         }
-        
+
         UpdateCard();
     }
 
     private void UpdateCard()
     {
-        if (_currentUpgrade == null || _currentUpgrade.stats == null || _currentUpgrade.stats.Length == 0)
+        if (_currentUpgrade == null)
             return;
+
+        int currentLevel =
+            UpgradeManager.Instance.GetUpgradeLevelByType(
+                _currentUpgrade.type
+            );
+
+        int maxLevel = _currentUpgrade.stats.Length - 1;
 
         UpdateName(_currentUpgrade.upgradeName);
         UpdateIcon(_currentUpgrade.upgradeIcon);
-        
-        int maxIndex = _currentUpgrade.stats.Length - 1;
-        int nextIndex = _currentLevel + 1;
 
-        float currentValue = _currentUpgrade.stats[_currentLevel].effectValue;
-        bool hasNext = nextIndex <= maxIndex;
+        bool hasNextLevel = currentLevel < maxLevel;
 
-        if (hasNext)
+        float currentValue =
+            _currentUpgrade.stats[currentLevel].effectValue;
+
+        if (hasNextLevel)
         {
-            float nextValue = _currentUpgrade.stats[nextIndex].effectValue;
+            float nextValue =
+                _currentUpgrade.stats[currentLevel + 1].effectValue;
+
             UpdateDescription(currentValue, nextValue);
+
+            int nextPrice =
+                _currentUpgrade.stats[currentLevel + 1].price;
+
+            UpdatePrice(nextPrice);
         }
         else
         {
             UpdateDescriptionMax(currentValue);
+            UpdatePrice(-1);
         }
-        
-        if (hasNext)
-        {
-            int nextPrice = _currentUpgrade.stats[nextIndex].price;
-            UpdatePrice(nextPrice);
-            SetUpgradeButtonInteractable(true);
-        }
-        else
-        {
-            UpdatePrice(-1); 
-            SetUpgradeButtonInteractable(false);
-        }
+
+        SetUpgradeButtonInteractable(hasNextLevel);
     }
-    
+
+    private void HandleUpgradeButtonClicked()
+    {
+        if (_currentUpgrade == null)
+            return;
+
+        if(!UpgradeManager.Instance.TryUpgrade(_currentUpgrade.type))
+            return;
+
+        UpdateCard();
+    }
+
     private void UpdateName(string cardName)
     {
         if (upgradeName != null)
             upgradeName.text = cardName;
     }
 
-    private void UpdateDescription(float current,float next)
+    private void UpdateDescription(float current, float next)
     {
         if (upgradeDescription != null)
         {
-            upgradeDescription.text = $"{current:0.##} -> {next:0.##}";
+            upgradeDescription.text =
+                $"{current:0.##} -> {next:0.##}";
         }
     }
+
     private void UpdateDescriptionMax(float current)
     {
         if (upgradeDescription != null)
             upgradeDescription.text = $"{current:0.##} (Max)";
     }
-    
-    
-    private void UpdatePrice(int cardPrice)
-    {
-        if (upgradePrice == null)
-            return;
 
-        if (cardPrice < 0)
-        {
-            upgradePrice.text = "Max";
-        }
-        else
-        {
-            upgradePrice.text = cardPrice.ToString();
-        }
+    private void UpdatePrice(int price)
+    {
+        if (upgradePriceText!= null)
+            upgradePriceText.text = price < 0 ? "Max" : price.ToString();
     }
-    
+
     private void UpdateIcon(Sprite icon)
     {
         if (upgradeIcon == null)
@@ -138,21 +137,18 @@ public class UpgradeCard : MonoBehaviour
         if (upgradeButton != null)
             upgradeButton.interactable = interactable;
 
-        if (buttonFillImage != null && buttonFillImage != upgradeIcon)
-            buttonFillImage.enabled = interactable;
-    }
-    
-    private void OnUpgradeButtonClicked()
-    {
-        if (_currentUpgrade == null || _currentUpgrade.stats == null)
-            return;
-
-        int maxIndex = _currentUpgrade.stats.Length - 1;
-        if (_currentLevel < maxIndex)
+        if (buttonFillImage != null &&
+            buttonFillImage != upgradeIcon)
         {
-            _currentLevel++;
-            UpdateCard();
+            buttonFillImage.enabled = interactable;
         }
     }
 
+    private void OnDestroy()
+    {
+        if (upgradeButton != null)
+            upgradeButton.onClick.RemoveListener(
+                HandleUpgradeButtonClicked
+            );
+    }
 }

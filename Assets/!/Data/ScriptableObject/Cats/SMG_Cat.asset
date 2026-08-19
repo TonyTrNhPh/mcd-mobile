@@ -26,9 +26,9 @@ MonoBehaviour:
   - catSkin: {fileID: 1074927879421123372, guid: e262db3278788614a9632d6d8406e2e6, type: 3}
   - catSkin: {fileID: 1074927879421123372, guid: 3d87a433f10b4c14ebc20929325f69af, type: 3}
   catUpgrades:
-  - upgradePrice: 100
+  - upgradePrice: 0
     catStats:
-    - attackDamage: 2
+    - attackDamage: 50
       reloadTime: 1
       fireRange: 24
     - attackDamage: 2

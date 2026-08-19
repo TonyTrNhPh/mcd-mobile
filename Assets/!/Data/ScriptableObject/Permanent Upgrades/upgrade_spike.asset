@@ -17,7 +17,7 @@ MonoBehaviour:
   - upgradeName: Spike Damage
     upgradeDescription: 
     upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
-    type: 0
+    type: 1
     stats:
     - price: 0
       effectValue: 10
@@ -34,7 +34,7 @@ MonoBehaviour:
   - upgradeName: Spike Countdown
     upgradeDescription: 
     upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
-    type: 1
+    type: 2
     stats:
     - price: 0
       effectValue: 10
@@ -51,7 +51,7 @@ MonoBehaviour:
   - upgradeName: Spike Max Quanity
     upgradeDescription: 
     upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
-    type: 2
+    type: 3
     stats:
     - price: 0
       effectValue: 10
@@ -68,7 +68,7 @@ MonoBehaviour:
   - upgradeName: Spike Duration
     upgradeDescription: 
     upgradeIcon: {fileID: -1708137764104245673, guid: 5743e02d3a8bacc4d8af163e068867b2, type: 3}
-    type: 3
+    type: 4
     stats:
     - price: 0
       effectValue: 10

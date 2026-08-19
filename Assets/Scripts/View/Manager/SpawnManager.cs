@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -24,6 +26,11 @@ public class SpawnManager : MonoBehaviour
 
     public void Initialize()
     {
+        RemoveAllObject();
+    }
+    
+    private void RemoveAllObject(int gem = 0)
+    {
         RemoveAllDogs();
         RemoveAllCats();
         RemoveAllProjectiles();
@@ -31,7 +38,7 @@ public class SpawnManager : MonoBehaviour
 
     #region Normal
 
-    public Cat SpawnCat(CatData catData, int mergeLevel, int upgradeLevel,Slot slot)
+    public Cat SpawnCat(CatData catData, int mergeLevel, int upgradeLevel, Slot slot)
     {
         if (catData == null)
         {
@@ -49,7 +56,8 @@ public class SpawnManager : MonoBehaviour
 
         if (prefab == null)
         {
-            Debug.LogWarning($"No cat prefab found for {catData.name} at merge level {mergeLevel} and upgrade level {upgradeLevel}");
+            Debug.LogWarning(
+                $"No cat prefab found for {catData.name} at merge level {mergeLevel} and upgrade level {upgradeLevel}");
             return null;
         }
 
