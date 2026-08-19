@@ -29,7 +29,6 @@ namespace View.Manager
             }
 
             DontDestroyOnLoad(gameObject);
-            EnsureDefaults();
             LoadData();
         }
 
@@ -38,6 +37,9 @@ namespace View.Manager
             if (!HasData)
             {
                 _data = new GameSaveData();
+                EnsureDefaults();
+                EnsureLevelSaveData();
+                SaveData();
                 return;
             }
 
@@ -56,6 +58,9 @@ namespace View.Manager
 
             if (_data.levels == null)
                 _data.levels = new List<LevelSaveData>();
+
+            EnsureLevelSaveData();
+            EnsureDefaults();
         }
 
         public void SaveData()
@@ -79,7 +84,7 @@ namespace View.Manager
         private void ResetData()
         {
             LoadData();
-            
+
             if (_data == null)
             {
                 Debug.LogError("SaveManager: Save data is null.");
@@ -151,8 +156,7 @@ namespace View.Manager
             if (catData == null)
                 return 0;
 
-            CatSaveData catSave = _data.cats.Find(cat => cat.catID == catData.catID
-            );
+            CatSaveData catSave = _data.cats.Find(cat => cat.catID == catData.catID);
 
             if (catSave == null)
                 return 0;
@@ -165,8 +169,7 @@ namespace View.Manager
             if (catData == null)
                 return;
 
-            CatSaveData catSave = _data.cats.Find(cat => cat.catID == catData.catID
-            );
+            CatSaveData catSave = _data.cats.Find(cat => cat.catID == catData.catID);
 
             if (catSave == null)
             {
@@ -184,10 +187,65 @@ namespace View.Manager
             }
         }
 
+        public List<LevelSaveData> GetAllLevelSaveData()
+        {
+            return _data.levels;
+        }
+
+        private void EnsureLevelSaveData()
+        {
+            List<LevelData> levelDataList = DataManager.Instance.GetAllLevelData();
+
+            foreach (LevelData levelData in levelDataList)
+            {
+                if (levelData == null)
+                    continue;
+
+                bool exists = _data.levels.Exists(save => save.levelID == levelData.levelID
+                );
+
+                if (!exists)
+                {
+                    _data.levels.Add(new LevelSaveData
+                    {
+                        levelID = levelData.levelID,
+                        isCompleted = false,
+                        isUnlocked = false
+                    });
+                }
+            }
+
+            if (levelDataList.Count > 0)
+            {
+                LevelSaveData firstLevel = _data.levels.Find(save => save.levelID == levelDataList[0].levelID);
+
+                firstLevel.isUnlocked = true;
+            }
+        }
+
+        public void SetLevelComplete(string levelID)
+        {
+            LevelSaveData levelSave = _data.levels.Find(save => save.levelID == levelID);
+            
+            if (levelSave == null)
+                return;
+            
+            levelSave.isCompleted = true;
+        }
+
+        public void SetLevelUnlocked(string levelID)
+        {
+            LevelSaveData levelSave = _data.levels.Find(save => save.levelID == levelID);
+            
+            if (levelSave == null)
+                return;
+            
+            levelSave.isUnlocked = true;
+        }
+
         public int GetUpgradeLevelByType(PermanentUpgradeType type)
         {
-            UpgradeSaveData upgradeSave = _data.upgrades.Find(upgrade => upgrade.type == type
-            );
+            UpgradeSaveData upgradeSave = _data.upgrades.Find(upgrade => upgrade.type == type);
 
             if (upgradeSave == null)
                 return 0;
@@ -197,8 +255,7 @@ namespace View.Manager
 
         public void SetUpgradeLevelByType(PermanentUpgradeType type, int upgradeLevel)
         {
-            UpgradeSaveData upgradeSave = _data.upgrades.Find(upgrade => upgrade.type == type
-            );
+            UpgradeSaveData upgradeSave = _data.upgrades.Find(upgrade => upgrade.type == type);
 
             if (upgradeSave == null)
             {

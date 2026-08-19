@@ -41,7 +41,7 @@ public class Wave : MonoBehaviour
 
     public void Initialize(LevelData levelData)
     {
-        EndWave();
+        EndWave(levelData);
         
         if (levelData == null)
             return;
@@ -61,7 +61,7 @@ public class Wave : MonoBehaviour
         _currentLevelData = levelData;
     }
 
-    private void EndWave(int gem = 0)
+    private void EndWave(LevelData level)
     {
         StopAllCoroutines();
     }
@@ -119,7 +119,7 @@ public class Wave : MonoBehaviour
 
             if (isLastWave)
             {
-                GameEvent.HandleLevelWon(_currentLevelData.bonusGem);
+                GameEvent.HandleLevelWon(_currentLevelData);
                 _waveRoutine = null;
                 yield break;
             }

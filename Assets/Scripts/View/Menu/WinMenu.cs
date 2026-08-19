@@ -22,9 +22,9 @@ public class WinMenu : MonoBehaviour
         GameEvent.OnLevelWon -= DisplayBonusGem;
     }
     
-    private void DisplayBonusGem(int bonusGem)
+    private void DisplayBonusGem(LevelData levelData)
     {
-        bonusGemText.text = bonusGem.ToString();
+        bonusGemText.text = levelData.bonusGem.ToString();
     }
     
     private void HandleReturnButtonClicked()

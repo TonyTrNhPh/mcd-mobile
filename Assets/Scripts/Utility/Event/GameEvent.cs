@@ -14,7 +14,7 @@ public static class GameEvent
     public static event Action OnPauseButtonClicked = delegate { };
 
     //---------- In Game Event ----------//
-    public static event Action <int> OnLevelWon = delegate { };
+    public static event Action <LevelData> OnLevelWon = delegate { };
     public static event Action OnLevelLost = delegate { };
     public static event Action<int, int> OnWaveChange = delegate { };
 
@@ -28,5 +28,5 @@ public static class GameEvent
     public static void HandleReturnButtonClicked()=> OnReturnButtonClicked?.Invoke();
     public static void HandlePauseButtonClicked()=> OnPauseButtonClicked?.Invoke();
     public static void HandleLevelLost() => OnLevelLost?.Invoke();
-    public static void HandleLevelWon(int reward) => OnLevelWon?.Invoke(reward);
+    public static void HandleLevelWon(LevelData level) => OnLevelWon?.Invoke(level);
 }

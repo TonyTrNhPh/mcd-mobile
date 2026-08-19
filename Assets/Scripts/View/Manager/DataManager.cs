@@ -52,6 +52,38 @@ public class DataManager : MonoBehaviour
         return levelData;
     }
 
+    public string GetNextLevelID(LevelData current)
+    {
+        if (current == null)
+            return string.Empty;
+
+        int currentIndex = -1;
+
+        for (int i = 0; i < levelData.Count; i++)
+        {
+            if (levelData[i] == current)
+            {
+                currentIndex = i;
+                break;
+            }
+        }
+
+        if (currentIndex < 0)
+            return string.Empty;
+
+        int nextIndex = currentIndex + 1;
+
+        if (nextIndex >= levelData.Count)
+            return string.Empty;
+
+        LevelData nextLevel = levelData[nextIndex];
+
+        if (nextLevel == null)
+            return string.Empty;
+
+        return nextLevel.levelID;
+    }
+
     public Projectile GetRandomBulletPrefab()
     {
         return bulletPrefabs[Random.Range(0, bulletPrefabs.Count)];

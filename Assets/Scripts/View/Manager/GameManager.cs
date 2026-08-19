@@ -139,15 +139,25 @@ namespace View.Manager
             ChangeState(EGameState.Home);
         }
         
-        public void HandleLevelWon(int bonusGem)
+        public void HandleLevelWon(LevelData level)
         {
-            if (bonusGem > 0)
-            {
-                SaveManager.AddGems(bonusGem);
-            }
-            // Handle save level state
-            SaveManager.SaveData();
+            if (level == null)
+                return;
             
+            if (level.bonusGem > 0)
+            {
+                SaveManager.AddGems(level.bonusGem);
+            }
+            
+            SaveManager.SetLevelComplete(level.levelID);
+            string nextLevelID = DataManager.GetNextLevelID(level);
+            if (!string.IsNullOrEmpty(nextLevelID))
+            {
+                SaveManager.SetLevelUnlocked(nextLevelID);
+            }
+
+            SaveManager.SaveData();
+
             ChangeState(EGameState.Win);
         }
 

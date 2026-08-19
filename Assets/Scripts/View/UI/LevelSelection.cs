@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using View.Manager;
@@ -7,8 +8,9 @@ public class LevelSelection : MonoBehaviour
     [Header("Levels")]
     [SerializeField] private LevelButton levelButtonPrefab;
     [SerializeField] private Transform levelButtonParent;
-    
+
     private IReadOnlyList<LevelData> LevelDataList => DataManager.Instance.GetAllLevelData();
+    private List<LevelSaveData> LevelSaveDataList;
     
     private static readonly Vector2[] NODE_CONFIG =
     {
@@ -41,30 +43,60 @@ public class LevelSelection : MonoBehaviour
         new Vector2(3000, -20),
         new Vector2(3360, -20)
     };
-    
-    private Vector3 dragStartPosition;
 
-    private void Start()
+    private void OnEnable()
     {
+        LevelSaveDataList = SaveManager.Instance.GetAllLevelSaveData();
+
         CreateLevelButtons();
     }
-
+    
     private void CreateLevelButtons()
     {
+        Debug.Log("Create LevelButtons");
+        foreach (Transform child in levelButtonParent)
+        {
+            Destroy(child.gameObject);
+        }
+        
         for (int i = 0; i < NODE_CONFIG.Length; i++)
         {
             LevelData levelData = null;
+            LevelSaveData levelSaveData = null;
+
             ELevelButtonState state = ELevelButtonState.Locked;
-            
-            if (i < LevelDataList.Count && LevelDataList[i] != null)
+
+            if (i < LevelDataList.Count)
             {
-                state = ELevelButtonState.Unlocked;
                 levelData = LevelDataList[i];
+
+                levelSaveData = LevelSaveDataList.Find(
+                    save => save.levelID == levelData.levelID
+                );
+
+                if (levelSaveData != null)
+                {
+                    if (levelSaveData.isCompleted)
+                    {
+                        state = ELevelButtonState.Completed;
+                    }
+                    else if (levelSaveData.isUnlocked)
+                    {
+                        state = ELevelButtonState.Unlocked;
+                    }
+                }
             }
-            
-            LevelButton button = Instantiate(levelButtonPrefab, levelButtonParent);
+
+            LevelButton button = Instantiate(
+                levelButtonPrefab,
+                levelButtonParent
+            );
+
             button.transform.localPosition = NODE_CONFIG[i];
+
             button.Initialize(state, levelData);
+            
+            Debug.Log(button.name);
         }
     }
 }
