@@ -26,11 +26,6 @@ public class SpendManager : MonoBehaviour
         AddCatPrice = Mathf.RoundToInt(UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.AddCatPrice));
         RepairPrice = Mathf.RoundToInt(UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.RepairPrice));
         TotalCoin = Mathf.RoundToInt(UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.InitialCoin));
-
-        Debug.Log("Initial coin for level: "+TotalCoin);
-        Debug.Log("Base add cat price for level: "+AddCatPrice);
-        Debug.Log("Base repairt price for level: "+RepairPrice);
-        
         GameEvent.HandleCoinChanged(TotalCoin);
     }
 

@@ -84,8 +84,6 @@ public class UpgradeManager : MonoBehaviour
                     return 0f;
                 }
 
-                Debug.Log(
-                    $"Get upgrade effect value for {type} at level {upgradeLevel}, value = {upgrade.stats[upgradeLevel].effectValue}");
                 return upgrade.stats[upgradeLevel].effectValue;
             }
         }

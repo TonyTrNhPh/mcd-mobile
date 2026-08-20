@@ -16,7 +16,7 @@ MonoBehaviour:
   dogName: Red Nose Dog
   dogDescription: I dont know
   skin: {fileID: 8432060573322760741, guid: 6e5e1f2c4dc0d0840bd08dacc5936cd7, type: 3}
-  damage: 20
+  damage: 32
   reloadTime: 1
-  health: 50
-  distance: 1.6
+  health: 230
+  distance: 2.3

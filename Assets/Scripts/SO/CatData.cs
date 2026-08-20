@@ -13,7 +13,8 @@ public class CatData : ScriptableObject
     public RuntimeAnimatorController baseAnimation;
     public CatMergeData[] catVisuals;
 
-    [Header("Upgrade Stats")] [Tooltip("Stats for each upgrade level")]
+    [Header("Stats")] 
+    public CatBaseStatData[] catBaseStats;
     public CatUpgradeData[] catUpgrades;
 
     public string GetCatName() => catName;
@@ -24,14 +25,19 @@ public class CatData : ScriptableObject
     public RuntimeAnimatorController GetBaseAnimation() => baseAnimation;
     public GameObject GetCatVisuals(int mergeLevel) => catVisuals[mergeLevel].catSkin;
 
-    public float GetReloadTime(int mergeLevel, int upgradeLevel)
+    public float GetBaseDamage(int mergeLevel)
     {
-        if (mergeLevel < 0 || mergeLevel >= catVisuals.Length)
+        if (mergeLevel < 0 || mergeLevel >= catBaseStats.Length)
         {
-            Debug.LogError($"Invalid merge level: {mergeLevel}. It should be between 0 and {catVisuals.Length - 1}.");
+            Debug.LogError($"Invalid merge level: {mergeLevel}. It should be between 0 and {catBaseStats.Length - 1}.");
             return 0f;
         }
+        
+        return catBaseStats[mergeLevel].baseDamage;
+    }
 
+    public float GetUpgradeDamage(int upgradeLevel)
+    {
         if (upgradeLevel < 0 || upgradeLevel >= catUpgrades.Length)
         {
             Debug.LogError(
@@ -39,17 +45,22 @@ public class CatData : ScriptableObject
             return 0f;
         }
 
-        return catUpgrades[upgradeLevel].catStats[mergeLevel].reloadTime;
+        return catUpgrades[upgradeLevel].upgradeDamage;
     }
 
-    public float GetFireRange(int mergeLevel, int upgradeLevel)
+    public float GetBaseReloadTime(int mergeLevel)
     {
-        if (mergeLevel < 0 || mergeLevel >= catVisuals.Length)
+        if (mergeLevel < 0 || mergeLevel >= catBaseStats.Length)
         {
-            Debug.LogError($"Invalid merge level: {mergeLevel}. It should be between 0 and {catVisuals.Length - 1}.");
+            Debug.LogError($"Invalid merge level: {mergeLevel}. It should be between 0 and {catBaseStats.Length - 1}.");
             return 0f;
         }
+        
+        return catBaseStats[mergeLevel].baseReloadTime;
+    }
 
+    public float GetUpgradeReloadTime(int upgradeLevel)
+    {
         if (upgradeLevel < 0 || upgradeLevel >= catUpgrades.Length)
         {
             Debug.LogError(
@@ -57,26 +68,14 @@ public class CatData : ScriptableObject
             return 0f;
         }
 
-        return catUpgrades[upgradeLevel].catStats[mergeLevel].fireRange;
+        return catUpgrades[upgradeLevel].upgradeReloadTime;
     }
-
-    public float GetDamage(int mergeLevel, int upgradeLevel)
+    
+    public float GetBaseRange()
     {
-        if (upgradeLevel < 0 || upgradeLevel >= catUpgrades.Length)
-        {
-            Debug.LogError(
-                $"Invalid upgrade level: {upgradeLevel}. " +
-                $"Valid range: 0 - {catUpgrades.Length - 1}"
-            );
-
-            return 0f;
-        }
-
-        return catUpgrades[upgradeLevel]
-            .catStats[mergeLevel]
-            .attackDamage;
+        return catBaseStats[0].baseRange;
     }
-
+    
     public int GetMaxUpgradeLevel()
     {
         return catUpgrades.Length - 1;
@@ -105,15 +104,14 @@ public class CatMergeData
 public class CatUpgradeData
 {
     public int upgradePrice;
-
-    [Tooltip("Stats for each merge level")]
-    public CatStatData[] catStats;
+    public float upgradeDamage = 1;
+    public float upgradeReloadTime = 1;
 }
 
 [System.Serializable]
-public class CatStatData
+public class CatBaseStatData
 {
-    public float attackDamage = 1;
-    public float reloadTime = 1;
-    public float fireRange = 42;
+    public float baseDamage = 1f;
+    public float baseReloadTime = 1f;
+    public float baseRange = 42f;
 }

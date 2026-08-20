@@ -19,7 +19,7 @@ MonoBehaviour:
     upgradeIcon: {fileID: -2121648960874395129, guid: 25ea721ef14e40546b29dc88d3ef84bf, type: 3}
     type: 9
     stats:
-    - price: 100
+    - price: 0
       effectValue: 100
     - price: 100
       effectValue: 200

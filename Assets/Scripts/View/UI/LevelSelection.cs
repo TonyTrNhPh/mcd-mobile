@@ -53,7 +53,6 @@ public class LevelSelection : MonoBehaviour
     
     private void CreateLevelButtons()
     {
-        Debug.Log("Create LevelButtons");
         foreach (Transform child in levelButtonParent)
         {
             Destroy(child.gameObject);
@@ -95,8 +94,6 @@ public class LevelSelection : MonoBehaviour
             button.transform.localPosition = NODE_CONFIG[i];
 
             button.Initialize(state, levelData);
-            
-            Debug.Log(button.name);
         }
     }
 }

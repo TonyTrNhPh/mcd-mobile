@@ -25,106 +25,38 @@ MonoBehaviour:
   - catSkin: {fileID: 1074927879421123372, guid: e4b023e6a07f7d74eae04bce41c398ce, type: 3}
   - catSkin: {fileID: 1074927879421123372, guid: e262db3278788614a9632d6d8406e2e6, type: 3}
   - catSkin: {fileID: 1074927879421123372, guid: 3d87a433f10b4c14ebc20929325f69af, type: 3}
+  catBaseStats:
+  - baseDamage: 4
+    baseReloadTime: 1
+    baseRange: 28
+  - baseDamage: 6
+    baseReloadTime: 0.95
+    baseRange: 28
+  - baseDamage: 9
+    baseReloadTime: 0.9
+    baseRange: 28
+  - baseDamage: 13.5
+    baseReloadTime: 0.85
+    baseRange: 28
+  - baseDamage: 20
+    baseReloadTime: 0.8
+    baseRange: 28
   catUpgrades:
   - upgradePrice: 0
-    catStats:
-    - attackDamage: 50
-      reloadTime: 1
-      fireRange: 24
-    - attackDamage: 2
-      reloadTime: 0.1
-      fireRange: 24
-    - attackDamage: 2
-      reloadTime: 1
-      fireRange: 24
-    - attackDamage: 2
-      reloadTime: 1
-      fireRange: 24
-    - attackDamage: 2
-      reloadTime: 1
-      fireRange: 24
-  - upgradePrice: 120
-    catStats:
-    - attackDamage: 1
-      reloadTime: 0.1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-  - upgradePrice: 120
-    catStats:
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-  - upgradePrice: 120
-    catStats:
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-  - upgradePrice: 120
-    catStats:
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-  - upgradePrice: 120
-    catStats:
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
-    - attackDamage: 5
-      reloadTime: 1
-      fireRange: 30
+    upgradeDamage: 0
+    upgradeReloadTime: 0
+  - upgradePrice: 10
+    upgradeDamage: 0.8
+    upgradeReloadTime: 0.02
+  - upgradePrice: 10
+    upgradeDamage: 1.6
+    upgradeReloadTime: 0.04
+  - upgradePrice: 10
+    upgradeDamage: 2.4
+    upgradeReloadTime: 0.06
+  - upgradePrice: 10
+    upgradeDamage: 3.2
+    upgradeReloadTime: 0.08
+  - upgradePrice: 10
+    upgradeDamage: 4
+    upgradeReloadTime: 0.1

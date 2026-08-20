@@ -25,106 +25,38 @@ MonoBehaviour:
   - catSkin: {fileID: 1074927879421123372, guid: 23e171bebe8c49748bc6d8f608ad7f75, type: 3}
   - catSkin: {fileID: 1074927879421123372, guid: 20242013b77981d479fa71b74aada9d3, type: 3}
   - catSkin: {fileID: 1074927879421123372, guid: 46156e81a27ba51458e18650b904d8ba, type: 3}
+  catBaseStats:
+  - baseDamage: 16
+    baseReloadTime: 3.2
+    baseRange: 42
+  - baseDamage: 24
+    baseReloadTime: 3.05
+    baseRange: 42
+  - baseDamage: 36
+    baseReloadTime: 2.9
+    baseRange: 42
+  - baseDamage: 54
+    baseReloadTime: 2.75
+    baseRange: 42
+  - baseDamage: 80
+    baseReloadTime: 2.62
+    baseRange: 42
   catUpgrades:
   - upgradePrice: 0
-    catStats:
-    - attackDamage: 50
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 50
-      reloadTime: 0.1
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-  - upgradePrice: 100
-    catStats:
-    - attackDamage: 50
-      reloadTime: 0.1
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-  - upgradePrice: 100
-    catStats:
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-  - upgradePrice: 100
-    catStats:
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-  - upgradePrice: 100
-    catStats:
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-  - upgradePrice: 100
-    catStats:
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
-    - attackDamage: 30
-      reloadTime: 4
-      fireRange: 40
+    upgradeDamage: 0
+    upgradeReloadTime: 0
+  - upgradePrice: 10
+    upgradeDamage: 3
+    upgradeReloadTime: 0.08
+  - upgradePrice: 10
+    upgradeDamage: 6
+    upgradeReloadTime: 0.16
+  - upgradePrice: 10
+    upgradeDamage: 9
+    upgradeReloadTime: 0.24
+  - upgradePrice: 10
+    upgradeDamage: 12
+    upgradeReloadTime: 0.32
+  - upgradePrice: 10
+    upgradeDamage: 15
+    upgradeReloadTime: 0.4
