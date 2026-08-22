@@ -32,12 +32,7 @@ public class Barrier : MonoBehaviour
     public void Initialize()
     {
         Reset();
-        Debug.Log("Max stronghold health for level: " +
-                  UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.StrongholdHealth));
-        Debug.Log("Repair health amount for level: " +
-                  UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.RepairHealth));
     }
-
 
     private void Reset()
     {

@@ -170,28 +170,17 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnBoss()
     {
+        
     }
 
     #endregion
 
     #region Utilities
 
-    public void SpawnGuardianCat()
+    public void SpawnUtility(UtilityType type, Vector3 position)
     {
+        
     }
-
-    public void SpawnBoxingCat()
-    {
-    }
-
-
-    public void SpawnSpike()
-    {
-    }
-
-    public void SpawnTNT()
-    {
-    }
-
+        
     #endregion
 }

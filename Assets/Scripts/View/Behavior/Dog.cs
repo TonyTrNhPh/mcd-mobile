@@ -91,7 +91,7 @@ public class Dog : MonoBehaviour
         }
         else
         {
-            Walk();
+            HandleWalk();
         }
     }
 
@@ -147,7 +147,7 @@ public class Dog : MonoBehaviour
         return hitPoint.position;
     }
 
-    private void Walk()
+    private void HandleWalk()
     {
         PlayAnimation(WalkAnim);
 

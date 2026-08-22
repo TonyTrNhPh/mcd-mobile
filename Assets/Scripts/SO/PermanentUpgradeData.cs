@@ -33,13 +33,10 @@ public enum PermanentUpgradeType
     None,
     
     SpikeDamage,
-    SpikeCountdown,
-    SpikeMaxQuantity,
     SpikeDuration,
+    SpikeAttackRate,
 
     TNTDamage,
-    TNTCountdown,
-    TNTMaxQuantity,
     TNTSplashRange,
 
     StrongholdHealth,
@@ -47,7 +44,8 @@ public enum PermanentUpgradeType
 
     RepairPrice,
     RepairHealth,
-    RepairCountdown,
+    RepairCoolDown,
+    
     AddCatPrice,
 }
 

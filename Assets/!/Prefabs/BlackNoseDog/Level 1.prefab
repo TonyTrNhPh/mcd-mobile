@@ -563,10 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dog
   hitPoint: {fileID: 153385445944400553}
-  distance: 1.6
   healthBar: {fileID: 3377874129692212089}
   healthBarFill: {fileID: 1139522564743517642}
-  maxHealth: 100
 --- !u!50 &2754218136436488138
 Rigidbody2D:
   serializedVersion: 5

@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: ed6ada29d836bbf4ca8666a112643c56
+guid: 7a166c89938b3854184936dead47c765
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1929834416523346238
-    second: spike_0
-  - first:
-      213: -5419517844233623992
-    second: spike_1
-  - first:
-      213: -5123488578205680644
-    second: spike_2
-  - first:
-      213: -4096130172873414226
-    second: spike_3
+      213: 8803583933281152436
+    second: validate_placement_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -135,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spike_0
+      name: validate_placement_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 358
-        height: 354
+        width: 3740
+        height: 2082
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ce7dc7a2d9d735e0800000000000000
-      internalID: -1929834416523346238
+      spriteID: 4bd2f85a1fc9c2a70800000000000000
+      internalID: 8803583933281152436
       vertices: []
       indices: 
       edges: []
@@ -160,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1600024035b85344fa4f2006125bb951
+    spriteID: b7a0dc8dd8d45604bac45bd65d522f4d
     internalID: 0
     vertices: []
     indices: 
@@ -168,14 +159,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":100.0,"y":89.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      spike_0: -1929834416523346238
-      spike_1: -5419517844233623992
-      spike_2: -5123488578205680644
-      spike_3: -4096130172873414226
+      validate_placement_0: 8803583933281152436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
