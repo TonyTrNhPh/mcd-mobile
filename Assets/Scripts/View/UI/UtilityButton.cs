@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class UtilityButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Utility")]
-    [SerializeField] private UtilityType type;
     [SerializeField] private GameObject typePrefab;
     
     [Header("Cool Down")]
@@ -90,11 +89,6 @@ public class UtilityButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (_isOnCoolDown)
             return;
         
-        if (typePrefab == null)
-        {
-            Debug.LogError($"No prefab found for {type}.");
-            return;
-        }
         
         if (_validateCollider == null)
         {
@@ -106,7 +100,7 @@ public class UtilityButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         _isDragging = true;
 
-        _previewObject = Instantiate(typePrefab);
+        _previewObject = SpawnManager.Instance.SpawnPreviewPowerUp(typePrefab);
 
         Collider2D col = _previewObject.GetComponent<Collider2D>();
 
@@ -152,7 +146,7 @@ public class UtilityButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         if (isValid)
         {
-            Instantiate(typePrefab, spawnPosition, Quaternion.identity);
+            SpawnManager.Instance.SpawnPowerUp(typePrefab, spawnPosition);
             StartCoolDown();
         }
 
@@ -202,12 +196,4 @@ public class UtilityButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         _validateRenderer.color =
             isValid ? activeColor : inactiveColor;
     }
-}
-
-public enum UtilityType
-{
-    TNT,
-    Spike,
-    Boxing,
-    Guardian
 }

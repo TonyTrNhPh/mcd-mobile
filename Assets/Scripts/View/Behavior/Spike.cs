@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class Spike : PowerUp
 {
     private static readonly int AttackTrig = Animator.StringToHash("AttackTrig");
     private static readonly int ReloadTrig = Animator.StringToHash("ReloadTrig");
@@ -12,9 +12,9 @@ public class Spike : MonoBehaviour
     private Animator _animator;
     private Coroutine _durationCoroutine;
     
-    private Dog _targetDog;
     private bool _canAttack;
-    private readonly List<Dog> _dogsInRange = new List<Dog>();
+    
+    protected readonly List<Dog> _dogsInRange = new List<Dog>();
     
     private float _damage;
     private float _attackRate;

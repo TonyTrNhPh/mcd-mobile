@@ -8,9 +8,10 @@ public class SpawnManager : MonoBehaviour
     public static SpawnManager Instance;
     [SerializeField] private GameObject objectPool;
 
-    private readonly List<Cat> catOnScene = new List<Cat>();
+    private readonly List<Cat> catsOnScene = new List<Cat>();
     private readonly List<Dog> dogsOnScene = new List<Dog>();
     private readonly List<Projectile> projectilesOnScene = new List<Projectile>();
+    private readonly List<PowerUp> powerUpsOnScene = new List<PowerUp>();
 
     private void Awake()
     {
@@ -28,12 +29,13 @@ public class SpawnManager : MonoBehaviour
     {
         RemoveAllObject();
     }
-    
+
     private void RemoveAllObject(int gem = 0)
     {
         RemoveAllDogs();
         RemoveAllCats();
         RemoveAllProjectiles();
+        RemoveAllPowerUps();
     }
 
     #region Normal
@@ -72,20 +74,20 @@ public class SpawnManager : MonoBehaviour
 
         cat.Initialize(catData, mergeLevel, upgradeLevel, slot);
 
-        catOnScene.Add(cat);
+        catsOnScene.Add(cat);
 
         return cat;
     }
 
     public void RemoveAllCats()
     {
-        foreach (Cat cat in catOnScene)
+        foreach (Cat cat in catsOnScene)
         {
             if (cat != null)
                 Destroy(cat.gameObject);
         }
 
-        catOnScene.Clear();
+        catsOnScene.Clear();
     }
 
     public Projectile SpawnProjectile(Dog target, Vector2 startPoint)
@@ -170,17 +172,66 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnBoss()
     {
-        
     }
 
     #endregion
 
     #region Utilities
 
-    public void SpawnUtility(UtilityType type, Vector3 position)
+    public GameObject SpawnPreviewPowerUp(GameObject prefab)
     {
+        if (prefab == null)
+        {
+            Debug.LogError("SpawnManager SpawnPreviewPowerUp(): prefab is null");
+        }
         
+        GameObject previewObject = Instantiate(prefab,objectPool.transform);
+        return previewObject;
     }
-        
+
+    public PowerUp SpawnPowerUp(GameObject prefab, Vector3 position)
+    {
+        if (prefab == null)
+        {
+            Debug.LogError("SpawnManager SpawnPowerUp(): prefab is null.");
+            return null;
+        }
+
+        GameObject powerUpObject = Instantiate(
+            prefab,
+            position,
+            Quaternion.identity,
+            objectPool.transform
+        );
+
+        PowerUp powerUp = powerUpObject.GetComponent<PowerUp>();
+
+        if (powerUp == null)
+        {
+            Debug.LogWarning(
+                $"SpawnManager SpawnPowerUp(): " +
+                $"{prefab.name} does not have a PowerUp component."
+            );
+
+            Destroy(powerUpObject);
+            return null;
+        }
+
+        powerUpsOnScene.Add(powerUp);
+
+        return powerUp;
+    }
+
+    public void RemoveAllPowerUps()
+    {
+        foreach (PowerUp powerUp in powerUpsOnScene)
+        {
+            if (powerUp != null)
+                powerUp.Remove();
+        }
+
+        powerUpsOnScene.Clear();
+    }
+
     #endregion
 }

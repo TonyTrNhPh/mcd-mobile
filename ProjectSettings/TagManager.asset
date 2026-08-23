@@ -16,8 +16,8 @@ TagManager:
   - Slot
   - Cat
   - Dog
-  - 
-  - 
+  - VFX
+  - Utility
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
   - name: UI
     uniqueID: 1233717511
     locked: 0
+  - name: VFX
+    uniqueID: 1116539195
+    locked: 0
   - name: Slot
     uniqueID: 1209619553
     locked: 0
@@ -55,8 +58,8 @@ TagManager:
   - name: Dog
     uniqueID: 1976035239
     locked: 0
-  - name: VFX
-    uniqueID: 1116539195
+  - name: Utility
+    uniqueID: 3301667073
     locked: 0
   - name: Projectile
     uniqueID: 2757054741

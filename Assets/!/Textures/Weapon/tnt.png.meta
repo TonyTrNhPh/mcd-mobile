@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0460bf401b3f75b468ea95cad7258609
+guid: 4c870a14b3b4db946a071af6e6e1c6a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2632308557879770655
-    second: ExplosionFx-Explossion_00_0
+      213: -6796818179285881832
+    second: tnt_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ExplosionFx-Explossion_00_0
+      name: tnt_0
       rect:
         serializedVersion: 2
-        x: 576
-        y: 593
-        width: 150
-        height: 142
+        x: 0
+        y: 0
+        width: 337
+        height: 360
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e10b5c2059287bd0800000000000000
-      internalID: -2632308557879770655
+      spriteID: 81c6fb480e9dca1a0800000000000000
+      internalID: -6796818179285881832
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ExplosionFx-Explossion_00_0: -2632308557879770655
+      tnt_0: -6796818179285881832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
