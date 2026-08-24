@@ -9,9 +9,9 @@ using Random = UnityEngine.Random;
 
 public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private LayerMask catLayerMask;
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private CircleCollider2D attackRangeCollider;
+    [SerializeField] private BoxCollider2D hitboxCollider;
     [SerializeField] private Transform firePoint;
     [SerializeField] private SkeletonAnimation shootVFXAnimation;
 
@@ -28,6 +28,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
     private CatData _catData;
     private int _mergeLevel;
     private int _upgradeLevel;
+    private int _touchCount = 0;
 
     //---------- Variables ----------//
     private Vector3 _offset;
@@ -60,9 +61,9 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         _attackTimer = Random.Range(0f, CalculateReloadTime(_mergeLevel, _upgradeLevel));
         attackRangeCollider.radius = Data.GetBaseRange();
 
-        Debug.Log("Cat damage: "+ CalculateDamage(_mergeLevel,_upgradeLevel));
-        Debug.Log("Cat reload time: " + CalculateReloadTime(_mergeLevel,_upgradeLevel));
-        
+        Debug.Log("Cat damage: " + CalculateDamage(_mergeLevel, _upgradeLevel));
+        Debug.Log("Cat reload time: " + CalculateReloadTime(_mergeLevel, _upgradeLevel));
+
         MoveToSlot(slot);
         OnSlotChanged();
     }
@@ -110,6 +111,21 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+       
+        if (hitboxCollider.OverlapPoint(mouseWorldPos))
+        {
+            _touchCount++;
+        }
+
+        if (attackRangeCollider.OverlapPoint(mouseWorldPos))
+        {
+            _touchCount++;
+        }
+
+        if (_touchCount < 2)
+            return;
+
         PlayAnimation(IdleAnim);
         _sortingGroup.sortingOrder = 30;
         _originalSlot = CurrentSlot;
@@ -132,6 +148,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
     public void OnEndDrag(PointerEventData eventData)
     {
         _sortingGroup.sortingOrder = 1;
+        _touchCount = 0;
         Slot targetSlot = Board.Instance.GetClosestSlot(transform.position);
         if (targetSlot == null)
         {

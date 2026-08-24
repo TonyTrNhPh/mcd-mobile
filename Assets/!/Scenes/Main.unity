@@ -4465,7 +4465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d39bbb33014adc4886563c41fec533c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UtilityButton
-  type: 0
   typePrefab: {fileID: 1074927879421123372, guid: 00d557967556c604785d586dedb55184, type: 3}
   coolDown: 10
   coolDownImageFill: {fileID: 1575023855}
@@ -17789,7 +17788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d39bbb33014adc4886563c41fec533c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UtilityButton
-  type: 0
   typePrefab: {fileID: 1074927879421123372, guid: 54dd812705d10ca4595b9e6c33758c93, type: 3}
   coolDown: 10
   coolDownImageFill: {fileID: 385389777}
@@ -22863,7 +22861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d39bbb33014adc4886563c41fec533c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UtilityButton
-  type: 1
   typePrefab: {fileID: 1074927879421123372, guid: 54dd812705d10ca4595b9e6c33758c93, type: 3}
   coolDown: 3
   coolDownImageFill: {fileID: 520242871}

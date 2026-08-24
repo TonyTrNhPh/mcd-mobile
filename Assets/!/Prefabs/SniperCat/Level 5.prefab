@@ -44,7 +44,7 @@ SortingGroup:
   m_GameObject: {fileID: 1074927879421123372}
   m_Enabled: 1
   m_SortingLayerID: 1087659285
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_SortAtRoot: 1
   m_Sort3DAs2D: 0
@@ -60,11 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7183252b38cae44fa16a32ac9a6923d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cat
-  catLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   projectilePrefab: {fileID: 6427235567815787370, guid: da945ae544321154a852db20131302aa, type: 3}
   attackRangeCollider: {fileID: 296079713892981919}
+  hitboxCollider: {fileID: 6816513040186928168}
   firePoint: {fileID: 4267712279976336341}
   shootVFXAnimation: {fileID: 2546748489311603242}
 --- !u!50 &1137268289771577510
