@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TNT : PowerUp
+public class TNT : MonoBehaviour, IPowerUp
 {
     private static readonly int AttackTrig =
         Animator.StringToHash("AttackTrig");
@@ -84,5 +84,10 @@ public class TNT : PowerUp
     private void OnDestroy()
     {
         _dogsInRange.Clear();
+    }
+    
+    public void Remove()
+    {
+        Destroy(gameObject);
     }
 }

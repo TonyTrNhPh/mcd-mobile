@@ -1,26 +1,23 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Dog : MonoBehaviour
+public class Dog : Targetable
 {
-    [SerializeField] private Transform hitPoint;
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Image healthBarFill;
 
-    public DogData dogData => _dogData;
-    public bool IsDead { get; private set; }
-    private Barrier _targetBarrier;
-    
+    public DogData Data => _Data;
+    public override int TargetPriority => 0;
 
     //---------- Event ---------//
-    public event Action<float> OnAttackBarrier;
     public event Action<Dog> OnDeath;
-    
+
     //---------- UI ----------//
     private float _currentHealth;
     private float _maxHealth;
@@ -30,17 +27,14 @@ public class Dog : MonoBehaviour
     private SkeletonRenderer _dogRenderer;
     private SortingGroup _sortingGroup;
     private float _animationTime;
-    private float _moveSpeed;
     private string _currentAnimation;
     private float _walkTimer;
-    private float _walkCycleDuration;
     private float _verticalDirection;
-    private bool _barrierInRange = false;
     private float _attackTimer;
     private CircleCollider2D _hitBox;
 
     //---------- Stat ----------//
-    private DogData _dogData;
+    private DogData _Data;
     private int _level;
 
     //---------- Const ----------//
@@ -49,6 +43,8 @@ public class Dog : MonoBehaviour
     private const string AttackAnim = "Attack";
     private const string DeathAnim = "Dead";
 
+    private readonly List<Targetable> _targetsInRange = new List<Targetable>();
+    private Targetable _currentTarget;
 
     private void Awake()
     {
@@ -60,39 +56,91 @@ public class Dog : MonoBehaviour
 
     private void Start()
     {
-        _walkCycleDuration = GetAnimationTime(_dogRenderer, WalkAnim);
-        _moveSpeed = GetWalkingSpeed();
-
         ChooseWalkDirection();
+        AddTarget(Barrier.Instance);
     }
-    
+
     public void Initialize(DogData data)
     {
-        _dogData = data;
-        _maxHealth = dogData.health;
+        _Data = data;
+        _maxHealth = data.baseHealth;
         _currentHealth = _maxHealth;
         healthBarFill.fillAmount = 1;
 
         _dogAnimation.Initialize(true);
 
-        _attackTimer = dogData.reloadTime;
+        _attackTimer = data.baseReloadTime;
+    }
+
+    [ContextMenu("Show my target")]
+    public void ShowTarget()
+    {
+        Debug.Log("Showing target");
+        Debug.Log(_currentTarget);
+        float distance = Vector2.Distance(
+            transform.position,
+            _currentTarget.transform.position
+        );
+        Debug.Log(distance);
+        Debug.Log(_hitBox.radius);
+        
     }
 
     private void Update()
     {
         UpdateSortingGroup();
 
-        if (IsDead)
+        if (IsDestroyed)
             return;
 
-        if (_barrierInRange && _targetBarrier)
+        _currentTarget = GetHighestPriorityTarget();
+
+        if (IsTargeted)
+        {
+            HandlePrepareCloseCombat();
+        }
+        
+        float distance = Vector2.Distance(
+            transform.localPosition,
+            _currentTarget.transform.localPosition
+        );
+
+        if (distance/2 <= _hitBox.radius)
         {
             HandleAttack();
         }
         else
         {
-            HandleWalk();
+            HandleWalkTowardTarget();
         }
+    }
+
+    private void HandleWalkTowardTarget()
+    {
+        if (_currentTarget == null || _currentTarget.IsDestroyed)
+            return;
+        
+        PlayAnimation(WalkAnim);
+
+        if (_currentTarget.transform.position.x >= transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        
+        Vector3 direction =  (_currentTarget.transform.position - transform.position).normalized;
+        transform.position += direction * Data.baseSpeed * Time.deltaTime;
+    }
+
+    private void HandlePrepareCloseCombat()
+    {
+        if (_currentTarget == null || _currentTarget.IsDestroyed)
+            return;
+        
+        PlayAnimation(IdleAnim);
     }
 
     private void UpdateSortingGroup()
@@ -100,13 +148,13 @@ public class Dog : MonoBehaviour
         if (_sortingGroup == null)
             return;
 
-        float yPosition = _dogRenderer.transform.position.y;
+        float yPosition = transform.position.y;
         _sortingGroup.sortingOrder = Mathf.RoundToInt(-yPosition * 100);
     }
-    
-    public void TakeDamage(float damage)
+
+    public override void TakeDamage(float damage)
     {
-        if (IsDead)
+        if (IsDestroyed)
             return;
 
         _currentHealth -= damage;
@@ -121,15 +169,16 @@ public class Dog : MonoBehaviour
 
     private void Die()
     {
-        IsDead = true;
-        _barrierInRange = false;
+        IsDestroyed = true;
+
+        _targetsInRange.RemoveAll(target => target == null || target.IsDestroyed);
 
         _hitBox.radius = 0f;
-        
+
         SpendManager.Instance.EarnCoin(100);
         PlayAnimation(DeathAnim);
         StartCoroutine(DestroyAfterAnimation());
-        
+
         OnDeath?.Invoke(this);
     }
 
@@ -141,43 +190,38 @@ public class Dog : MonoBehaviour
 
         Destroy(gameObject);
     }
-
-    public Vector2 GetHitPoint()
-    {
-        return hitPoint.position;
-    }
-
-    private void HandleWalk()
-    {
-        PlayAnimation(WalkAnim);
-
-        Vector3 movement = new Vector3(
-            -_moveSpeed,
-            _verticalDirection * dogData.distance / 2,
-            0f
-        ) * Time.deltaTime;
-
-        transform.position += movement;
-        Vector3 position = transform.position;
-        position.y = Mathf.Clamp(position.y, Wave.Instance.minYPoint + 1, Wave.Instance.maxYPoint - 1);
-        transform.position = position;
-
-        _walkTimer += Time.deltaTime;
-
-        if (_walkTimer >= _walkCycleDuration)
-        {
-            _walkTimer = 0f;
-            ChooseWalkDirection();
-        }
-    }
+    
+    // private void HandleWalkRandomly()
+    // {
+    //     PlayAnimation(WalkAnim);
+    //
+    //     Vector3 movement = new Vector3(
+    //         -Data.baseSpeed,
+    //         _verticalDirection * Data.baseSpeed / 2,
+    //         0f
+    //     ) * Time.deltaTime;
+    //
+    //     transform.position += movement;
+    //     Vector3 position = transform.position;
+    //     position.y = Mathf.Clamp(position.y, Wave.Instance.minYPoint + 1, Wave.Instance.maxYPoint - 1);
+    //     transform.position = position;
+    //
+    //     _walkTimer += Time.deltaTime;
+    //
+    //     if (_walkTimer >= GetWalkingSpeed())
+    //     {
+    //         _walkTimer = 0f;
+    //         ChooseWalkDirection();
+    //     }
+    // }
 
     private void HandleAttack()
     {
         _attackTimer += Time.deltaTime;
 
-        while (_attackTimer >= dogData.reloadTime)
+        while (_attackTimer >= Data.baseReloadTime)
         {
-            _attackTimer -= dogData.reloadTime;
+            _attackTimer -= Data.baseReloadTime;
             Attack();
         }
     }
@@ -185,8 +229,6 @@ public class Dog : MonoBehaviour
     private void Attack()
     {
         PlayAnimation(AttackAnim);
-
-        OnAttackBarrier?.Invoke(dogData.damage);
     }
 
     private void PlayAnimation(string animName)
@@ -224,7 +266,7 @@ public class Dog : MonoBehaviour
 
     private float GetWalkingSpeed()
     {
-        return dogData.distance / GetAnimationTime(_dogRenderer, WalkAnim);
+        return Data.baseSpeed / GetAnimationTime(_dogRenderer, WalkAnim);
     }
 
     private void ChooseWalkDirection()
@@ -241,25 +283,75 @@ public class Dog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Barrier"))
-        {
-            _barrierInRange = true;
-            Barrier barrier = other.GetComponent<Barrier>();
-            if (barrier == null)
-                return;
+        if (!other.CompareTag("Barrier"))
+            return;
 
-            _targetBarrier = barrier;
-            OnAttackBarrier += _targetBarrier.TakeDamage;
-        }
+        Targetable target = other.GetComponentInParent<Targetable>();
+
+        if (target == null)
+            return;
+        
+        AddTarget(target);
     }
 
-    private void OnDestroy()
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (_targetBarrier != null)
+        if (!other.CompareTag("Barrier"))
+            return;
+
+        Targetable target = other.GetComponent<Targetable>();
+        
+        if( target == null)
+            return;
+        
+        RemoveTarget(target);
+    }
+    
+    private Targetable GetHighestPriorityTarget()
+    {
+        _targetsInRange.RemoveAll(
+            target => target == null || target.IsDestroyed
+        );
+
+        Targetable bestTarget = null;
+        int highestPriority = int.MinValue;
+
+        foreach (Targetable target in _targetsInRange)
         {
-            OnAttackBarrier -= _targetBarrier.TakeDamage;
-            _barrierInRange = false;
-            _targetBarrier = null;
+            if (target == null || target.IsDestroyed)
+                continue;
+
+            if (target.TargetPriority > highestPriority)
+            {
+                highestPriority = target.TargetPriority;
+                bestTarget = target;
+            }
+        }
+
+        return bestTarget;
+    }
+    
+    public void AddTarget(Targetable target)
+    {
+        if (target == null || target.IsDestroyed)
+            return;
+
+        if (_targetsInRange.Contains(target))
+            return;
+
+        _targetsInRange.Add(target);
+    }
+    
+    public void RemoveTarget(Targetable target)
+    {
+        if (target == null)
+            return;
+
+        _targetsInRange.Remove(target);
+
+        if (_currentTarget == target)
+        {
+            _currentTarget = null;
         }
     }
 }

@@ -12,8 +12,8 @@ public class DogData : ScriptableObject
     public GameObject skin;
     
     [Header("Stat")]
-    public float damage = 10;
-    public float reloadTime = 1;
-    public float health = 100;
-    public float distance = 10;
+    public float baseDamage = 10;
+    public float baseReloadTime = 1;
+    public float baseHealth = 100;
+    public float baseSpeed = 10;
 }

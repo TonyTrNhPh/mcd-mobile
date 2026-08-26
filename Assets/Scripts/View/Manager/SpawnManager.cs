@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     private readonly List<Cat> catsOnScene = new List<Cat>();
     private readonly List<Dog> dogsOnScene = new List<Dog>();
     private readonly List<Projectile> projectilesOnScene = new List<Projectile>();
-    private readonly List<PowerUp> powerUpsOnScene = new List<PowerUp>();
+    private readonly List<IPowerUp> powerUpsOnScene = new List<IPowerUp>();
 
     private void Awake()
     {
@@ -97,7 +97,7 @@ public class SpawnManager : MonoBehaviour
             return null;
         }
 
-        Vector2 targetPoint = target.GetHitPoint();
+        Vector2 targetPoint = target.transform.position;
 
         targetPoint.x += Random.Range(-3f, 3f);
         targetPoint.y += Random.Range(-3f, 3f);
@@ -189,7 +189,7 @@ public class SpawnManager : MonoBehaviour
         return previewObject;
     }
 
-    public PowerUp SpawnPowerUp(GameObject prefab, Vector3 position)
+    public IPowerUp SpawnPowerUp(GameObject prefab, Vector3 position)
     {
         if (prefab == null)
         {
@@ -204,7 +204,7 @@ public class SpawnManager : MonoBehaviour
             objectPool.transform
         );
 
-        PowerUp powerUp = powerUpObject.GetComponent<PowerUp>();
+        IPowerUp powerUp = powerUpObject.GetComponent<IPowerUp>();
 
         if (powerUp == null)
         {
@@ -224,7 +224,7 @@ public class SpawnManager : MonoBehaviour
 
     public void RemoveAllPowerUps()
     {
-        foreach (PowerUp powerUp in powerUpsOnScene)
+        foreach (IPowerUp powerUp in powerUpsOnScene)
         {
             if (powerUp != null)
                 powerUp.Remove();

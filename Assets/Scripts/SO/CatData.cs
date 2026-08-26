@@ -75,6 +75,11 @@ public class CatData : ScriptableObject
     {
         return catBaseStats[0].baseRange;
     }
+
+    public float GetBaseSpeed()
+    {
+        return catBaseStats[0].baseSpeed;
+    }
     
     public int GetMaxUpgradeLevel()
     {
@@ -114,4 +119,5 @@ public class CatBaseStatData
     public float baseDamage = 1f;
     public float baseReloadTime = 1f;
     public float baseRange = 42f;
+    public float baseSpeed = 2f;
 }

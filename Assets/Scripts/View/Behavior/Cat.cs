@@ -61,9 +61,6 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         _attackTimer = Random.Range(0f, CalculateReloadTime(_mergeLevel, _upgradeLevel));
         attackRangeCollider.radius = Data.GetBaseRange();
 
-        Debug.Log("Cat damage: " + CalculateDamage(_mergeLevel, _upgradeLevel));
-        Debug.Log("Cat reload time: " + CalculateReloadTime(_mergeLevel, _upgradeLevel));
-
         MoveToSlot(slot);
         OnSlotChanged();
     }
@@ -212,13 +209,14 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     private Dog FindClosestDog()
     {
-        CleanTargetList();
+        _dogsInRange.RemoveAll(dog => dog == null || dog.IsDestroyed);
+
         Dog closestDog = null;
         float closestDistance = Mathf.Infinity;
 
         foreach (Dog dog in _dogsInRange)
         {
-            if (dog == null || dog.IsDead)
+            if (dog == null || dog.IsDestroyed)
                 continue;
 
             float distance = Vector2.Distance(transform.position, dog.transform.position);
@@ -244,8 +242,8 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         PlayAnimation(ShootAnim);
 
         Projectile projectile = SpawnManager.Instance.SpawnProjectile(target, firePoint.position);
-        projectile.Initialize((target.GetHitPoint() - (Vector2)firePoint.position).normalized,
-            CalculateDamage(_mergeLevel, _upgradeLevel));
+        Vector2 direction = target.transform.position - firePoint.transform.position;
+        projectile.Initialize(direction.normalized, CalculateDamage(_mergeLevel, _upgradeLevel));
     }
 
     private void PlayAnimation(string animName)
@@ -288,9 +286,5 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
             _dogsInRange.Remove(dog);
         }
     }
-
-    private void CleanTargetList()
-    {
-        _dogsInRange.RemoveAll(dog => dog == null || dog.IsDead);
-    }
+    
 }

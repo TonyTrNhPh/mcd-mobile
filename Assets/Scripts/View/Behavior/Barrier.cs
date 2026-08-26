@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Barrier : MonoBehaviour
+public class Barrier : Targetable
 {
     public static Barrier Instance;
 
     [SerializeField] private List<GameObject> barriers = new List<GameObject>();
     [SerializeField] private Image healthBarFill;
 
-    public bool IsDestroy { get; private set; }
+    public override int TargetPriority => 0;
 
     //---------- Runtime ----------//
     private float _maxHealth;
@@ -36,16 +36,16 @@ public class Barrier : MonoBehaviour
 
     private void Reset()
     {
-        IsDestroy = false;
+        IsDestroyed = false;
         healthBarFill.fillAmount = 1;
 
         _maxHealth = UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.StrongholdHealth);
         _currentHealth = _maxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
-        if (IsDestroy)
+        if (IsDestroyed)
             return;
 
         _currentHealth -= damage;
@@ -54,7 +54,7 @@ public class Barrier : MonoBehaviour
         if (_currentHealth <= 0)
         {
             _currentHealth = 0;
-            IsDestroy = true;
+            IsDestroyed = true;
 
             GameEvent.HandleLevelLost();
         }
@@ -62,7 +62,7 @@ public class Barrier : MonoBehaviour
 
     public bool RepairBarrier()
     {
-        if (IsDestroy)
+        if (IsDestroyed)
             return false;
 
         _currentHealth += UpgradeManager.Instance.GetUpgradeEffectValue(PermanentUpgradeType.RepairHealth);

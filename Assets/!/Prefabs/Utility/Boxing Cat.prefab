@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 7270802667395635076}
   - component: {fileID: -3040887566527233760}
   - component: {fileID: 8114479088894657764}
+  - component: {fileID: 6511843806923160216}
   m_Layer: 8
   m_Name: Boxing Cat
   m_TagString: Melee Cat
@@ -252,6 +253,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6511843806923160216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074927879421123372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189cf79487b91bd4a94b320d704cf40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fighter
+  attackRangeCollider: {fileID: 5624196920809317786}
+  catData: {fileID: 11400000, guid: fa002c677e3d88040972533a90e025af, type: 2}
 --- !u!1 &1375926379794334771
 GameObject:
   m_ObjectHideFlags: 0

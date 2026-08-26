@@ -233,7 +233,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1976035239
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
@@ -510,9 +510,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4991813450594557375}
   - component: {fileID: 7202379784898470880}
-  - component: {fileID: 3992248269121607100}
   - component: {fileID: 2754218136436488138}
   - component: {fileID: 3649515261244900376}
+  - component: {fileID: 3992248269121607100}
   m_Layer: 8
   m_Name: Level 4
   m_TagString: Enemy
@@ -546,26 +546,10 @@ SortingGroup:
   m_GameObject: {fileID: 8432060573322760741}
   m_Enabled: 1
   m_SortingLayerID: 1976035239
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 1
   m_Sort3DAs2D: 0
---- !u!114 &3992248269121607100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432060573322760741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0729c7e95a70f64098c432cad578463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dog
-  hitPoint: {fileID: 153385445944400553}
-  healthBar: {fileID: 3377874129692212089}
-  healthBarFill: {fileID: 1139522564743517642}
-  maxHealth: 100
 --- !u!50 &2754218136436488138
 Rigidbody2D:
   serializedVersion: 5
@@ -628,7 +612,22 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.8, y: 2}
-  m_Radius: 2.4
+  m_Radius: 2.5
+--- !u!114 &3992248269121607100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432060573322760741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0729c7e95a70f64098c432cad578463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Dog
+  hitPoint: {fileID: 153385445944400553}
+  healthBar: {fileID: 3377874129692212089}
+  healthBarFill: {fileID: 1139522564743517642}
 --- !u!1 &8623242298632804047
 GameObject:
   m_ObjectHideFlags: 0

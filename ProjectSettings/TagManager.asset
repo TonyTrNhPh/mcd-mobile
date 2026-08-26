@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Barrier
+  - Fighter
+  - Melee Cat
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - Slot
   - Cat
-  - Dog
+  - OnScene
   - VFX
   - Utility
   - 
@@ -55,7 +57,7 @@ TagManager:
   - name: Cat
     uniqueID: 1087659285
     locked: 0
-  - name: Dog
+  - name: OnScene
     uniqueID: 1976035239
     locked: 0
   - name: Utility

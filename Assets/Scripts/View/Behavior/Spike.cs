@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : PowerUp
+public class Spike : MonoBehaviour, IPowerUp
 {
     private static readonly int AttackTrig = Animator.StringToHash("AttackTrig");
     private static readonly int ReloadTrig = Animator.StringToHash("ReloadTrig");
@@ -125,5 +125,10 @@ public class Spike : PowerUp
         _canAttack = true;
         
         TryAttack();
+    }
+    
+    public void Remove()
+    {
+        Destroy(gameObject);
     }
 }

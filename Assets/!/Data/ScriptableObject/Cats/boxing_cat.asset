@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e877b3f3c663570409f861617cf1256c, type: 3}
+  m_Name: boxing_cat
+  m_EditorClassIdentifier: Assembly-CSharp::CatData
+  catID: boxinng_cat
+  catName: Madagasca
+  catDescription: Low damage, high reload time
+  baseSize: {x: 264, y: 200}
+  offset: {x: 0, y: 10}
+  baseSprite: {fileID: 5120836914404223065, guid: c6076f52542484b43ad3182f840cae9e, type: 3}
+  baseAnimation: {fileID: 9100000, guid: 4d4af41cba78c844e8250f967c1d26a7, type: 2}
+  catVisuals:
+  - catSkin: {fileID: 1074927879421123372, guid: f0fdc540e1d73d548a3d85c9af5fdc3e, type: 3}
+  catBaseStats:
+  - baseDamage: 4
+    baseReloadTime: 1
+    baseRange: 2.5
+    baseSpeed: 2
+  catUpgrades:
+  - upgradePrice: 0
+    upgradeDamage: 0
+    upgradeReloadTime: 0
+  - upgradePrice: 10
+    upgradeDamage: 0.8
+    upgradeReloadTime: 0.02
+  - upgradePrice: 10
+    upgradeDamage: 1.6
+    upgradeReloadTime: 0.04
+  - upgradePrice: 10
+    upgradeDamage: 2.4
+    upgradeReloadTime: 0.06
+  - upgradePrice: 10
+    upgradeDamage: 3.2
+    upgradeReloadTime: 0.08
+  - upgradePrice: 10
+    upgradeDamage: 4
+    upgradeReloadTime: 0.1
