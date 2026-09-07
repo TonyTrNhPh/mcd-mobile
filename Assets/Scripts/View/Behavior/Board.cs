@@ -35,17 +35,27 @@ public class Board : MonoBehaviour
     
     public bool SpawnRandomCat()
     {
+        Debug.Log("Add button clicked 10");
         Slot slot = GetFirstEmptySlot();
+        
+        Debug.Log("Add button clicked 11");
         if (slot == null)
         {
             Debug.Log("All slots are occupied. Cannot spawn cat.");
             return false;
         }
-        
+        Debug.Log("Add button clicked 12");
         CatData catData = DataManager.Instance.GetRandomCat();
+        Debug.Log("Add button clicked 13");
         int upgradeLevel = SaveManager.Instance.GetCatLevel(catData);
+        Debug.Log("Add button clicked 14");
         Cat cat = SpawnManager.Instance.SpawnCat(catData, 0, upgradeLevel,slot);// change the upgrade level after SaveManager
-        
+        Debug.Log("Add button clicked 15");
+        foreach(Slot s in slots)
+        {
+            Debug.Log($"Slot {s.name} - IsEmpty: {s.IsEmpty}, Type: {s.Type}");
+        }
+        Debug.Log("Add button clicked 16");
         return cat != null;
     }
     
@@ -62,12 +72,13 @@ public class Board : MonoBehaviour
     
     public bool HasEmptySlot()
     {
+        Debug.Log("Add button clicked 8");
         foreach (var slot in slots)
         {
             if (slot.IsEmpty && slot.Type == SlotType.Ground)
                 return true;
         }
-
+        Debug.Log("Add button clicked 9");
         return false;
     }
     

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4a51327d4387648a4dd2c33ad6f9cd, type: 3}
+  m_Name: enemy_lvl_1
+  m_EditorClassIdentifier: Assembly-CSharp::DogData
+  dogID: enemy_lvl_1
+  dogName: Black Nose Dog
+  dogDescription: I dont know
+  skin: {fileID: 8432060573322760741, guid: 05efedb56e501364d87a659c3c917ed5, type: 3}
+  baseDamage: 10
+  baseReloadTime: 1
+  baseHealth: 10
+  baseSpeed: 2.4
