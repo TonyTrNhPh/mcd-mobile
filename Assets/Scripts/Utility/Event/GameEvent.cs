@@ -17,6 +17,7 @@ public static class GameEvent
     public static event Action <LevelData> OnLevelWon = delegate { };
     public static event Action OnLevelLost = delegate { };
     public static event Action<int, int> OnWaveChange = delegate { };
+    public static event Action<float> OnBarrierDamaged = delegate { };
 
     //---------- Handle Event ----------//
     public static void HandleCoinChanged(int amount) => OnCoinChanged?.Invoke(amount);
@@ -29,4 +30,5 @@ public static class GameEvent
     public static void HandlePauseButtonClicked()=> OnPauseButtonClicked?.Invoke();
     public static void HandleLevelLost() => OnLevelLost?.Invoke();
     public static void HandleLevelWon(LevelData level) => OnLevelWon?.Invoke(level);
+    public static void HandleBarrierDamaged(float damage) => OnBarrierDamaged?.Invoke(damage);
 }

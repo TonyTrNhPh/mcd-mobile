@@ -21,8 +21,6 @@ public class PlayMenu : MonoBehaviour
     [SerializeField] private Button pauseButton;
 
 
-    #region Unity Life Cycle
-
     private void Awake()
     {
         addButton.onClick.AddListener(HandleAddButtonClicked);
@@ -30,7 +28,6 @@ public class PlayMenu : MonoBehaviour
         spikeButton.onClick.AddListener(HandleSpikeButtonClicked);
         tntButton.onClick.AddListener(HandleTntButtonClicked);
         guardianButton.onClick.AddListener(HandleGuardianButtonClicked);
-        
         pauseButton.onClick.AddListener(HandlePauseButtonClicked);
     }
     
@@ -66,9 +63,6 @@ public class PlayMenu : MonoBehaviour
         pauseButton.onClick.RemoveListener(HandlePauseButtonClicked);
     }
 
-    #endregion
-    
-    #region Button Click Handlers
     
     private void HandleAddButtonClicked()
     {
@@ -111,10 +105,6 @@ public class PlayMenu : MonoBehaviour
     {
         
     }
-    #endregion
-
-
-    #region UI Updater
 
     private void UpdateUI()
     {
@@ -153,9 +143,6 @@ public class PlayMenu : MonoBehaviour
     {
         repairBarrierCoinText.text = coinAmount.ToString();
     }
-    
-    #endregion
-    
 }
 
 public class PlayState : IState

@@ -57,6 +57,7 @@ public class Dog : Targetable
     private void Start()
     {
         ChooseWalkDirection();
+        
         AddTarget(Barrier.Instance);
     }
 
@@ -95,6 +96,11 @@ public class Dog : Targetable
 
         _currentTarget = GetHighestPriorityTarget();
 
+        if (_currentTarget == null || _currentTarget.IsDestroyed)
+        {
+            return;
+        }
+        
         if (IsTargeted)
         {
             HandlePrepareCloseCombat();
@@ -229,6 +235,17 @@ public class Dog : Targetable
     private void Attack()
     {
         PlayAnimation(AttackAnim);
+        
+        if (_currentTarget == null)
+            return;
+
+        if (_currentTarget is Barrier)
+        {
+            GameEvent.HandleBarrierDamaged(Data.baseDamage);
+            return;
+        }
+
+        _currentTarget.TakeDamage(Data.baseDamage);
     }
 
     private void PlayAnimation(string animName)

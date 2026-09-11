@@ -26,9 +26,14 @@ public class Barrier : Targetable
         else
         {
             Destroy(gameObject);
-        }
+        }        
+        GameEvent.OnBarrierDamaged += HandleBarrierDamage;
     }
 
+    private void OnDestroy()
+    {
+        GameEvent.OnBarrierDamaged -= HandleBarrierDamage;
+    }
     public void Initialize()
     {
         Reset();
@@ -58,6 +63,11 @@ public class Barrier : Targetable
 
             GameEvent.HandleLevelLost();
         }
+    }
+    
+    private void HandleBarrierDamage(float damage)
+    {
+        TakeDamage(damage);
     }
 
     public bool RepairBarrier()
