@@ -11,6 +11,8 @@ public class Dog : Targetable
 {
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Image healthBarFill;
+    [SerializeField] private Transform frontSpot;
+    [SerializeField]  private Transform backSpot;
 
     public DogData Data => _Data;
     public override int TargetPriority => 0;

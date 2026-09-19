@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1861504282807055900}
   - component: {fileID: 6312278736080907309}
   m_Layer: 10
-  m_Name: TNT
+  m_Name: tnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

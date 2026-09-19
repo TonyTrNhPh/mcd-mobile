@@ -11,7 +11,7 @@
 },
 "bones": [
 	{ "name": "root" },
-	{ "name": "AllBones", "parent": "root", "x": -15.112617, "y": 249.79405 },
+	{ "name": "AllBones", "parent": "root", "x": -15.112617, "y": 150 },
 	{ "name": "Body", "parent": "AllBones", "length": 40.44365, "rotation": 91.14577, "x": 24.66569, "y": -112.7327 },
 	{ "name": "Head", "parent": "Body", "length": 24.234373, "rotation": 114.56413, "x": 74.26258, "y": 19.56688 },
 	{ "name": "Shield", "parent": "Body", "length": 13.343732, "rotation": 88.8542, "x": 21.649147, "y": 72.61955 },

@@ -11,7 +11,7 @@
 	},
 	"bones": [
 		{ "name": "root" },
-		{ "name": "Allbones", "parent": "root", "x": 3.181492, "y": 256.4389 },
+		{ "name": "Allbones", "parent": "root", "x": 3.181492, "y": 160 },
 		{ "name": "Shade", "parent": "Allbones", "x": -2.106033, "y": -146.7728, "scaleX": 1.238957, "scaleY": 1.238957 },
 		{ "name": "Body", "parent": "Allbones", "length": 18.096775, "rotation": 89.23612, "x": -2.536667, "y": -142.30597 },
 		{ "name": "HandF", "parent": "Body", "length": 14.717557, "rotation": 111.31998, "x": 26.54805, "y": 11.551607 },

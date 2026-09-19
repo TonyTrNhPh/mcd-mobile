@@ -11,7 +11,7 @@
 },
 "bones": [
 	{ "name": "root" },
-	{ "name": "Allbones", "parent": "root", "x": 0.2431164, "y": 234.3846 },
+	{ "name": "Allbones", "parent": "root", "x": 0.2431164, "y": 130 },
 	{ "name": "Body", "parent": "Allbones", "length": 19.22384, "rotation": 88.4725, "x": 2.8185105, "y": -116.7124 },
 	{ "name": "Head", "parent": "Body", "length": 22.561077, "rotation": -0.4249704, "x": 27.796173, "y": 5.423866 },
 	{ "name": "Gun", "parent": "Body", "length": 14.607194, "rotation": -87.46745, "x": 14.74295, "y": 17.38058 },

@@ -15,7 +15,7 @@ MonoBehaviour:
   dogID: enemy_lvl_5
   dogName: Black Nose Dog
   dogDescription: I dont know
-  skin: {fileID: 8432060573322760741, guid: ee05c535e2b554d40abaa34f110295cd, type: 3}
+  skin: {fileID: 8432060573322760741, guid: c46508b98f33d48459256c1321b73b37, type: 3}
   baseDamage: 10
   baseReloadTime: 1
   baseHealth: 100

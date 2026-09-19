@@ -20,27 +20,32 @@ MonoBehaviour:
   baseSprite: {fileID: -3308235661049845915, guid: aa547f7e938fa884e8ccf25ea932d4d9, type: 3}
   baseAnimation: {fileID: 9100000, guid: 4d4af41cba78c844e8250f967c1d26a7, type: 2}
   catVisuals:
-  - catSkin: {fileID: 1074927879421123372, guid: bbd0654ea8300c14db8a091b09d9e792, type: 3}
-  - catSkin: {fileID: 1074927879421123372, guid: 893a48821a6bddc48a3fc9ba93cff9df, type: 3}
-  - catSkin: {fileID: 1074927879421123372, guid: e4b023e6a07f7d74eae04bce41c398ce, type: 3}
-  - catSkin: {fileID: 1074927879421123372, guid: e262db3278788614a9632d6d8406e2e6, type: 3}
-  - catSkin: {fileID: 1074927879421123372, guid: 3d87a433f10b4c14ebc20929325f69af, type: 3}
+  - catSkin: {fileID: 3233653714574399950, guid: 1c7d86023a3a9c24b9b35932880f1a2f, type: 3}
+  - catSkin: {fileID: 3233653714574399950, guid: 8060a9b77430afb4ca3d664962d92e94, type: 3}
+  - catSkin: {fileID: 3233653714574399950, guid: 973284cbefea8cd41a41c7eae29202b6, type: 3}
+  - catSkin: {fileID: 3233653714574399950, guid: 154eb338a31a55b4bb37131b1fb247ed, type: 3}
+  - catSkin: {fileID: 3233653714574399950, guid: a86be659208285d4abcb27852a5b6a9c, type: 3}
   catBaseStats:
   - baseDamage: 4
     baseReloadTime: 1
     baseRange: 28
+    baseSpeed: 2
   - baseDamage: 6
     baseReloadTime: 0.95
     baseRange: 28
+    baseSpeed: 2
   - baseDamage: 9
     baseReloadTime: 0.9
     baseRange: 28
+    baseSpeed: 2
   - baseDamage: 13.5
     baseReloadTime: 0.85
     baseRange: 28
+    baseSpeed: 2
   - baseDamage: 20
     baseReloadTime: 0.8
     baseRange: 28
+    baseSpeed: 2
   catUpgrades:
   - upgradePrice: 0
     upgradeDamage: 0

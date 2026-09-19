@@ -37,6 +37,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
     private float _attackTimer;
     private Camera _camera;
     private readonly List<Dog> _dogsInRange = new List<Dog>();
+    private bool _isDragging;
 
     //---------- Const ----------//
     private const string IdleAnim = "Idle";
@@ -45,7 +46,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     private void Awake()
     {
-        _catAnimation = GetComponentInChildren<SkeletonAnimation>();
+        _catAnimation = GetComponent<SkeletonAnimation>();
         _sortingGroup = GetComponent<SortingGroup>();
         _camera = Camera.main;
     }
@@ -61,6 +62,8 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         _attackTimer = Random.Range(0f, CalculateReloadTime(_mergeLevel, _upgradeLevel));
         attackRangeCollider.radius = Data.GetBaseRange();
 
+        _isDragging = false;
+        
         MoveToSlot(slot);
         OnSlotChanged();
     }
@@ -77,6 +80,9 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     private void Update()
     {
+        if(!_isDragging)
+            UpdateSortingGroup();
+        
         if (CurrentSlot == null)
             return;
 
@@ -86,6 +92,15 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
         HandelAttack();
     }
 
+    private void UpdateSortingGroup()
+    {
+        if (_sortingGroup == null)
+            return;
+
+        float yPosition = transform.position.y;
+        _sortingGroup.sortingOrder = Mathf.RoundToInt(-yPosition * 100);
+    }
+    
     public void MoveToSlot(Slot slot)
     {
         if (CurrentSlot != null)
@@ -108,6 +123,8 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        _isDragging = true;
+        
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(eventData.position);
        
         if (hitboxCollider.OverlapPoint(mouseWorldPos))
@@ -124,7 +141,7 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
             return;
 
         PlayAnimation(IdleAnim);
-        _sortingGroup.sortingOrder = 30;
+        _sortingGroup.sortingOrder = 10000;
         _originalSlot = CurrentSlot;
         LeaveCurrentSlot();
 
@@ -144,7 +161,8 @@ public class Cat : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        _sortingGroup.sortingOrder = 1;
+        _isDragging = false;
+        
         _touchCount = 0;
         Slot targetSlot = Board.Instance.GetClosestSlot(transform.position);
         if (targetSlot == null)

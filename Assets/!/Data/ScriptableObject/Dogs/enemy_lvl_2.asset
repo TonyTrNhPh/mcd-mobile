@@ -15,7 +15,7 @@ MonoBehaviour:
   dogID: enemy_lvl_2
   dogName: Red Nose Dog
   dogDescription: I dont know
-  skin: {fileID: 8432060573322760741, guid: 552454e93c247ce4b9422da4a16dfeae, type: 3}
+  skin: {fileID: 8432060573322760741, guid: 4b3a141913cac754bb64d4b17739fba5, type: 3}
   baseDamage: 10
   baseReloadTime: 1
   baseHealth: 100
