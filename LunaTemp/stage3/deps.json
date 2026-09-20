@@ -1,0 +1,236 @@
+{
+  "ignores": [
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleUI.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleUnityVersion.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/AnimationState.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/ISkeletonAnimation.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/AtlasUtilities.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/AttachmentCloneExtensions.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/AttachmentRegionExtensions.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/SkeletonExtensions.cs",
+    "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/TimelineExtensions.cs"
+  ],
+  "groups": [
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleAudio.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleEPOOutline.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModulePhysics.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModulePhysics2D.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleSprite.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleUI.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleUnityVersion.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Plugins/DOTween/Modules/DOTweenModuleUtils.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/SO/BossData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/DataManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Board.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Cat.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Slot.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/Event/GameEvent.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Barrier.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Dog.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Fighter.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Abstract/Targetable.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Interface/IPowerUp.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Spike.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/UpgradeManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/TNT.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/SO/PermanentUpgradeData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/SaveManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/GameManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/PlayableManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Menu/LandingMenu.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/AudioManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Menu/PlayMenu.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/SpendManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/LevelManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/TutorialManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/SO/LevelData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Wave.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/SO/DogData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/SpawnManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/MergeManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/MessageManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/PotatoDevUI/PDUTextEffect.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/SO/CatData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/UI/CatCard.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/UI/CatSelection.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/UI/UtilityButton.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Behavior/Projectile.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Menu/WinMenu.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/State/IState.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/State/StateMachine.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Menu/HomeMenu.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Manager/UIManager.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Menu/LoseMenu.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/Menu/PauseMenu.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/UI/LevelButton.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/UI/LevelSelection.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/Constant/CommonSaveKey.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/UI/UpgradeCard.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/View/UI/UpgradeSelection.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonAnimation.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineEvent.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/EventData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Event.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Animation.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/AnimationState.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Triangulator.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/SkeletonClipping.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Skeleton.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/VertexAttachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/BoundingBoxAttachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/AtlasAttachmentLoader.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/SkeletonLoader.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/SkeletonBinary.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataAsset.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/AnimationReferenceAsset.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/ISkeletonAnimation.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/Following/PointFollower.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderer.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollower.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollowerGraphic.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonGraphic.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollowerGraphic.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/SpineAttributes.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/EventDataReferenceAsset.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/SkeletonData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/AnimationStateData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/PhysicsConstraint.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/IUpdatable.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Bone.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/PointAttachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentLoader.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/SkeletonJson.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Atlas.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/MeshAttachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Skin.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/BlendModeMaterials.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/BlendMode.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/SlotData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/ClippingAttachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/RegionlessAttachmentLoader.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/RegionAttachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshGenerator.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonPartsRenderer.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonRenderSeparator.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Mesh Generation/SkeletonRendererInstruction.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshRendererBuffers.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Mesh Generation/DoubleBuffered.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/ExposedList.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/IkConstraint.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtility.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollower.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Slot.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/Sequence.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/IHasTextureRegion.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/BlendModeMaterialsAsset.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataModifierAsset.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/Attachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/PathAttachment.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/PathConstraint.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/PathConstraintData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/ConstraintData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/IkConstraintData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/BoneData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/PhysicsConstraintData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/TransformConstraint.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotionBase.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonMecanimRootMotion.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonMecanim.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotion.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/TimelineExtensions.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/TransformConstraintData.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/MathUtils.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/SkeletonExtensions.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/TextureRegion.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/AtlasUtilities.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/AttachmentCloneExtensions.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/AttachmentRegionExtensions.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityBone.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityConstraint.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/SkeletonBounds.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonRendererCustomMaterials.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Mesh Generation/SpineMesh.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/AtlasAssetBase.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/OnDemandTextureLoader.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/SpineAtlasAsset.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/SpineSpriteAtlasAsset.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Json.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentType.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonGraphicCustomMaterials.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/ActivateBasedOnFlipDirection.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/Internal/SkeletonSubmeshGraphic.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataCompatibility.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimation.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationComplete.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationEnd.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineTrackEntryEnd.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/PotatoDevUI/PDUBaseDraggable.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/PotatoDevUI/PDUBaseMenu.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/PotatoDevUI/PDUBaseTabButton.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/PotatoDevUI/PDUBaseTabList.cs",
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Scripts/Utility/PotatoDevUI/PDUBaseTabContainer.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/EditorSkeletonPlayer.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody2D.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowSkeletonUtilityRootRotation.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Modules/TK2D/SpriteCollectionAttachmentLoader.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/BuildUtilities.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/MaterialChecks.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/MathUtilities.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/Spine/Runtime/spine-unity/Utility/SettingsTriState.cs"
+    ],
+    [
+      "D:/Works/mcd-mobile/LunaTemp/stage3/processed-scripts/Assets/TutorialInfo/Scripts/Readme.cs"
+    ],
+    [
+      "D:/Softwares/Unity Editor/7.2.0/pipeline/templates/LunaCompiler/Scripts/Properties/AssemblyInfo.cs"
+    ],
+    [
+      "D:/Softwares/Unity Editor/7.2.0/pipeline/templates/LunaCompiler/Scripts/Sources/OtherDummyScript.cs"
+    ],
+    [
+      "D:/Softwares/Unity Editor/7.2.0/pipeline/templates/LunaCompiler/Scripts/obj/Debug/.NETFramework,Version=v4.7.AssemblyAttributes.cs"
+    ]
+  ]
+}

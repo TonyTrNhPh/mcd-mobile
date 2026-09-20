@@ -19,4 +19,4 @@ MonoBehaviour:
   baseDamage: 10
   baseReloadTime: 1
   baseHealth: 20
-  baseSpeed: 2.4
+  baseSpeed: 3.6

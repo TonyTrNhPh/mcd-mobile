@@ -18,5 +18,5 @@ MonoBehaviour:
   skin: {fileID: 8432060573322760741, guid: a453411a645364a44acfb204ca9be0a5, type: 3}
   baseDamage: 10
   baseReloadTime: 1
-  baseHealth: 100
-  baseSpeed: 2.4
+  baseHealth: 60
+  baseSpeed: 3.6
